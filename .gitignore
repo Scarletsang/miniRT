@@ -1,0 +1,7 @@
+.DS_Store
+**/*.DSYM
+**/*.out
+**/*.o
+**/*.so
+**/*.txt
+**/*.dylib
