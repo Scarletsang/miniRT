@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   vec2.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:01:01 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:01:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef VEC2_H
+# define VEC2_H
 
-# include <stdlib.h>
-
-struct s_mrt_settings
+typedef struct s_mrt_vec2
 {
-	int32_t	width;
-	int32_t	height;
-};
+	float	x;
+	float	y;
+}				t_mrt_vec2;
 
 #endif

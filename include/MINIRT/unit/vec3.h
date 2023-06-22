@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:01:23 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:02:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef VEC3_H
+# define VEC3_H
 
-# include <stdlib.h>
-
-struct s_mrt_settings
+typedef struct s_mrt_vec3
 {
-	int32_t	width;
-	int32_t	height;
-};
+	float	x;
+	float	y;
+	float	z;
+}				t_mrt_vec3;
+
+/**
+ * @brief normal is a vector with length 1
+ */
+typedef t_mrt_vec3	t_mrt_vec3_unit;
 
 #endif

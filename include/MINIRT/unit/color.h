@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:02:14 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:07:43 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include <stdlib.h>
+# include "vec3.h"
 
-struct s_mrt_settings
-{
-	int32_t	width;
-	int32_t	height;
-};
+typedef t_mrt_vec3	t_mrt_color;
 
 #endif

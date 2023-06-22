@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   unit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:05:23 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:11:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef UNIT_H
+# define UNIT_H
 
-# include <stdlib.h>
+# include "unit/vec2.h"
+# include "unit/vec3.h"
+# include "unit/color.h"
+# include "unit/range.h"
 
-struct s_mrt_settings
-{
-	int32_t	width;
-	int32_t	height;
-};
+typedef t_mrt_vec3	t_mrt_point3d;
+typedef t_mrt_vec3	t_mrt_direction3d;
+
+/**
+ * @brief ratio is a float between 0 and 1
+ */
+typedef float		t_mrt_ratio;
+typedef float		t_mrt_degrees;
 
 #endif

@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:06:52 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:11:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef LIGHT_H
+# define LIGHT_H
 
-# include <stdlib.h>
+# include "unit.h"
 
-struct s_mrt_settings
+struct s_mrt_ambient_light
 {
-	int32_t	width;
-	int32_t	height;
+	t_mrt_ratio	ratio;
+	t_mrt_color	color;
+};
+
+struct s_mrt_light
+{
+	t_mrt_point3d	origin;
+	t_mrt_ratio		ratio;
+	t_mrt_color		color;
 };
 
 #endif

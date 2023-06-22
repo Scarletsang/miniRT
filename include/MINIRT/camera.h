@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:04 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
+/*   Updated: 2023/06/23 00:11:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
-# include <stdlib.h>
+# include "unit.h"
 
-struct s_mrt_settings
+struct s_mrt_camera
 {
-	int32_t	width;
-	int32_t	height;
+	t_mrt_point3d	origin;
+	t_mrt_vec3_unit	orientation;
+	t_mrt_degrees	fov;
 };
 
 #endif
