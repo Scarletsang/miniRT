@@ -144,6 +144,21 @@ install_glfw:
 	)
 endif
 
+###############################################
+######     Pack objects for testing     #######
+###############################################
+
+pack: CFLAGS += -fPIC
+pack: LDFLAGS += -shared
+pack: $(LIBFT) $(OBJ)
+	@$(CC) $(OBJ) -o lib$(NAME).so $(LDFLAGS) && echo "Compilation of $(NAME).so successful"
+
+unpack:
+	@rm -f lib$(NAME).so
+
+repack: unpack clean
+	@$(MAKE) pack
+
 ###############################
 ######     Cleaning     #######
 ###############################
