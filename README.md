@@ -1,6 +1,6 @@
 # miniRT
 
-A raytracing engine written in C
+A Raytracing engine written in C
 
 TODO:
 
