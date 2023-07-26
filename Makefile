@@ -108,42 +108,6 @@ $(OBJ): $(OBJ_DIR)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-#########################################################
-######     install brew (for 42 evaluation)     #########
-#########################################################
-
-ifeq ($(shell uname), Darwin)
-install_brew:
-	@brew --version &>/dev/null && echo "brew already installed" || \
-	( \
-		( \
-			mv $(HOME)/.brew $(HOME)/goinfre/.brew &>/dev/null || \
-			rm -rf $(HOME)/.brew && rm -rf $(HOME)/goinfre/.brew \
-		) && \
-		git clone --depth=1 https://github.com/Homebrew/brew $(HOME)/goinfre/.brew && \
-		brew --version &>/dev/null || \
-		( \
-			echo "export PATH=$HOME/goinfre/.brew/bin:$PATH" >> $(HOME)/.zshrc && \
-			source $(HOME)/.zshrc \
-		) && \
-		echo "brew installed" \
-	)
-
-install_cmake:
-	@cmake -version &>/dev/null && echo "cmake already installed" || \
-	( \
-		brew install cmake && \
-		echo "cmake installed" \
-	)
-
-install_glfw:
-	@brew list glfw &>/dev/null && echo "glfw already installed" || \
-	( \
-		brew install glfw && \
-		echo "glfw installed" \
-	)
-endif
-
 ###############################################
 ######     Pack objects for testing     #######
 ###############################################
