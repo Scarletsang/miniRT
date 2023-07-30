@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/27 13:24:22 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/07/30 12:06:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "unit.h"
 # include "image.h"
 
-typedef struct s_mrt_camera
+struct s_mrt_camera
 {
 	double			viewport_height;
 	double			viewport_width;
@@ -25,8 +25,8 @@ typedef struct s_mrt_camera
 	t_mrt_vec3		horizontal;
 	t_mrt_vec3		vertical;
 	t_mrt_vec3		lower_left_corner;
-}				t_mrt_camera;
+};
 
-t_mrt_camera	*new_camera(const t_mrt_image *img);
+struct s_mrt_camera	*new_camera(const struct s_mrt_image *img);
 
 #endif
