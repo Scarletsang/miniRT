@@ -20,9 +20,19 @@ INCLUDE_DIR= \
 # To add souce files, create a varaible for each folder, and then
 # contatenate them in the SRC variable like this:
 
+RAYS_SRC:= \
+	rays/ray.c \
+	rays/camera_image.c
+UNIT_SRC:= \
+	unit/range.c \
+	unit/vec3/vec3_formulas.c \
+	unit/vec3/vec3_operations.c \
+	unit/vec3/vec3_tests.c \
+	unit/vec3/vec3_utils.c \
+
 MAIN_SRC:= \
 	main.c
-SRC:= $(MAIN_SRC)
+SRC:= $(RAYS_SRC) $(UNIT_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######

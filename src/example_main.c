@@ -3,24 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:20:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/27 13:35:40 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/06/23 00:14:42 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/unit/color.h"
-#include "MINIRT/ray.h"
-#include "MINIRT/unit/vec3.h"
-
-int	main(void)
-{
-	ray_ppm();
-	return (0);
-}
-
-/*
 #include "MINIRT/miniRT.h"
 #include <MLX42/MLX42.h>
 
@@ -41,4 +30,3 @@ int	main(int argc, const char **argv)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
-*/

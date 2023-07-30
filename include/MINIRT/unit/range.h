@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:02:44 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:11:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/07/30 11:10:00 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 typedef t_mrt_vec2	t_mrt_range;
 
-t_mrt_range	mrt_range(float min, float max);
+t_mrt_range	mrt_range(double min, double max);
 
-float		mrt_range_minimum(t_mrt_range range);
+double		mrt_range_minimum(t_mrt_range range);
 
-float		mrt_range_maximum(t_mrt_range range);
+double		mrt_range_maximum(t_mrt_range range);
 
-float		mrt_range_size(t_mrt_range range);
+double		mrt_range_size(t_mrt_range range);
 
 #endif
