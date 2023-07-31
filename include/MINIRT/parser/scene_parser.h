@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 16:17:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/07/31 22:04:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,75 +17,65 @@
 # include "MINIRT/scene.h"
 # include "LIBFT/vector.h"
 # include "LIBFT/slice.h"
+# include "LIBFT/parser.h"
 
-struct s_mrt_scene_parser
-{
-	t_ft_str			line;
-	size_t				cursor;
-	struct s_mrt_scene	scene;
-};
-
-int		mrt_scene_parser_init(struct s_mrt_scene_parser *parser);
-
-void	mrt_scene_parser_free(struct s_mrt_scene_parser *parser);
+typedef struct s_ft_parser_entity	t_mrt_scene_parser_entity;
 
 //////////////////////////////////////////
 ////////////   entry parser   ////////////
 //////////////////////////////////////////
 
+t_mrt_scene_parser_entity			mrt_scene_parser_sphere(\
+t_mrt_scene_parser_entity input, void *option);
 
-enum s_mrt_scene_entry_identifier	mrt_scene_parser_identifier(\
-struct s_mrt_scene_parser *parser);
+t_mrt_scene_parser_entity			mrt_scene_parser_plane(\
+t_mrt_scene_parser_entity input, void *option);
 
-int									mrt_scene_parser_sphere(\
-struct s_mrt_scene_parser *parser);
+t_mrt_scene_parser_entity			mrt_scene_parser_cylinder(\
+t_mrt_scene_parser_entity input, void *option);
 
-int									mrt_scene_parser_plane(\
-struct s_mrt_scene_parser *parser);
+t_mrt_scene_parser_entity			mrt_scene_parser_light_ambient(\
+t_mrt_scene_parser_entity input, void *option);
 
-int									mrt_scene_parser_cylinder(\
-struct s_mrt_scene_parser *parser);
+t_mrt_scene_parser_entity			mrt_scene_parser_light_point(\
+t_mrt_scene_parser_entity input, void *option);
 
-int									mrt_scene_parser_light_ambient(\
-struct s_mrt_scene_parser *parser);
-
-int									mrt_scene_parser_light_point(\
-struct s_mrt_scene_parser *parser);
-
-int									mrt_scene_parser_camera(\
-struct s_mrt_scene_parser *parser);
+t_mrt_scene_parser_entity			mrt_scene_parser_camera(\
+t_mrt_scene_parser_entity input, void *option);
 
 
 /////////////////////////////////////////
 ////////////   unit parser   ////////////
 /////////////////////////////////////////
 
-int									mrt_scene_parser_point3d(\
-struct s_mrt_scene_parser *parser, t_mrt_range range);
+typedef struct s_ft_parser_entity	t_mrt_unit_parser_entity;
 
-int									mrt_scene_parser_direction3d(\
-struct s_mrt_scene_parser *parser, t_mrt_range range);
+t_mrt_unit_parser_entity			mrt_scene_parser_point3d(\
+t_mrt_unit_parser_entity input);
 
-int									mrt_scene_parser_ratio(\
-struct s_mrt_scene_parser *parser, t_mrt_range range);
+t_mrt_unit_parser_entity			mrt_scene_parser_direction3d(\
+t_mrt_unit_parser_entity input);
 
-int									mrt_scene_parser_degrees(\
-struct s_mrt_scene_parser *parser, t_mrt_range range);
+t_mrt_unit_parser_entity			mrt_scene_parser_ratio(\
+t_mrt_unit_parser_entity input);
 
-int									mrt_scene_parser_color(\
-struct s_mrt_scene_parser *parser);
+t_mrt_unit_parser_entity			mrt_scene_parser_degrees(\
+t_mrt_unit_parser_entity input);
+
+t_mrt_unit_parser_entity			mrt_scene_parser_color(\
+t_mrt_unit_parser_entity input);
+
+t_mrt_unit_parser_entity			mrt_scene_parser_double(\
+t_mrt_unit_parser_entity input);
 
 ///////////////////////////////////
 ////////////   lexer   ////////////
 ///////////////////////////////////
 
-int									mrt_scene_parser_ignore(\
-struct s_mrt_scene_parser *parser, t_ft_str set);
+t_mrt_scene_parser_entity			mrt_scene_parser_ignore(\
+t_mrt_scene_parser_entity input);
 
-int									mrt_scene_parser_double(\
-struct s_mrt_scene_parser *parser, t_mrt_range range);
-
-int									mrt_scene_parser_comma(\
-struct s_mrt_scene_parser *parser, t_ft_str set);
+t_mrt_scene_parser_entity			mrt_scene_parser_comma(\
+t_mrt_scene_parser_entity input);
 
 #endif
