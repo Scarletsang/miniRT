@@ -36,14 +36,14 @@ t_mrt_point3d	ray_at(t_mrt_ray *ray, double t)
 
 void	ray_ppm(void)
 {
-	struct s_mrt_camera	*cam;
+	struct s_mrt_scene_camera	*cam;
 	const struct s_mrt_image		*img = new_image();
 
 	cam = new_camera(img);
 	ray_ppm_loop(cam, img);
 }
 
-void	ray_ppm_loop(struct s_mrt_camera *cam, const struct s_mrt_image *img)
+void	ray_ppm_loop(struct s_mrt_scene_camera *cam, const struct s_mrt_image *img)
 {
 	int				j;
 	int				i;

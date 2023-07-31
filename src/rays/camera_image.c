@@ -15,11 +15,11 @@ const struct s_mrt_image	*new_image(void)
 	return (img);
 }
 
-struct s_mrt_camera	*new_camera(const struct s_mrt_image *img)
+struct s_mrt_scene_camera	*new_camera(const struct s_mrt_image *img)
 {
-	struct s_mrt_camera *cam;
+	struct s_mrt_scene_camera *cam;
 
-	cam = malloc(sizeof(struct s_mrt_camera));
+	cam = malloc(sizeof(struct s_mrt_scene_camera));
 	if (cam == NULL)
 		return (NULL);
 	cam->viewport_height = 2.0;

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:59:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:12:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/07/30 10:59:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include <stdio.h>
 #include "MINIRT/unit.h"
 
-float	mrt_lerp(t_mrt_range range, float percentage)
+double	mrt_lerp(t_mrt_range range, float percentage)
 {
 	return (mrt_range_size(range) * percentage + mrt_range_minimum(range));
 }
 
-float	mrt_inverse_lerp(t_mrt_range range, float value)
+double	mrt_inverse_lerp(t_mrt_range range, float value)
 {
 	return ((value - mrt_range_minimum(range)) / mrt_range_size(range));
 }
 
-float	mrt_remap(t_mrt_range input_range, t_mrt_range output_range, float value)
+double	mrt_remap(t_mrt_range input_range, t_mrt_range output_range, float value)
 {
 	float percentage;
 
@@ -36,8 +36,8 @@ int	test_remap(int argc, const char **argv)
 {
 	t_mrt_range	input_range;
 	t_mrt_range	normalized_range;
-	float		step;
-	float		value;
+	double		step;
+	double		value;
 
 	if (argc < 3)
 		return (EXIT_FAILURE);
