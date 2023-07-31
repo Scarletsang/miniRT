@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:01:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/07/30 12:42:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_mrt_vec2
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }				t_mrt_vec2;
 
 #endif

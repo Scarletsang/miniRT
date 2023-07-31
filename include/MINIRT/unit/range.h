@@ -6,14 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:02:44 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 11:10:00 by htsang           ###   ########.fr       */
+/*   Updated: 2023/07/30 13:08:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RANGE_H
 # define RANGE_H
 
-# include "vec2.h"
+# include "MINIRT/unit/vec2.h"
 
 typedef t_mrt_vec2	t_mrt_range;
 

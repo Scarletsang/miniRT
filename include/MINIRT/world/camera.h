@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:06:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:11:17 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
+/*   Updated: 2023/07/30 16:32:01 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
-# include "unit.h"
+# include "MINIRT/unit.h"
 
-struct s_mrt_ambient_light
+struct s_mrt_camera
 {
-	t_mrt_ratio	ratio;
-	t_mrt_color	color;
-};
 
-struct s_mrt_light
-{
-	t_mrt_point3d	origin;
-	t_mrt_ratio		ratio;
-	t_mrt_color		color;
 };
 
 #endif

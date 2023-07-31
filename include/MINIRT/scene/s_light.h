@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_object.h                                      :+:      :+:    :+:   */
+/*   s_light.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:11:20 by htsang           ###   ########.fr       */
+/*   Created: 2023/06/23 00:06:52 by htsang            #+#    #+#             */
+/*   Updated: 2023/07/30 16:31:32 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_OBJECT_H
-# define GAME_OBJECT_H
+#ifndef S_LIGHT_H
+# define S_LIGHT_H
 
-# include "unit.h"
+# include "MINIRT/unit.h"
 
-struct s_mrt_sphere
+struct s_mrt_scene_light_ambient
 {
-	t_mrt_point3d	center;
-	float			diameter;
-	t_mrt_color		color;
+	t_mrt_ratio	ratio;
+	t_mrt_color	color;
 };
 
-struct s_mrt_plane
+struct s_mrt_scene_light_point
 {
 	t_mrt_point3d	origin;
-	t_mrt_vec3_unit	orientation;
-	t_mrt_color		color;
-};
-
-struct s_mrt_cylinder
-{
-	t_mrt_point3d	center;
-	t_mrt_vec3_unit	orientation;
-	float			diameter;
-	float			height;
+	t_mrt_ratio		ratio;
 	t_mrt_color		color;
 };
 

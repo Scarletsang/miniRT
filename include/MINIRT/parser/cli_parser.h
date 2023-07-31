@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   cli_parser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 23:41:44 by htsang           ###   ########.fr       */
+/*   Created: 2023/07/30 16:04:32 by htsang            #+#    #+#             */
+/*   Updated: 2023/07/30 23:44:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef CLI_PARSER_H
+# define CLI_PARSER_H
 
-# include "MINIRT/unit.h"
+# include "MINIRT/scene.h"
+# include "MINIRT/renderer.h"
 # include <stdlib.h>
 
-struct s_mrt_settings
+struct s_mrt_cli_parser
 {
-	int32_t	width;
-	int32_t	height;
+	const char						**argv;
+	size_t							cursor;
+	struct s_mrt_scene				scene;
+	struct s_mrt_renderer_config	renderer_config;
 };
+
+int					mrt_cli_parser_init(struct s_mrt_cli_parser *parser, \
+const char **argv);
+
+struct s_mrt_scene	mrt_scene_from_file(char *file_name);
+
+
 
 #endif
