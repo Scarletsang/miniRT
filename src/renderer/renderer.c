@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_camera.h                                         :+:      :+:    :+:   */
+/*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/06 19:51:46 by htsang           ###   ########.fr       */
+/*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
+/*   Updated: 2023/08/06 20:11:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_CAMERA_H
-# define S_CAMERA_H
+#include "MINIRT/renderer.h"
 
-# include "MINIRT/unit.h"
-
-struct s_mrt_scene_camera
+struct s_mrt_renderer_config	mrt_renderer_config_default(void)
 {
-	t_mrt_point3d			origin;
-	t_mrt_direction3d_unit	orientation; // unused for now
-	t_mrt_degrees			fov; // unused for now
-};
-
-struct s_mrt_scene_camera	*mrt_scene_camera(t_mrt_point3d origin, \
-t_mrt_direction3d_unit orientation, t_mrt_degrees fov);
-
-struct s_mrt_scene_camera	*mrt_scene_camera_default(void);
-
-#endif
+	return ((struct s_mrt_renderer_config) {
+		.anti_aliasing_sample_count = 1,
+		.maximum_recursion_depth = 5,
+		.maximum_world_distance = 1000000.0,
+		.thread_count = 1
+	});
+}

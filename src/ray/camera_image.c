@@ -1,25 +1,12 @@
 #include "MINIRT/camera.h"
-#include "MINIRT/image.h"
+#include "MINIRT/viewport.h"
 #include <stdlib.h>
 
-const struct s_mrt_image	*new_image(void)
+struct s_mrt_camera	*new_camera(const struct s_mrt_image *img)
 {
-	struct s_mrt_image	*img;
+	struct s_mrt_camera *cam;
 
-	img = malloc(sizeof(struct s_mrt_image));
-	if (img == NULL)
-		return (NULL);
-	img->aspect_ratio = 16.0 / 9.0;
-	img->image_width = 400;
-	img->image_height = (int)(img->image_width / img->aspect_ratio);
-	return (img);
-}
-
-struct s_mrt_scene_camera	*new_camera(const struct s_mrt_image *img)
-{
-	struct s_mrt_scene_camera *cam;
-
-	cam = malloc(sizeof(struct s_mrt_scene_camera));
+	cam = malloc(sizeof(struct s_mrt_camera));
 	if (cam == NULL)
 		return (NULL);
 	cam->viewport_height = 2.0;

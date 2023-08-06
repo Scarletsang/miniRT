@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   example_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:20:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/06/23 00:14:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/06 18:35:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,10 @@ int	main(int argc, const char **argv)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
+
+// Parse world
+// ray generation
+// ray intersection
+// ray miss
+// ray hit
+// renderer
