@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:16:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 10:54:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 13:43:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	mrt_world_init(struct s_mrt_world *world)
 		sizeof(struct s_mrt_world_entry), 8, (t_ft_vector_item_copier) \
 			mrt_scene_entries_copier))
 		return (EXIT_FAILURE);
-	if (ft_vector_init(&world->objects, \
+	else if (ft_vector_init(&world->objects, \
 		sizeof(struct s_mrt_world_entry), 8, (t_ft_vector_item_copier) \
 			mrt_scene_entries_copier))
 	{

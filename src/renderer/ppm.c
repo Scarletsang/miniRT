@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 16:14:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:16:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 13:44:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ struct s_mrt_renderer_config *config)
 	ppm->terminal_fd = dup(STDOUT_FILENO);
 	if (ppm->terminal_fd < 0)
 		return (EXIT_FAILURE);
-	if (dup2(ppm->file_fd, STDOUT_FILENO) < 0)
+	else if (dup2(ppm->file_fd, STDOUT_FILENO) < 0)
 	{
 		close(ppm->terminal_fd);
 		close(ppm->file_fd);
@@ -59,7 +59,7 @@ static int	mrt_renderer_ppm_end(struct s_mrt_renderer_ppm *ppm)
 		close(ppm->terminal_fd);
 		return (EXIT_FAILURE);
 	}
-	if (close(ppm->terminal_fd) < 0)
+	else if (close(ppm->terminal_fd) < 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

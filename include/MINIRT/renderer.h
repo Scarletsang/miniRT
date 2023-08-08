@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:25:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 13:00:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct s_mrt_renderer_config
 	unsigned int	maximum_recursion_depth;
 	double			maximum_world_distance;
 	unsigned int	thread_count;
+	const char		*scene_file_name;
 	const char		*ppm_output_file_name;
 };
 
