@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 23:55:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:46:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	mrt_scene_add_entry(struct s_mrt_scene *scene, \
 		scene->light_count++;
 	if (scene->camera_count > 1)
 		return (EXIT_FAILURE);
-	if (ft_vector_append(&scene->entries, &entry))
+	if (!ft_vector_append(&scene->entries, &entry))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

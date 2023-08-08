@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:22:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:30:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ struct s_mrt_world_entry world_entry)
 	return (EXIT_SUCCESS);
 }
 
-int	mrt_world_from_scene(struct s_mrt_world *world, struct s_mrt_scene *scene, \
+int	mrt_world_from_scene(struct s_mrt_scene *scene, struct s_mrt_world *world, \
 struct s_mrt_world_options options)
 {
 	struct s_mrt_world_entry	world_entry;

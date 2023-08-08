@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:01:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/06 19:09:03 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:26:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,4 @@ struct s_mrt_image	mrt_image_fixed_dimension(int width, int height)
 		.aspect_ratio = (double) width / (double) height,
 		.width = width,
 		.height = height});
-}
-
-struct s_mrt_image	mrt_image_default(void)
-{
-	return (mrt_image_fixed_width(16.0 / 9.0, 400));
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 18:15:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:26:12 by htsang           ###   ########.fr       */
+/*   Created: 2023/08/08 12:32:13 by htsang            #+#    #+#             */
+/*   Updated: 2023/08/08 12:44:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#include "MINIRT/miniRT.h"
 
-struct s_mrt_image
+struct s_mrt_scene_entry	mrt_default_scene_camera(void)
 {
-	double	aspect_ratio;
-	int		width;
-	int		height;
-};
+	return (mrt_scene_camera(\
+		vec3(0.0, 0.0, 0.0), \
+		vec3(0.0, 0.0, 1.0), \
+		-1.0 \
+	));
+}
 
-struct s_mrt_image	mrt_image_fixed_width(double aspect_ratio, int width);
-
-struct s_mrt_image	mrt_image_fixed_height(double aspect_ratio, int height);
-
-struct s_mrt_image	mrt_image_fixed_dimension(int width, int height);
-
-#endif
+int	mrt_default_scene(struct s_mrt_scene *scene)
+{
+	return (mrt_scene_add_entry(scene, mrt_default_scene_camera()));
+}

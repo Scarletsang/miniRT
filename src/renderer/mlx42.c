@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:29:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:11:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:48:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "MINIRT/ray.h"
 #include <MLX42/MLX42.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 static int32_t	mrt_renderer_mlx42_pixel(t_mrt_color color)
 {
@@ -67,7 +66,6 @@ struct s_mrt_renderer_config *config)
 		mrt_world_get_camera(world)->screen.height);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mrt_renderer_mlx42_render(world, config, image);
-	printf("Render complete\n");
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);

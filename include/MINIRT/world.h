@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:23:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:30:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int							mrt_world_init(struct s_mrt_world *world);
 
 void						mrt_world_free(struct s_mrt_world *world);
 
-int							mrt_world_from_scene(struct s_mrt_world *world, \
-struct s_mrt_scene *scene, struct s_mrt_world_options options);
+int							mrt_world_from_scene(struct s_mrt_scene *scene, \
+struct s_mrt_world *world, struct s_mrt_world_options options);
 
 #endif

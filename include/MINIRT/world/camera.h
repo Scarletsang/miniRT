@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:13:31 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:44:41 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ struct s_mrt_image screen, double focal_length);
 void					mrt_camera_free(struct s_mrt_camera *camera);
 
 void					mrt_camera_refresh(struct s_mrt_camera *camera);
-
-struct s_mrt_camera		*mrt_camera_default(void);
 
 #endif

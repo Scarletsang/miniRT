@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:44:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 10:52:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:24:50 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,4 @@ t_mrt_direction3d_unit orientation, t_mrt_degrees fov)
 		.identifier = ENTRY_CAMERA,
 		.object = object
 	});
-}
-
-struct s_mrt_scene_entry	mrt_scene_camera_default(void)
-{
-	return (mrt_scene_camera(\
-		vec3(0.0, 0.0, 0.0), \
-		vec3(0.0, 0.0, 1.0), \
-		-1.0 \
-	));
 }
