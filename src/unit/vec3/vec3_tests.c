@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:12:20 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/07/27 11:23:09 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/08 11:12:18 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int	main(void)
 		fflush(stderr);
 		for (int x = 0; x < img_width; x++)
 		{
-			vec3_color_write(vec3((double)x / (img_width - 1), (double)y / (img_height - 1), 0.25));
+			vec3_color_write(vec3((double)x / (img_width - 1), \
+			(double)y / (img_height - 1), 0.25));
 		}
 	}
 	fprintf(stderr, "\nDone.\n");

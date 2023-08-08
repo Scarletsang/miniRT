@@ -5,10 +5,11 @@
 NAME:=miniRT
 
 CC:=cc
-CFLAGS= -Wall -Wextra -Werror
-ifdef DEBUG
-	CFLAGS+= -g3
-	LDFLAGS+= -g3
+CFLAGS= -Wall -Wextra -Werror -flto -O3
+LDFLAGS= -flto -O3
+ifdef FSANITIZE
+	CFLAGS+= -g3 -fsanitize=address
+	LDFLAGS+= -g3 -fsanitize=address
 endif
 INCLUDE_DIR= \
 	include
@@ -20,19 +21,37 @@ INCLUDE_DIR= \
 # To add souce files, create a varaible for each folder, and then
 # contatenate them in the SRC variable like this:
 
-RAYS_SRC:= \
-	rays/ray.c \
-	rays/camera_image.c
 UNIT_SRC:= \
-	unit/range.c \
+	unit/direction3d_unit.c \
+	unit/range/range.c \
+	unit/range/interpolation.c \
 	unit/vec3/vec3_formulas.c \
 	unit/vec3/vec3_operations.c \
-	unit/vec3/vec3_tests.c \
-	unit/vec3/vec3_utils.c \
-
+	unit/vec3/vec3_utils.c
+RAY_SRC:= \
+	ray/ray.c
+RENDERER_SRC:= \
+	renderer/renderer.c \
+	renderer/ppm.c
+SCENE_SRC:= \
+	scene/scene.c \
+	scene/scene_entry.c \
+	scene/camera.c
+WORLD_SRC:= \
+	world/world.c \
+	world/world_entry.c \
+	world/import.c \
+	world/camera/camera.c \
+	world/camera/viewport.c \
+	world/light/light_ambient.c \
+	world/light/light_point.c \
+	world/game_object/sphere.c \
+	world/game_object/plane.c \
+	world/game_object/cylinder.c
 MAIN_SRC:= \
-	main.c
-SRC:= $(RAYS_SRC) $(UNIT_SRC) $(MAIN_SRC)
+	main.c \
+	image.c
+SRC:= $(UNIT_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######
@@ -99,7 +118,7 @@ bonus: re
 # 	@$(MAKE) $(if $(FSANITIZE),FSANITIZE=yes,) -C lib/LIBRARY_NAME
 
 $(LIBFT):
-	@$(MAKE) $(if $(DEBUG),FSANITIZE=yes,) USE="stringbuilder iostream" -C lib/libft
+	@$(MAKE) $(if $(DEBUG),FSANITIZE=yes,) USE="stringbuilder iostream ft_printf" -C lib/libft
 
 $(MLX42):
 	@cmake $(if $(DEBUG),-DDEBUG=1, ) -B lib/MLX42/build -S lib/MLX42

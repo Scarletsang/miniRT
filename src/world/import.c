@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 11:25:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 11:22:52 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,35 @@
 #include "MINIRT/world/light.h"
 #include <stdlib.h>
 
-static union world_entry_object	mrt_world_entry_object_from_scene_entry(\
-struct s_mrt_scene_entry scene_entry, struct s_mrt_world_options *options)
+static union u_world_entry_object	mrt_world_entry_object_from_scene_entry(\
+struct s_mrt_scene_entry *scene_entry, struct s_mrt_world_options *options)
 {
-	union world_entry_object	object;
+	union u_world_entry_object	object;
 
-	if (scene_entry.identifier == ENTRY_SPHERE)
-		object.sphere = mrt_sphere(scene_entry);
-	else if (scene_entry.identifier == ENTRY_PLANE)
-		object.plane = mrt_plane(scene_entry);
-	else if (scene_entry.identifier == ENTRY_CYLINDER)
-		object.cylinder =mrt_cylinder(scene_entry);
-	else if (scene_entry.identifier == ENTRY_LIGHT_AMBIENT)
-		object.light_ambient = mrt_light_ambient(scene_entry);
-	else if (scene_entry.identifier == ENTRY_LIGHT_POINT)
-		object.light_point = mrt_light_point(scene_entry);
-	else if (scene_entry.identifier == ENTRY_CAMERA)
-		object.camera = mrt_camera(scene_entry.object.camera, \
+	if (scene_entry->identifier == ENTRY_SPHERE)
+		object.sphere = mrt_sphere(scene_entry->object.sphere);
+	else if (scene_entry->identifier == ENTRY_PLANE)
+		object.plane = mrt_plane(scene_entry->object.plane);
+	else if (scene_entry->identifier == ENTRY_CYLINDER)
+		object.cylinder = mrt_cylinder(scene_entry->object.cylinder);
+	else if (scene_entry->identifier == ENTRY_LIGHT_AMBIENT)
+		object.light_ambient = mrt_light_ambient(\
+			scene_entry->object.light_ambient);
+	else if (scene_entry->identifier == ENTRY_LIGHT_POINT)
+		object.light_point = mrt_light_point(scene_entry->object.light_point);
+	if (scene_entry->identifier == ENTRY_CAMERA)
+		object.camera = mrt_camera(scene_entry->object.camera, \
 			options->camera_image, options->camera_focal_length);
 	else
-		object = (union world_entry_object){};
+		object = (union u_world_entry_object){};
 	return (object);
 }
 
 static struct s_mrt_world_entry	mrt_world_entry_from_scene_entry(\
-struct s_mrt_scene_entry scene_entry, struct s_mrt_world_options *options)
+struct s_mrt_scene_entry *scene_entry, struct s_mrt_world_options *options)
 {
 	return ((struct s_mrt_world_entry){
-		.identifier = scene_entry.identifier,
+		.identifier = scene_entry->identifier,
 		.object = mrt_world_entry_object_from_scene_entry(scene_entry, options)
 	});
 }
@@ -78,7 +79,7 @@ struct s_mrt_world_entry world_entry)
 	return (EXIT_SUCCESS);
 }
 
-int	mrt_world_from_scene(struct s_mrt_world	*world, struct s_mrt_scene *scene, \
+int	mrt_world_from_scene(struct s_mrt_world *world, struct s_mrt_scene *scene, \
 struct s_mrt_world_options options)
 {
 	struct s_mrt_world_entry	world_entry;
@@ -88,7 +89,7 @@ struct s_mrt_world_options options)
 	while (!iterator.is_end)
 	{
 		world_entry = mrt_world_entry_from_scene_entry(\
-			*(struct s_mrt_scene_entry *) ft_vector_iterator_current(&iterator), \
+			(struct s_mrt_scene_entry *) ft_vector_iterator_current(&iterator), \
 			&options);
 		if (mrt_world_entry_add(world, world_entry) == EXIT_FAILURE)
 			return (EXIT_FAILURE);

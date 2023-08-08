@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/06 18:02:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 11:25:16 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_mrt_scene_parser_atom input, void *option);
 
 t_mrt_scene_parser_atom			mrt_scene_parser_camera(\
 t_mrt_scene_parser_atom input, void *option);
-
 
 /////////////////////////////////////////
 ////////////   unit parser   ////////////

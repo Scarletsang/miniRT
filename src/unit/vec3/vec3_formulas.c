@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_formulas.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:43:52 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/07/27 11:56:56 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/08 10:56:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/unit/vec3.h"
 #include <math.h>
 
-double	vec3_length(const t_mrt_vec3 v) {
-
-	return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+double	vec3_length(const t_mrt_vec3 v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 double	vec3_dot(const t_mrt_vec3 v1, const t_mrt_vec3 v2)
@@ -35,10 +35,11 @@ t_mrt_vec3	vec3_cross(const t_mrt_vec3 v1, const t_mrt_vec3 v2)
 
 t_mrt_vec3_unit	vec3_normalize(const t_mrt_vec3 v)
 {
-	t_mrt_vec3_unit	temp;
+	double	length;
 
-	temp.x = v.x / vec3_length(v);
-	temp.y = v.y / vec3_length(v);
-	temp.z = v.z / vec3_length(v);
-	return (temp);
+	length = vec3_length(v);
+	return ((t_mrt_vec3_unit){
+		.x = v.x / length,
+		.y = v.y / length,
+		.z = v.z / length});
 }

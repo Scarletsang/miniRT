@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 11:27:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/07 22:47:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world.h"
+#include <stdlib.h>
 
 bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 {

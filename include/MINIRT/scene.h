@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 11:30:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 11:24:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "LIBFT/vector.h"
 
-enum	s_mrt_scene_entry_identifier
+/////////////////////////////////////////
+////////////   scene entry   ////////////
+/////////////////////////////////////////
+
+enum	e_mrt_scene_entry_identifier
 {
 	ENTRY_SPHERE,
 	ENTRY_PLANE,
@@ -26,7 +30,7 @@ enum	s_mrt_scene_entry_identifier
 	ENTRY_UNKNOWN
 };
 
-union scene_entry_object
+union u_scene_entry_object
 {
 	struct s_mrt_scene_sphere			*sphere;
 	struct s_mrt_scene_plane			*plane;
@@ -36,15 +40,26 @@ union scene_entry_object
 	struct s_mrt_scene_camera			*camera;
 };
 
+union u_scene_entry_object	mrt_scene_entry_object_empty(void);
+
+bool						mrt_scene_entry_object_is_empty(\
+union u_scene_entry_object entry);
+
 struct s_mrt_scene_entry
 {
-	enum s_mrt_scene_entry_identifier	identifier;
-	union scene_entry_object			object;
+	enum e_mrt_scene_entry_identifier	identifier;
+	union u_scene_entry_object			object;
 };
 
-bool	mrt_scene_entry_is_empty(struct s_mrt_scene_entry *entry);
+///////////////////////////////////////////
+////////////   scene entries   ////////////
+///////////////////////////////////////////
 
-typedef	t_ft_vector	t_mrt_scene_entries;
+typedef t_ft_vector	t_mrt_scene_entries;
+
+///////////////////////////////////
+////////////   scene   ////////////
+///////////////////////////////////
 
 struct s_mrt_scene
 {
@@ -53,8 +68,11 @@ struct s_mrt_scene
 	unsigned int		light_count;
 };
 
-int		mrt_scene_init(struct s_mrt_scene *scene);
+int							mrt_scene_init(struct s_mrt_scene *scene);
 
-void	mrt_scene_free(struct s_mrt_scene *scene);
+void						mrt_scene_free(struct s_mrt_scene *scene);
+
+int							mrt_scene_add_entry(struct s_mrt_scene *scene, \
+	struct s_mrt_scene_entry entry);
 
 #endif

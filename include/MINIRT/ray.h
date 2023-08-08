@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 11:08:48 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/06 19:00:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/07 22:01:11 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@
 
 typedef struct s_mrt_ray
 {
-	t_mrt_point3d		orig;
-	t_mrt_direction3d	dir;
+	t_mrt_point3d			origin;
+	t_mrt_direction3d		direction;
+	t_mrt_direction3d_unit	direction_unit;
 }				t_mrt_ray;
 
-t_mrt_ray		*ray_create(t_mrt_point3d origin, t_mrt_direction3d direction);
-t_mrt_color		ray_color(t_mrt_ray	*ray);
+t_mrt_ray		mrt_ray_omit_unit(t_mrt_point3d origin, \
+t_mrt_direction3d direction);
+
+t_mrt_ray		mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction);
+
+t_mrt_color		mrt_ray_color(t_mrt_ray	*ray);
+
 t_mrt_point3d	ray_at(t_mrt_ray *ray, double t);
-void			ray_ppm(void);
-void			ray_ppm_loop(struct s_mrt_camera *cam, const struct s_mrt_image *img);
 
 #endif

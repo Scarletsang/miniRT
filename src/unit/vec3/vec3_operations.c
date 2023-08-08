@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:45:39 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/07/26 10:48:04 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/08 10:54:28 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/unit/vec3.h"
 
-t_mrt_vec3	vec3_negate(t_mrt_vec3 v) {
+t_mrt_vec3	vec3_negate(t_mrt_vec3 v)
+{
 	t_mrt_vec3	temp;
 
 	temp.x = -v.x;
