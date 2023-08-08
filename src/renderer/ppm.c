@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 16:14:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:03:02 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:16:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ struct s_mrt_renderer_config *config)
 	if (mrt_renderer_ppm_start(&ppm, config) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	mrt_renderer_ppm_header(&(mrt_world_get_camera(world)->screen));
-	y = mrt_world_get_camera(world)->screen.height - 1;
-	while (y >= 0)
+	y = 0;
+	while (y < mrt_world_get_camera(world)->screen.height)
 	{
 		x = 0;
 		while (x < mrt_world_get_camera(world)->screen.width)
@@ -88,7 +88,7 @@ struct s_mrt_renderer_config *config)
 			mrt_renderer_ppm_color(mrt_ray_color(&ray));
 			x++;
 		}
-		y--;
+		y++;
 	}
 	return (mrt_renderer_ppm_end(&ppm));
 }

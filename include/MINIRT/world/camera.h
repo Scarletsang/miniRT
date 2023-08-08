@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 20:19:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:13:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 struct s_mrt_viewport
 {
 	t_mrt_dimension	dimension;
-	t_mrt_vec3		lower_left_corner;
+	t_mrt_vec3		top_left_corner;
 	t_mrt_vec3		horizontal;
 	t_mrt_vec3		vertical;
 	t_mrt_vec3		pixel_horizontal;

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:22:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 11:41:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ struct s_mrt_renderer_ppm
 };
 
 int								mrt_renderer_ppm(struct s_mrt_world *world, \
+struct s_mrt_renderer_config *config);
+
+int								mrt_renderer_mlx42(struct s_mrt_world *world, \
 struct s_mrt_renderer_config *config);
 
 #endif

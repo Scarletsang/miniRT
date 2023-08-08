@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 10:59:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/08 12:15:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ struct s_mrt_camera *camera, uint32_t x, uint32_t y)
 	t_mrt_point3d	world_coordinate;
 
 	world_coordinate = vec3_add(\
-		camera->viewport.lower_left_corner, \
+		camera->viewport.top_left_corner, \
 		vec3_multiply(camera->viewport.pixel_horizontal, (double) x));
 	world_coordinate = vec3_add(\
 		world_coordinate, \
 		vec3_multiply(camera->viewport.pixel_vertical, (double) y));
-	world_coordinate = vec3_add(\
+	world_coordinate = vec3_subtract(\
 		world_coordinate, \
 		camera->world->origin);
 	return (world_coordinate);
