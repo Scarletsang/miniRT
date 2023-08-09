@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   number_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 03:15:36 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/04 18:37:59 by htsang           ###   ########.fr       */
+/*   Created: 2023/08/09 09:13:06 by htsang            #+#    #+#             */
+/*   Updated: 2023/08/09 09:16:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/parser/scene_parser.h"
+#ifndef NUMBER_PARSER_H
+# define NUMBER_PARSER_H
 
-struct s_ft_parser_atom			mrt_scene_parser_number(\
-struct s_ft_parser_atom input, t_mrt_range *option)
-{
-	
-}
+# include "LIBFT/parser.h"
+
+struct s_ft_parser_atom	mrt_parser_float(\
+struct s_ft_parser_atom input, union u_ft_tobject range_object);
+
+struct s_ft_parser_atom	mrt_parser_uint(\
+struct s_ft_parser_atom input, union u_ft_tobject range_object);
+
+#endif

@@ -28,6 +28,9 @@ UNIT_SRC:= \
 	unit/vec3/vec3_formulas.c \
 	unit/vec3/vec3_operations.c \
 	unit/vec3/vec3_utils.c
+PARSER_SRC:= \
+	parser/scene/unit.c \
+	parser/number.c
 RAY_SRC:= \
 	ray/ray.c
 RENDERER_SRC:= \
@@ -55,7 +58,7 @@ DEFAULT_SRC:= \
 MAIN_SRC:= \
 	main.c \
 	image.c
-SRC:= $(UNIT_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
+SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######
