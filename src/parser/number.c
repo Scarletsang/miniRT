@@ -6,12 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:12:08 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/09 09:16:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/10 18:16:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/parser/number_parser.h"
 #include "MINIRT/unit/range.h"
+#include <stdint.h>
 
 struct s_ft_parser_atom	mrt_parser_float(\
 struct s_ft_parser_atom input, union u_ft_tobject range_object)
