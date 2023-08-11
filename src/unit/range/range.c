@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   range.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:09:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 11:31:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/11 11:21:26 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 t_mrt_range	mrt_range(double min, double max)
 {
-	if (min > max)
-		return ((t_mrt_range){max, min});
 	return ((t_mrt_range){min, max});
 }
 
