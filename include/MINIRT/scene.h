@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:24:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/11 20:56:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct s_mrt_scene_entry
 ///////////////////////////////////////////
 
 typedef t_ft_vector	t_mrt_scene_entries;
+typedef t_ft_vector	t_mrt_scene_unique_identifiers;
 
 ///////////////////////////////////
 ////////////   scene   ////////////
@@ -63,9 +64,8 @@ typedef t_ft_vector	t_mrt_scene_entries;
 
 struct s_mrt_scene
 {
-	t_mrt_scene_entries	entries;
-	unsigned int		camera_count;
-	unsigned int		light_count;
+	t_mrt_scene_entries				entries;
+	t_mrt_scene_unique_identifiers	unique_identifiers;
 };
 
 int							mrt_scene_init(struct s_mrt_scene *scene);
@@ -73,6 +73,6 @@ int							mrt_scene_init(struct s_mrt_scene *scene);
 void						mrt_scene_free(struct s_mrt_scene *scene);
 
 int							mrt_scene_add_entry(struct s_mrt_scene *scene, \
-	struct s_mrt_scene_entry entry);
+struct s_mrt_scene_entry entry, bool is_unique);
 
 #endif

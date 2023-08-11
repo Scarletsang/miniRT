@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 13:43:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/11 20:56:27 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,43 @@ static void	mrt_scene_entries_copier(struct s_mrt_scene_entry *dest, \
 	*dest = *src;
 }
 
+static void	mrt_scene_unique_identifier_copier(\
+enum e_mrt_scene_entry_identifier *dest, enum e_mrt_scene_entry_identifier *src)
+{
+	*dest = *src;
+}
+
 int	mrt_scene_init(struct s_mrt_scene *scene)
 {
 	if (ft_vector_init(&scene->entries, sizeof(struct s_mrt_scene_entry), \
 		8, (t_ft_vector_item_copier) mrt_scene_entries_copier))
 		return (EXIT_FAILURE);
-	scene->camera_count = 0;
-	scene->light_count = 0;
+	if (ft_vector_init(&scene->unique_identifiers, \
+		sizeof(enum e_mrt_scene_entry_identifier), \
+		3, (t_ft_vector_item_copier) mrt_scene_unique_identifier_copier))
+	{
+		ft_vector_free(&scene->entries);
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
 void	mrt_scene_free(struct s_mrt_scene *scene)
 {
 	ft_vector_free(&scene->entries);
-	scene->camera_count = 0;
-	scene->light_count = 0;
+	ft_vector_free(&scene->unique_identifiers);
 }
 
 int	mrt_scene_add_entry(struct s_mrt_scene *scene, \
-	struct s_mrt_scene_entry entry)
+struct s_mrt_scene_entry entry, bool is_unique)
 {
-	if (entry.identifier == ENTRY_CAMERA)
-		scene->camera_count++;
-	else if (entry.identifier == ENTRY_LIGHT_AMBIENT || \
-		entry.identifier == ENTRY_LIGHT_POINT)
-		scene->light_count++;
-	if (scene->camera_count > 1)
-		return (EXIT_FAILURE);
-	else if (!ft_vector_append(&scene->entries, &entry))
+	if (is_unique || (entry.identifier == ENTRY_CAMERA))
+	{
+		if (mrt_scene_has_unique_identifier(scene, entry.identifier))
+			return (EXIT_FAILURE);
+	}
+	mrt_scene_add_unique_identifier(scene, entry.identifier);
+	if (!ft_vector_append(&scene->entries, &entry))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
