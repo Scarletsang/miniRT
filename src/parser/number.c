@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:12:08 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/10 18:16:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/10 18:19:02 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/parser/number_parser.h"
+#include "MINIRT/parser/general_parser.h"
 #include "MINIRT/unit/range.h"
 #include <stdint.h>
 

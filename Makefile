@@ -30,7 +30,8 @@ UNIT_SRC:= \
 	unit/vec3/vec3_utils.c
 PARSER_SRC:= \
 	parser/scene/unit.c \
-	parser/number.c
+	parser/number.c \
+	parser/vec3.c
 RAY_SRC:= \
 	ray/ray.c
 RENDERER_SRC:= \
