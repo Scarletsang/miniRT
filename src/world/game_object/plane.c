@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:19:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 14:24:51 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,11 @@ struct s_mrt_plane	*mrt_plane(struct s_mrt_scene_plane *scene_sphere)
 {
 	(void)scene_sphere;
 	return (NULL);
+}
+
+bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
+{
+	(void) ray;
+	(void) plane;
+	return (false);
 }

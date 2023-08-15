@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 12:38:27 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/15 14:21:30 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ t_mrt_ray	mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction)
 
 t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 {
-	struct s_mrt_world_entry	*entry;
 	double						t;
+	int							ray_hit;
 
-	entry = (struct s_mrt_world_entry*) ft_vector_get(&world->objects, 0);
-	if (entry->identifier == ENTRY_SPHERE \
-	&& mrt_sphere_is_hit(ray, entry->object.sphere))
+	ray_hit = mrt_ray_is_hit(ray, world);
+	if (ray_hit == ENTRY_SPHERE)
 		return (vec3(255.0, 30.0, 30.0));
 	t = 0.5 * (ray->direction_unit.y + 1.0);
 	return (vec3(\

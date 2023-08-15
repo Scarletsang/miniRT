@@ -32,7 +32,8 @@ PARSER_SRC:= \
 	parser/scene/unit.c \
 	parser/number.c
 RAY_SRC:= \
-	ray/ray.c
+	ray/ray.c \
+	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
