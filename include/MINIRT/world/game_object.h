@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/11 12:34:08 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/15 12:36:40 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 
 # include "MINIRT/unit.h"
 # include "MINIRT/scene/s_game_object.h"
-# include "MINIRT/ray.h"
+
+struct s_mrt_ray;
 
 struct s_mrt_sphere
 {
+	t_mrt_point3d	center;
+	double			diameter;
+	t_mrt_color		color;
 };
 
 struct s_mrt_sphere		*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere);
-bool	mrt_sphere_is_hit(t_mrt_ray *ray, t_mrt_point3d center, double radius);
+bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere);
 
 struct s_mrt_plane
 {

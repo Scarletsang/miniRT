@@ -114,6 +114,9 @@ all:
 $(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
 
+run:
+	@./$(NAME)
+
 bonus: re
 
 ##########################################
@@ -178,4 +181,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re bonus
+.PHONY: clean fclean re run bonus
