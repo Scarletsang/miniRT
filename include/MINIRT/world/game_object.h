@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 14:00:00 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:21:24 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ struct s_mrt_ray;
 
 struct s_mrt_sphere
 {
-	t_mrt_point3d	center;
-	double			diameter;
-	t_mrt_color		color;
+	struct s_mrt_scene_sphere	*scene;
 };
 
 struct s_mrt_sphere		*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere);

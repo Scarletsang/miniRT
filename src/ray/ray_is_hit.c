@@ -6,13 +6,17 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/15 14:22:58 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:39:38 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/ray.h"
 #include "MINIRT/world.h"
 
+/**
+ * TODO: Change this function to make it detect it the
+ * nearest one.
+*/
 int	mrt_ray_is_hit(t_mrt_ray *ray, struct s_mrt_world *world)
 {
 	struct s_mrt_world_entry	*entry;

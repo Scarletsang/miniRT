@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 12:36:55 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:25:05 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ struct s_mrt_sphere	*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere)
 	sph = malloc(sizeof(struct s_mrt_sphere));
 	if (!sph)
 		return (NULL);
-	*sph = (struct s_mrt_sphere){
-		.center = scene_sphere->center,
-		.diameter = scene_sphere->diameter,
-		.color = scene_sphere->color};
+	*sph = (struct s_mrt_sphere){.scene = scene_sphere};
 	return (sph);
 }
 
@@ -39,8 +36,8 @@ bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere)
 	double				c;
 	bool				is_hit;
 
-	sph_to_ray = vec3_subtract(ray->origin, sphere->center);
-	radius = sphere->diameter / 2;
+	sph_to_ray = vec3_subtract(ray->origin, sphere->scene->center);
+	radius = sphere->scene->diameter / 2;
 	a = vec3_dot(ray->direction, ray->direction);
 	b = vec3_dot(vec3_multiply(ray->direction, 2.0), sph_to_ray);
 	c = vec3_dot(sph_to_ray, sph_to_ray) - radius * radius;
