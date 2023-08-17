@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 12:21:24 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:36:45 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct s_mrt_sphere
 
 struct s_mrt_sphere		*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere);
 bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere);
+void	mrt_sphere_free(struct s_mrt_sphere *sphere);
 
 struct s_mrt_plane
 {

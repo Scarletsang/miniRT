@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 12:25:05 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:48:18 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,9 @@ bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere)
 	c = vec3_dot(sph_to_ray, sph_to_ray) - radius * radius;
 	is_hit = (b * b - 4 * a * c) >= 0;
 	return (is_hit);
+}
+
+void	mrt_sphere_free(struct s_mrt_sphere *sphere)
+{
+	free(sphere->scene);
 }
