@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/07 22:47:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/17 14:04:00 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 		return (true);
 }
 
+/**
+ * TODO: Replace free on each type of world entry to its corresponding free
+ * function.
+*/
 void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 {
 	if (mrt_world_entry_is_empty(entry))
 		return ;
-	else if (entry->identifier == ENTRY_SPHERE)
-		free(entry->object.sphere);
+	if (entry->identifier == ENTRY_SPHERE)
+		mrt_sphere_free(entry->object.sphere);
 	else if (entry->identifier == ENTRY_PLANE)
 		free(entry->object.plane);
 	else if (entry->identifier == ENTRY_CYLINDER)
@@ -46,5 +50,19 @@ void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 	else if (entry->identifier == ENTRY_LIGHT_POINT)
 		free(entry->object.light_point);
 	else if (entry->identifier == ENTRY_CAMERA)
-		free(entry->object.camera);
+		mrt_camera_free(entry->object.camera);
+	free(entry->object.address);
+}
+
+void	mrt_world_entries_free(t_mrt_world_entries *entries)
+{
+	t_ft_vector_iterator	it;
+
+	ft_vector_iterator_begin(&it, entries);
+	while (!it.is_end)
+	{
+		mrt_world_entry_free(ft_vector_iterator_current(&it));
+		ft_vector_iterator_next(&it);
+	}
+	ft_vector_free(entries);
 }

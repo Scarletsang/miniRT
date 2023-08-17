@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:41:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 12:49:44 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct s_mrt_renderer_config	mrt_default_renderer_config(void)
 struct s_mrt	mrt_default(void)
 {
 	return ((struct s_mrt){
-		.renderer = mrt_renderer_ppm,
+		.renderer = mrt_renderer_mlx42,
 		.renderer_config = mrt_default_renderer_config(),
 		.world = (struct s_mrt_world){}
 	});

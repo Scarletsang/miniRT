@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:30:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 13:15:24 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct s_mrt_scene_entry *scene_entry, struct s_mrt_world_options *options)
 			scene_entry->object.light_ambient);
 	else if (scene_entry->identifier == ENTRY_LIGHT_POINT)
 		object.light_point = mrt_light_point(scene_entry->object.light_point);
-	if (scene_entry->identifier == ENTRY_CAMERA)
+	else if (scene_entry->identifier == ENTRY_CAMERA)
 		object.camera = mrt_camera(scene_entry->object.camera, \
 			options->camera_image, options->camera_focal_length);
 	else

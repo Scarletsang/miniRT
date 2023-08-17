@@ -15,7 +15,7 @@ Parses mandatory scene_file location and optional command line option such as:
 ```bash
 ./miniRT scene.rt --anti-alias=3 # anti aliasing sample count
 ./miniRT scene.rt --depth=5 # maximum recusion depth for ray bouncing
-./miniRT scene.rt --threads=3 
+./miniRT scene.rt --threads=3
 ./miniRT scene.rt --max-distance=300 # maximum world distance (in world space unit), dont render after such distance
 ./miniRT scene.rt --ppm=output.ppm # switch to rendering using the ppm renderer instead of MLX42
 ```
@@ -76,3 +76,16 @@ Coloring the misses rays.
 4. Rotation matrix
 
 Quaternions might ease the creation of rotation matrix.
+
+## Extra
+
+GLSL
+
+mesh = [array of points]
+color vertex_shader(point, world_info) // world_info can be texture or anything
+
+color_of_each_vertex = map(mesh, vectex_shader) // aray of colors
+color_of_each_pixel = interpolation(color_of_each_vertex)
+
+color fragment_shader(color_of_one_pixel, world_info)
+result = map(color_of_each_pixel, fragment_shader)

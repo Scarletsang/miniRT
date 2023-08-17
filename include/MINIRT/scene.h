@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 11:24:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 14:19:14 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum	e_mrt_scene_entry_identifier
 	ENTRY_LIGHT_AMBIENT,
 	ENTRY_LIGHT_POINT,
 	ENTRY_CAMERA,
-	ENTRY_UNKNOWN
+	ENTRY_UNKNOWN,
+	ENTRY_ZERO
 };
 
 union u_scene_entry_object

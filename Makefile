@@ -32,7 +32,8 @@ PARSER_SRC:= \
 	parser/scene/unit.c \
 	parser/number.c
 RAY_SRC:= \
-	ray/ray.c
+	ray/ray.c \
+	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
@@ -40,7 +41,8 @@ RENDERER_SRC:= \
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
-	scene/camera.c
+	scene/camera.c \
+	scene/s_game_object/s_sphere.c
 WORLD_SRC:= \
 	world/world.c \
 	world/world_entry.c \
@@ -113,6 +115,9 @@ all:
 $(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
 
+run:
+	@./$(NAME)
+
 bonus: re
 
 ##########################################
@@ -177,4 +182,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re bonus
+.PHONY: clean fclean re run bonus

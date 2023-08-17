@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 10:52:01 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 14:21:30 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/ray.h"
-#include "MINIRT/unit/range.h"
+#include "MINIRT/unit.h"
+#include "MINIRT/world.h"
+#include "LIBFT/vector.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,14 +36,18 @@ t_mrt_ray	mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction)
 	});
 }
 
-t_mrt_color	mrt_ray_color(t_mrt_ray	*ray)
+t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 {
-	double	t;
+	double						t;
+	int							ray_hit;
 
+	ray_hit = mrt_ray_is_hit(ray, world);
+	if (ray_hit == ENTRY_SPHERE)
+		return (vec3(255.0, 30.0, 30.0));
 	t = 0.5 * (ray->direction_unit.y + 1.0);
 	return (vec3(\
-		mrt_lerp(mrt_range(0.0, 255.0), t), \
-		mrt_lerp(mrt_range(191.0, 255.0), t), \
+		mrt_lerp(mrt_range(225.0, 145.0), t), \
+		mrt_lerp(mrt_range(225.0, 165.0), t), \
 		mrt_lerp(mrt_range(255.0, 255.0), t) \
 	));
 }

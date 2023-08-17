@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx42.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:29:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:48:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/15 11:42:47 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ struct s_mrt_renderer_config *config, mlx_image_t *image)
 				mrt_pixel_to_direction_from_camera(\
 					mrt_world_get_camera(world), x, y));
 			mlx_put_pixel(image, x, y, \
-				mrt_renderer_mlx42_pixel(mrt_ray_color(&ray)));
+				mrt_renderer_mlx42_pixel(mrt_ray_color(&ray, world)));
 			x++;
 		}
 		y++;
