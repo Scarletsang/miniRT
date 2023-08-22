@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 13:36:45 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 12:17:51 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,19 @@ void	mrt_sphere_free(struct s_mrt_sphere *sphere);
 
 struct s_mrt_plane
 {
+	struct s_mrt_scene_plane	*scene;
 };
 
-struct s_mrt_plane		*mrt_plane(struct s_mrt_scene_plane *scene_sphere);
+struct s_mrt_plane		*mrt_plane(struct s_mrt_scene_plane *scene_plane);
 bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane);
 
 struct s_mrt_cylinder
 {
+	struct s_mrt_scene_cylinder	*scene;
 };
 
 struct s_mrt_cylinder	*mrt_cylinder(\
-struct s_mrt_scene_cylinder *scene_sphere);
+struct s_mrt_scene_cylinder *scene_cylinder);
 bool	mrt_cylinder_is_hit(struct s_mrt_ray *ray \
 	, struct s_mrt_cylinder *cylinder);
 
