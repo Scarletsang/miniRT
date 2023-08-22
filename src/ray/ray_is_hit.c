@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/17 12:39:38 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:44:29 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  * TODO: Change this function to make it detect it the
  * nearest one.
 */
-int	mrt_ray_is_hit(t_mrt_ray *ray, struct s_mrt_world *world)
+struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
+, struct s_mrt_world *world)
 {
 	struct s_mrt_world_entry	*entry;
 	size_t							i;
@@ -28,14 +29,14 @@ int	mrt_ray_is_hit(t_mrt_ray *ray, struct s_mrt_world *world)
 		entry = (struct s_mrt_world_entry*) ft_vector_get(&world->objects, i);
 		if (entry->identifier == ENTRY_SPHERE)
 			if (mrt_sphere_is_hit(ray, entry->object.sphere))
-				return (ENTRY_SPHERE);
-		if (entry->identifier == ENTRY_PLANE)
-			if (mrt_plane_is_hit(ray, entry->object.plane))
-				return (ENTRY_PLANE);
+				return (entry);
 		if (entry->identifier == ENTRY_CYLINDER)
 			if (mrt_cylinder_is_hit(ray, entry->object.cylinder))
-				return (ENTRY_CYLINDER);
+				return (entry);
+		if (entry->identifier == ENTRY_PLANE)
+			if (mrt_plane_is_hit(ray, entry->object.plane))
+				return (entry);
 		i++;
 	}
-	return (ENTRY_ZERO);
+	return (NULL);
 }

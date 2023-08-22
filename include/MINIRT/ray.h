@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 11:08:48 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 14:20:48 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:49:22 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_mrt_color		mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world);
 
 t_mrt_point3d	ray_at(t_mrt_ray *ray, double t);
 
-int				mrt_ray_is_hit(t_mrt_ray *ray, struct s_mrt_world *world);
+struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
+, struct s_mrt_world *world);
 
 #endif

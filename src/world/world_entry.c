@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 14:04:00 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:12:37 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 	if (entry->identifier == ENTRY_SPHERE)
 		mrt_sphere_free(entry->object.sphere);
 	else if (entry->identifier == ENTRY_PLANE)
-		free(entry->object.plane);
+		mrt_plane_free(entry->object.plane);
 	else if (entry->identifier == ENTRY_CYLINDER)
 		free(entry->object.cylinder);
 	else if (entry->identifier == ENTRY_LIGHT_AMBIENT)

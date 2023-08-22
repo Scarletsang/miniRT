@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 14:19:14 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:29:39 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define SCENE_H
 
 # include "LIBFT/vector.h"
+#include "scene/s_camera.h"
+#include "scene/s_game_object.h"
+#include "scene/s_light.h"
 
 /////////////////////////////////////////
 ////////////   scene entry   ////////////

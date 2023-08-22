@@ -42,7 +42,8 @@ SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
 	scene/camera.c \
-	scene/s_game_object/s_sphere.c
+	scene/s_game_object/s_sphere.c \
+	scene/s_game_object/s_plane.c
 WORLD_SRC:= \
 	world/world.c \
 	world/world_entry.c \

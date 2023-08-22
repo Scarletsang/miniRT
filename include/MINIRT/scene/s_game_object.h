@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/14 11:50:31 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:28:04 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_mrt_point3d center, double diameter, t_mrt_color color);
 
 struct s_mrt_scene_plane
 {
-	t_mrt_point3d	origin;
-	t_mrt_vec3_unit	orientation;
+	t_mrt_point3d	point;
+	t_mrt_vec3_unit	normal;
 	t_mrt_color		color;
 };
+
+struct s_mrt_scene_entry	mrt_scene_plane( \
+t_mrt_point3d point, t_mrt_vec3_unit normal, t_mrt_color color);
 
 struct s_mrt_scene_cylinder
 {
