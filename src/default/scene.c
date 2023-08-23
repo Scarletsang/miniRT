@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:32:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 14:09:59 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:51:01 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ struct s_mrt_scene_entry	mrt_default_scene_camera(void)
 
 int	mrt_default_scene(struct s_mrt_scene *scene)
 {
-	if (mrt_scene_add_entry(scene, mrt_scene_sphere(\
-	vec3(5.0, 0.0, 10.0), 5.0, vec3(255.0, 30.0, 30.0))))
+	// if (mrt_scene_add_entry(scene, mrt_scene_sphere(\
+	// vec3(5.0, 0.0, 10.0), 5.0, vec3(255.0, 30.0, 30.0))))
+	// 	return (EXIT_FAILURE);
+	if (mrt_scene_add_entry(scene, mrt_scene_cylinder(vec3(0.0, 0.0, 5.0), \
+	vec3_normalize(vec3(1.0, 1.0, 0.0)), vec2(4.0, 10.0), \
+	vec3(30.0, 255.0, 30.0))))
 		return (EXIT_FAILURE);
-	if (mrt_scene_add_entry(scene, mrt_scene_plane(\
-	vec3(0.0, 0.0, 1.0), vec3_normalize(vec3(20.0, 50.0, 10.0))\
-	, vec3(155.0, 30.0, 155.0))))
-		return (EXIT_FAILURE);
+	// if (mrt_scene_add_entry(scene, mrt_scene_plane(\
+	// vec3(0.0, 0.0, 1.0), vec3_normalize(vec3(20.0, 50.0, 10.0)), \
+	// vec3(155.0, 30.0, 155.0))))
+	// 	return (EXIT_FAILURE);
 	return (mrt_scene_add_entry(scene, mrt_default_scene_camera()));
 }

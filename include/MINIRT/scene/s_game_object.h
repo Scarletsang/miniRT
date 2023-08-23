@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 13:28:04 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:30:03 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define S_GAME_OBJECT_H
 
 # include "MINIRT/unit.h"
-
 
 struct s_mrt_scene_sphere
 {
@@ -40,9 +39,12 @@ struct s_mrt_scene_cylinder
 {
 	t_mrt_point3d	center;
 	t_mrt_vec3_unit	orientation;
-	double			diameter;
-	double			height;
+	t_mrt_dimension	dia_height;
 	t_mrt_color		color;
 };
+
+struct s_mrt_scene_entry	mrt_scene_cylinder( \
+t_mrt_point3d center, t_mrt_vec3_unit orientation, \
+t_mrt_dimension dia_height, t_mrt_color color);
 
 #endif

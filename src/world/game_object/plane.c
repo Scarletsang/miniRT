@@ -6,15 +6,17 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 14:11:25 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 11:15:13 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/game_object.h"
+#include "MINIRT/scene.h"
 #include "MINIRT/unit.h"
 #include "MINIRT/ray.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 
 struct s_mrt_plane	*mrt_plane(struct s_mrt_scene_plane *scene_plane)
 {
@@ -39,7 +41,7 @@ bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
 
 	tmp = vec3_subtract(plane->scene->point, ray->origin);
 	t = vec3_dot(ray->direction, plane->scene->normal);
-	if (fabs(t) == 0)
+	if (t == 0)
 		return (false);
 	t = vec3_dot(tmp, vec3_divide(plane->scene->normal, t));
 	if (t < 0)

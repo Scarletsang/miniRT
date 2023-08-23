@@ -6,11 +6,12 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 13:48:18 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:45:51 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/game_object.h"
+#include "MINIRT/scene.h"
 #include "MINIRT/unit.h"
 #include "MINIRT/ray.h"
 #include <stdbool.h>

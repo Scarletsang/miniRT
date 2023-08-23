@@ -27,7 +27,8 @@ UNIT_SRC:= \
 	unit/range/interpolation.c \
 	unit/vec3/vec3_formulas.c \
 	unit/vec3/vec3_operations.c \
-	unit/vec3/vec3_utils.c
+	unit/vec3/vec3_utils.c \
+	unit/vec2.c
 PARSER_SRC:= \
 	parser/scene/unit.c \
 	parser/number.c
@@ -43,7 +44,8 @@ SCENE_SRC:= \
 	scene/scene_entry.c \
 	scene/camera.c \
 	scene/s_game_object/s_sphere.c \
-	scene/s_game_object/s_plane.c
+	scene/s_game_object/s_plane.c \
+	scene/s_game_object/s_cylinder.c
 WORLD_SRC:= \
 	world/world.c \
 	world/world_entry.c \

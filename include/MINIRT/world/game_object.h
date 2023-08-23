@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 14:11:55 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:31:04 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ struct s_mrt_cylinder	*mrt_cylinder(\
 struct s_mrt_scene_cylinder *scene_cylinder);
 bool	mrt_cylinder_is_hit(struct s_mrt_ray *ray \
 	, struct s_mrt_cylinder *cylinder);
+void	mrt_cylinder_free(struct s_mrt_cylinder *cylinder);
 
 #endif

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2.h                                             :+:      :+:    :+:   */
+/*   vec2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:01:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/23 11:58:18 by kisikogl         ###   ########.fr       */
+/*   Created: 2023/08/23 11:59:08 by kisikogl          #+#    #+#             */
+/*   Updated: 2023/08/23 11:59:42 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC2_H
-# define VEC2_H
+#include "MINIRT/unit/vec2.h"
 
-typedef struct s_mrt_vec2
+t_mrt_vec2	vec2(double x, double y)
 {
-	double	x;
-	double	y;
-}				t_mrt_vec2;
+	t_mrt_vec2	v;
 
-t_mrt_vec2		vec2(double x, double y);
-
-#endif
+	v.x = x;
+	v.y = y;
+	return (v);
+}

@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 13:55:57 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:32:34 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 			return (entry_hit->object.sphere->scene->color);
 		if (entry_hit->identifier == ENTRY_PLANE)
 			return (entry_hit->object.plane->scene->color);
+		if (entry_hit->identifier == ENTRY_CYLINDER)
+			return (entry_hit->object.cylinder->scene->color);
 	}
 	t = 0.5 * (ray->direction_unit.y + 1.0);
 	return (vec3(\
