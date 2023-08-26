@@ -31,9 +31,10 @@ UNIT_SRC:= \
 	unit/vec3/vec3_operations.c \
 	unit/vec3/vec3_utils.c
 PARSER_SRC:= \
-	parser/scene/unit.c \
 	parser/number.c \
 	parser/vec3.c \
+	parser/scene/unit.c \
+	parser/scene/common.c \
 	parser/scene/camera.c
 RAY_SRC:= \
 	ray/ray.c

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:12:08 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/10 18:19:02 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 00:00:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ struct s_ft_parser_atom input, union u_ft_tobject range_object)
 	t_mrt_range				*range;
 
 	output = ft_parser_float(input, ft_tobject_empty());
-	if (!ft_parser_atom_is_ok(output))
+	if (!output.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	else if (range_object.as_ptr)
 	{
 		range = range_object.as_ptr;
-		if (output.payload.as_float < mrt_range_maximum(*range) || \
-			output.payload.as_float > mrt_range_minimum(*range))
+		if (output.payload.as_float > mrt_range_maximum(*range) || \
+			output.payload.as_float < mrt_range_minimum(*range))
 			return (ft_parser_atom_validity_set(input, false));
 	}
 	return (output);
@@ -40,13 +40,13 @@ struct s_ft_parser_atom input, union u_ft_tobject range_object)
 	t_mrt_range				*range;
 
 	output = ft_parser_uint(input, ft_tobject_empty());
-	if (!ft_parser_atom_is_ok(output))
+	if (!output.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	else if (range_object.as_ptr)
 	{
 		range = range_object.as_ptr;
-		if (output.payload.as_uint < (uint32_t) mrt_range_maximum(*range) || \
-			output.payload.as_uint > (uint32_t) mrt_range_minimum(*range))
+		if (output.payload.as_uint > (uint32_t) mrt_range_maximum(*range) || \
+			output.payload.as_uint < (uint32_t) mrt_range_minimum(*range))
 			return (ft_parser_atom_validity_set(input, false));
 	}
 	return (output);

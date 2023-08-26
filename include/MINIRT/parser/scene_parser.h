@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/11 22:49:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 15:26:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include "LIBFT/parser.h"
 
 typedef struct s_ft_parser_atom	t_mrt_scene_parser_atom;
+
+int						mrt_scene_from_file(struct s_mrt_scene *scene, \
+const char *file_path);
 
 //////////////////////////////////////////
 ////////////   entry parser   ////////////
@@ -43,6 +46,9 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option);
 t_mrt_scene_parser_atom	mrt_scene_parser_camera(\
 t_mrt_scene_parser_atom input, union u_ft_tobject option);
 
+t_mrt_scene_parser_atom	mrt_scene_parser_identifier(\
+t_mrt_scene_parser_atom input, union u_ft_tobject valid_identifiers);
+
 /////////////////////////////////////////
 ////////////   unit parser   ////////////
 /////////////////////////////////////////
@@ -65,8 +71,8 @@ t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 ////////////   custom decorator   ////////////
 //////////////////////////////////////////////
 
-struct s_ft_parser_atom	mrt_scene_parser_some(\
-struct s_ft_parser_entity entity, struct s_ft_parser_atom input, \
-union u_ft_tobject delimiter);
+struct s_ft_parser_atom	mrt_combinator_prefixed_and(\
+struct s_ft_parser_entity *entities, size_t amount, \
+struct s_ft_parser_atom input, union u_ft_tobject prefix);
 
 #endif

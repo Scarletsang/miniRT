@@ -1,70 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   triple.c                                           :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 12:44:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/10 13:05:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 14:52:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/parser/general_parser.h"
 #include "MINIRT/unit/vec3.h"
 
+static struct s_ft_parser_atom	mrt_parser_vec3_field(\
+struct s_ft_parser_entity entity, struct s_ft_parser_atom input, \
+union u_ft_tobject vec3_type)
+{
+	struct s_ft_parser_atom			result;
+	struct s_ft_parser_struct		*parser;
+
+	result = ft_parser_entity_evaluate(&entity, \
+		ft_parser_atom_empty(input.string, input.is_valid));
+	if (!result.is_valid)
+		return (ft_parser_atom_validity_set(input, false));
+	parser = input.payload.as_ptr;
+	if (parser->current >= parser->fields.size)
+		return (ft_parser_atom_validity_set(input, false));
+	else if (vec3_type.as_int == VEC3_FLOAT)
+		*(double *) ft_parser_struct_current(parser) = \
+			result.payload.as_float;
+	else if (vec3_type.as_int == VEC3_UINT)
+		*(double *) ft_parser_struct_current(parser) = \
+			(double) result.payload.as_uint;
+	parser->current++;
+	return (ft_parser_atom(input.payload, result.string));
+}
+
+static struct s_ft_parser_atom	mrt_parser_vec3(\
+struct s_ft_parser_entity entity, struct s_ft_parser_atom input, \
+union u_ft_tobject vec3_type)
+{
+	t_mrt_vec3					vec3;
+	struct s_ft_parser_struct	parser;
+	struct s_ft_parser_atom		result;
+
+	parser = ft_parser_struct_init((void *[3]){&vec3.x, &vec3.y, &vec3.z}, 3);
+	result = ft_combinator_and((struct s_ft_parser_entity[5]){\
+		ft_decorator_entity(&mrt_parser_vec3_field, \
+			(struct s_ft_parser_entity[1]){entity}, vec3_type), \
+		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
+		ft_decorator_entity(&mrt_parser_vec3_field, \
+			(struct s_ft_parser_entity[1]){entity}, vec3_type), \
+		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
+		ft_decorator_entity(&mrt_parser_vec3_field, \
+			(struct s_ft_parser_entity[1]){entity}, vec3_type),
+		}, 5, ft_parser_atom(ft_tobject_ptr(&parser), input.string), \
+			ft_tobject_empty());
+	if (result.is_valid)
+		*((t_mrt_vec3 *) input.payload.as_ptr) = vec3;
+	return ((struct s_ft_parser_atom){
+		.payload = input.payload,
+		.is_valid = result.is_valid,
+		.string = result.string
+	});
+}
+
 struct s_ft_parser_atom	mrt_parser_vec3_float(\
 struct s_ft_parser_atom input, union u_ft_tobject range_object)
 {
-	struct s_ft_parser_atom	output;
-	t_mrt_vec3				vec3;
-
-	output = mrt_parser_float(input, range_object);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.x = output.payload.as_uint;
-	output = ft_parser_and((struct s_ft_parser_entity[2]){\
-		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
-		ft_parser_entity(&mrt_parser_float, range_object) \
-	}, 2, input);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.y = output.payload.as_uint;
-	output = ft_parser_and((struct s_ft_parser_entity[2]){\
-		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
-		ft_parser_entity(&mrt_parser_float, range_object) \
-	}, 2, input);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.z = output.payload.as_uint;
-	*(t_mrt_vec3 *) input.payload.as_ptr = vec3;
-	return (ft_parser_atom(input.payload, output.string));
+	return (mrt_parser_vec3(ft_parser_entity(&mrt_parser_float, range_object), \
+		input, ft_tobject_int(VEC3_FLOAT)));
 }
 
 struct s_ft_parser_atom	mrt_parser_vec3_uint(\
 struct s_ft_parser_atom input, union u_ft_tobject range_object)
 {
-	struct s_ft_parser_atom	output;
-	t_mrt_vec3				vec3;
-
-	output = mrt_parser_uint(input, range_object);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.x = output.payload.as_uint;
-	output = ft_parser_and((struct s_ft_parser_entity[2]){\
-		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
-		ft_parser_entity(&mrt_parser_uint, range_object) \
-	}, 2, input);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.y = output.payload.as_uint;
-	output = ft_parser_and((struct s_ft_parser_entity[2]){\
-		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
-		ft_parser_entity(&mrt_parser_uint, range_object) \
-	}, 2, input);
-	if (!ft_parser_atom_is_ok(output))
-		return (ft_parser_atom_validity_set(input, false));
-	vec3.z = output.payload.as_uint;
-	*(t_mrt_vec3 *) input.payload.as_ptr = vec3;
-	return (ft_parser_atom(input.payload, output.string));
+	return (mrt_parser_vec3(ft_parser_entity(&mrt_parser_uint, range_object), \
+		input, ft_tobject_int(VEC3_UINT)));
 }
