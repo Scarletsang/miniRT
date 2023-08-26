@@ -43,6 +43,7 @@ RENDERER_SRC:= \
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
+	scene/unique_identifier.c \
 	scene/camera.c
 WORLD_SRC:= \
 	world/world.c \

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/11 20:56:27 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 02:00:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	mrt_scene_free(struct s_mrt_scene *scene)
 int	mrt_scene_add_entry(struct s_mrt_scene *scene, \
 struct s_mrt_scene_entry entry, bool is_unique)
 {
+	if (entry.object.camera == NULL)
+		return (EXIT_FAILURE);
 	if (is_unique || (entry.identifier == ENTRY_CAMERA))
 	{
 		if (mrt_scene_has_unique_identifier(scene, entry.identifier))
