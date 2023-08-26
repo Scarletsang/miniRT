@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:44:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 16:07:52 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CAMERA_H
 
 # include "MINIRT/unit.h"
-# include "MINIRT/scene/s_camera.h"
+# include "MINIRT/scene/s_objects.h"
 # include "MINIRT/image.h"
 
 /**

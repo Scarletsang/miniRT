@@ -6,13 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 15:25:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 16:08:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/parser/scene_parser.h"
 #include "MINIRT/parser/general_parser.h"
-#include "MINIRT/scene/s_camera.h"
+#include "MINIRT/scene/s_objects.h"
 
 static t_mrt_scene_parser_atom	mrt_scene_parser_camera_run(\
 t_mrt_scene_parser_atom input)
@@ -57,7 +57,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	if (result.is_valid)
 	{
 		if (mrt_scene_add_entry((struct s_mrt_scene *) input.payload.as_ptr, \
-			mrt_scene_camera(&camera), is_unique))
+			mrt_scene_entry(&camera, ENTRY_CAMERA), is_unique))
 			return (ft_parser_atom_validity_set(input, false));
 	}
 	else
