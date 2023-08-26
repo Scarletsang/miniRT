@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:08:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 21:36:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,17 @@ void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 	if (entry->identifier == ENTRY_SPHERE)
 		mrt_sphere_free(entry->object.sphere);
 	else if (entry->identifier == ENTRY_PLANE)
-		free(entry->object.plane);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_CYLINDER)
-		free(entry->object.cylinder);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_LIGHT_AMBIENT)
-		free(entry->object.light_ambient);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_LIGHT_POINT)
-		free(entry->object.light_point);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_CAMERA)
 		mrt_camera_free(entry->object.camera);
-	free(entry->object.address);
+	else
+		free(entry->object.address);
 }
 
 void	mrt_world_entries_free(t_mrt_world_entries *entries)
