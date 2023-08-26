@@ -47,6 +47,8 @@ RAY_SRC:= \
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
+	renderer/mlx42/hooks.c \
+	renderer/mlx42/control.c \
 	renderer/ppm.c
 SCENE_SRC:= \
 	scene/scene.c \
