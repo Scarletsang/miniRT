@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ppm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 16:14:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 11:43:21 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:07:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ struct s_mrt_renderer_config *config)
 		while (x < mrt_world_get_camera(world)->screen.width)
 		{
 			ray = mrt_ray(\
-				mrt_world_get_camera(world)->world->origin, \
+				mrt_world_get_camera(world)->scene->origin, \
 				mrt_pixel_to_direction_from_camera(\
 					mrt_world_get_camera(world), x, y));
 			mrt_renderer_ppm_color(mrt_ray_color(&ray, world));

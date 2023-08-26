@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 14:21:30 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:24:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "MINIRT/unit.h"
 #include "MINIRT/world.h"
 #include "LIBFT/vector.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 t_mrt_ray	mrt_ray_omit_unit(t_mrt_point3d origin, \

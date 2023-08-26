@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:42:00 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:07:59 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ struct s_mrt_scene_entry		mrt_default_scene_camera(void);
 
 int								mrt_default_scene(struct s_mrt_scene *scene);
 
-struct s_mrt_renderer_config	mrt_default_renderer_config(void);
+struct s_mrt_renderer_config	mrt_default_renderer_config(\
+const char *scene_file_name);
 
-struct s_mrt					mrt_default(void);
+struct s_mrt					mrt_default(const char *scene_file_name);
 
 struct s_mrt_world_options		mrt_default_world_options(void);
 

@@ -2,7 +2,7 @@
 ######     Variables     #######
 ################################
 
-NAME:=test.out
+NAME:=debug.out
 
 CC:=g++
 CFLAGS:= -Wall -Wextra -Werror -std=c++14
@@ -22,8 +22,7 @@ INCLUDE_DIR= \
 # To add souce files, create a varaible for each folder, and then
 # contatenate them in the SRC variable like this:
 
-TEST_SRC:= \
-	module.cpp
+TEST_SRC:= $(shell cd tests && echo *.cpp)
 
 SRC:= $(TEST_SRC)
 
@@ -42,8 +41,8 @@ LIB_INCLUDE_DIR += $(shell brew --prefix googletest)/include
 
 # Then add the library to the linking process in one of the following ways:
 LDFLAGS+= -lft -L$(CURDIR)/../lib/libft -Wl,-rpath,$(CURDIR)/../lib/libft
-LDFLAGS+= -tminiRT -L$(CURDIR)/.. -Wl,-rpath,$(CURDIR)/..
 LDFLAGS+= -L$(shell brew --prefix googletest)/lib -lgtest  -L$(shell brew --prefix googletest)/lib -lgtest_main
+LDFLAGS+= -lminiRT -L$(CURDIR)/.. -Wl,-rpath,$(CURDIR)/..
 # LDFLAGS+= -Llib/LIBRARY_NAME -lLIBRARY_NAME
 # LDFLAGS+= lib/LIBRARY_NAME/libLIBRARY_NAME.a
 
@@ -79,13 +78,13 @@ $(NAME): $(OBJ) $(LIBFT)
 # $(LIBRARY_NAME):
 # 	@${MAKE} $(if $(FSANITIZE),FSANITIZE=yes,) -C lib/LIBRARY_NAME
 
-DEPS: $(TARGET) $(LIBFT)
+DEPS: $(MINIRT) $(LIBFT)
 
 $(MINIRT):
-	@$(MAKE) $(if $(FSANITIZE),FSANITIZE=yes,) -C .. repack
+	@$(MAKE) $(if $(FSANITIZE),DEBUG=yes,) -C .. repack
 
 $(LIBFT):
-	@$(MAKE) $(if $(FSANITIZE),FSANITIZE=yes,) -C ../lib/libft re
+	@$(MAKE) $(if $(FSANITIZE),FSANITIZE=yes,) USE="stringbuilder hashtable iostream parser ft_printf" -C ../lib/libft re
 
 
 #########################################
@@ -107,10 +106,12 @@ $(OBJ_DIR):
 
 clean:
 	@$(MAKE) -C .. clean
+	@$(MAKE) -C $(CURDIR)/../lib/libft clean
 	@rm -f $(OBJ_DIR)/*.o
 
 fclean: clean
 	@$(MAKE) -C .. unpack
+	@$(MAKE) -C $(CURDIR)/../lib/libft fclean
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_is_hit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/17 12:39:38 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:19:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 int	mrt_ray_is_hit(t_mrt_ray *ray, struct s_mrt_world *world)
 {
 	struct s_mrt_world_entry	*entry;
-	size_t							i;
+	size_t						i;
 
 	i = 0;
 	while (i < world->objects.size)
 	{
-		entry = (struct s_mrt_world_entry*) ft_vector_get(&world->objects, i);
+		entry = (struct s_mrt_world_entry *)ft_vector_get(&world->objects, i);
 		if (entry->identifier == ENTRY_SPHERE)
 			if (mrt_sphere_is_hit(ray, entry->object.sphere))
 				return (ENTRY_SPHERE);

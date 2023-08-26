@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   world_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 14:04:00 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:08:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 {

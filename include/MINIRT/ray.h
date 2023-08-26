@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 11:08:48 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/15 14:20:48 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:21:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "MINIRT/world.h"
 # include "MINIRT/image.h"
 
-struct s_mrt_world;
+struct	s_mrt_world;
 
 typedef struct s_mrt_ray
 {
