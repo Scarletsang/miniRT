@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 17:37:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 22:10:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 ////////////   custom decorator   ////////////
 //////////////////////////////////////////////
 
-struct s_ft_parser_atom	mrt_combinator_prefixed_and(\
+struct s_ft_parser_atom	mrt_combinator_struct_fields(\
 struct s_ft_parser_entity *entities, size_t amount, \
 struct s_ft_parser_atom input, union u_ft_tobject prefix);
 

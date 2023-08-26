@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:09:11 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 22:29:52 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,13 @@
 static t_mrt_scene_parser_atom	mrt_scene_parser_light_point_run(\
 t_mrt_scene_parser_atom input)
 {
-	t_mrt_range	ranges[1];
+	t_mrt_range	range[1];
 
-	ranges[0] = mrt_range(0.0, 1.0);
-	return (mrt_combinator_prefixed_and((struct s_ft_parser_entity[3]){\
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_point3d, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_float, ft_tobject_ptr(ranges))}, \
-			ft_tobject_empty()),
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_color, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
+	range[0] = mrt_range(0.0, 1.0);
+	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[3]){\
+		ft_parser_entity(&mrt_scene_parser_point3d, ft_tobject_ptr(NULL)), \
+		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(range)), \
+		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
 	}, 3, input, ft_tobject_str(" \t")));
 }
 
@@ -67,18 +58,12 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 static t_mrt_scene_parser_atom	mrt_scene_parser_light_ambient_run(\
 t_mrt_scene_parser_atom input)
 {
-	t_mrt_range	ranges[1];
+	t_mrt_range	range[1];
 
-	ranges[0] = mrt_range(0.0, 1.0);
-	return (mrt_combinator_prefixed_and((struct s_ft_parser_entity[2]){\
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_float, ft_tobject_ptr(ranges))}, \
-			ft_tobject_empty()),
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_color, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
+	range[0] = mrt_range(0.0, 1.0);
+	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[2]){\
+		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(range)), \
+		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
 	}, 2, input, ft_tobject_str(" \t")));
 }
 

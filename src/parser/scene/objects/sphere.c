@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 17:46:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 22:30:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,10 @@
 static t_mrt_scene_parser_atom	mrt_scene_parser_light_point_run(\
 t_mrt_scene_parser_atom input)
 {
-	return (mrt_combinator_prefixed_and((struct s_ft_parser_entity[3]){\
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_point3d, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_float, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
-		ft_decorator_entity(&ft_decorator_struct_field, \
-			(struct s_ft_parser_entity[1]){ft_parser_entity(\
-				&mrt_scene_parser_color, ft_tobject_ptr(NULL))}, \
-			ft_tobject_empty()),
+	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[3]){\
+		ft_parser_entity(&mrt_scene_parser_point3d, ft_tobject_ptr(NULL)), \
+		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(NULL)), \
+		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
 	}, 3, input, ft_tobject_str(" \t")));
 }
 
