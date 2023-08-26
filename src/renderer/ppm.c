@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 16:14:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:16:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:07:29 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ struct s_mrt_renderer_config *config)
 				mrt_world_get_camera(world)->scene->origin, \
 				mrt_pixel_to_direction_from_camera(\
 					mrt_world_get_camera(world), x, y));
-			mrt_renderer_ppm_color(mrt_ray_color(&ray));
+			mrt_renderer_ppm_color(mrt_ray_color(&ray, world));
 			x++;
 		}
 		y++;

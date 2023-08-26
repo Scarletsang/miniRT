@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:05:38 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:14:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/16 11:09:23 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ struct s_mrt_image screen, double focal_length)
 
 	dimension.y = 2.0;
 	dimension.x = dimension.y * screen.aspect_ratio;
-	horizontal = vec3(dimension.y, 0.0, 0.0);
-	vertical = vec3(0.0, -dimension.x, 0.0);
+	horizontal = vec3(dimension.x, 0.0, 0.0);
+	vertical = vec3(0.0, -dimension.y, 0.0);
 	return ((struct s_mrt_viewport){
 		.dimension = dimension,
 		.horizontal = horizontal,

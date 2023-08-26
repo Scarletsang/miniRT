@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:22:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:17:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,11 @@ struct s_mrt_plane	*mrt_plane(struct s_mrt_scene_plane *scene_plane)
 		.scene = scene_plane
 	};
 	return (plane);
+}
+
+bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
+{
+	(void) ray;
+	(void) plane;
+	return (false);
 }

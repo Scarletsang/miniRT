@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:16:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:07:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /**
  * @brief Converts pixel coordinates to world space coordinates
- * @details equation: P(u, v) = bottom_left_corner + u * horizontal +
- * v * vertical + origin
+ * @details equation: P(u, v) = top_left_corner + u * horizontal +
+ * v * vertical - origin
 */
 t_mrt_direction3d	mrt_pixel_to_direction_from_camera(\
 struct s_mrt_camera *camera, uint32_t x, uint32_t y)

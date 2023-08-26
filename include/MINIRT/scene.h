@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 18:53:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 20:05:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum	e_mrt_scene_entry_identifier
 	ENTRY_LIGHT_AMBIENT,
 	ENTRY_LIGHT_POINT,
 	ENTRY_CAMERA,
-	ENTRY_UNKNOWN
+	ENTRY_UNKNOWN,
+	ENTRY_ZERO
 };
 
 union u_scene_entry_object

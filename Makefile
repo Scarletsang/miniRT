@@ -42,7 +42,8 @@ PARSER_SRC:= \
 	parser/scene/objects/sphere.c \
 	parser/scene/objects/light.c
 RAY_SRC:= \
-	ray/ray.c
+	ray/ray.c \
+	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
@@ -126,6 +127,9 @@ all:
 $(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) && echo "Compilation of $(NAME) successful"
 
+run:
+	@./$(NAME)
+
 bonus: re
 
 ##########################################
@@ -190,4 +194,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re bonus
+.PHONY: clean fclean re run bonus

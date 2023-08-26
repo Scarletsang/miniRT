@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:16:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 13:43:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:54:41 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	mrt_world_init(struct s_mrt_world *world)
 
 void	mrt_world_free(struct s_mrt_world *world)
 {
-	ft_vector_free(&world->lights);
-	ft_vector_free(&world->objects);
+	mrt_world_entries_free(&world->lights);
+	mrt_world_entries_free(&world->objects);
 	mrt_world_entry_free(&world->camera);
 }
 
