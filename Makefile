@@ -50,7 +50,10 @@ RENDERER_SRC:= \
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
-	scene/unique_identifier.c
+	scene/unique_identifier.c \
+	scene/printer/scene.c \
+	scene/printer/camera_and_light.c \
+	scene/printer/objects.c
 WORLD_SRC:= \
 	world/world.c \
 	world/world_entry.c \

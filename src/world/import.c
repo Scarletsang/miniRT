@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:30:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 18:58:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ struct s_mrt_world_options options)
 	struct s_mrt_world_entry	world_entry;
 	t_ft_vector_iterator		iterator;
 
+	mrt_scene_print(scene);
 	ft_vector_iterator_begin(&iterator, &scene->entries);
 	while (!iterator.is_end)
 	{

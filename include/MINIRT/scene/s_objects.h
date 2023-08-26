@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 16:06:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 18:42:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,7 @@ struct s_mrt_scene_camera
 	t_mrt_degrees			fov;
 };
 
-//////////////////////////////////////////////////
-////////////   geometric constructs   ////////////
-//////////////////////////////////////////////////
-
-struct s_mrt_scene_sphere
-{
-	t_mrt_point3d	center;
-	double			diameter;
-	t_mrt_color		color;
-};
-
-struct s_mrt_scene_plane
-{
-	t_mrt_point3d	origin;
-	t_mrt_vec3_unit	orientation;
-	t_mrt_color		color;
-};
-
-struct s_mrt_scene_cylinder
-{
-	t_mrt_point3d	center;
-	t_mrt_vec3_unit	orientation;
-	double			diameter;
-	double			height;
-	t_mrt_color		color;
-};
+void	mrt_scene_camera_print(struct s_mrt_scene_camera *camera);
 
 ////////////////////////////////////
 ////////////   lights   ////////////
@@ -65,11 +40,50 @@ struct s_mrt_scene_light_ambient
 	t_mrt_color	color;
 };
 
+void	mrt_scene_light_ambient_print(\
+struct s_mrt_scene_light_ambient *light_ambient);
+
 struct s_mrt_scene_light_point
 {
 	t_mrt_point3d	origin;
 	t_mrt_ratio		ratio;
 	t_mrt_color		color;
 };
+
+void	mrt_scene_light_point_print(\
+struct s_mrt_scene_light_point *light_point);
+
+//////////////////////////////////////////////////
+////////////   geometric constructs   ////////////
+//////////////////////////////////////////////////
+
+struct s_mrt_scene_sphere
+{
+	t_mrt_point3d	center;
+	double			diameter;
+	t_mrt_color		color;
+};
+
+void	mrt_scene_sphere_print(struct s_mrt_scene_sphere *sphere);
+
+struct s_mrt_scene_plane
+{
+	t_mrt_point3d	origin;
+	t_mrt_vec3_unit	orientation;
+	t_mrt_color		color;
+};
+
+void	mrt_scene_plane_print(struct s_mrt_scene_plane *plane);
+
+struct s_mrt_scene_cylinder
+{
+	t_mrt_point3d	center;
+	t_mrt_vec3_unit	orientation;
+	double			diameter;
+	double			height;
+	t_mrt_color		color;
+};
+
+void	mrt_scene_cylinder_print(struct s_mrt_scene_cylinder *cylinder);
 
 #endif

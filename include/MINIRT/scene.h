@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 16:12:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 18:53:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ struct s_mrt_scene *scene, enum e_mrt_scene_entry_identifier identifier);
 
 enum e_mrt_scene_entry_identifier	*mrt_scene_add_unique_identifier(\
 struct s_mrt_scene *scene, enum e_mrt_scene_entry_identifier identifier);
+
+void								mrt_scene_print(struct s_mrt_scene *scene);
 
 #endif
