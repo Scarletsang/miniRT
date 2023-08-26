@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 15:26:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 17:37:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 t_mrt_unit_parser_atom	mrt_scene_parser_direction3d(\
 t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 
-t_mrt_unit_parser_atom	mrt_scene_parser_degrees(\
+t_mrt_unit_parser_atom	mrt_scene_parser_float(\
 t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 
 t_mrt_unit_parser_atom	mrt_scene_parser_color(\

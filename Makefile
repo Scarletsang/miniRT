@@ -33,9 +33,14 @@ UNIT_SRC:= \
 PARSER_SRC:= \
 	parser/number.c \
 	parser/vec3.c \
+	parser/scene/parser.c \
 	parser/scene/unit.c \
 	parser/scene/common.c \
-	parser/scene/camera.c
+	parser/scene/objects/camera.c \
+	parser/scene/objects/cylinder.c \
+	parser/scene/objects/plane.c \
+	parser/scene/objects/sphere.c \
+	parser/scene/objects/light.c
 RAY_SRC:= \
 	ray/ray.c
 RENDERER_SRC:= \

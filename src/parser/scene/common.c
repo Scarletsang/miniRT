@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 03:45:26 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 15:30:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 18:31:27 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 #include "LIBFT/ctype.h"
 
 t_mrt_scene_parser_atom	mrt_scene_parser_identifier(\
-t_mrt_scene_parser_atom input, union u_ft_tobject valid_identifiers)
+t_mrt_scene_parser_atom input, union u_ft_tobject identifier)
 {
 	t_mrt_scene_parser_atom	result;
-	bool					identifier_requires_unique;
 
-	if (!ft_isalpha(valid_identifiers.as_str[0]))
-		return (ft_parser_atom_validity_set(input, false));
-	else
-		identifier_requires_unique = ft_isupper(valid_identifiers.as_str[0]);
-	result = ft_parser_ignore(input, valid_identifiers);
+	result = ft_parser_ignore_string(input, identifier);
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
-	*(bool *) input.payload.as_ptr = identifier_requires_unique;
+	*(bool *) input.payload.as_ptr = ft_isupper(identifier.as_str[0]);
 	return (ft_parser_atom(input.payload, result.string));
 }
 
