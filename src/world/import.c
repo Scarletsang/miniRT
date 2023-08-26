@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 18:58:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:58:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct s_mrt_scene_entry *scene_entry, struct s_mrt_world_options *options)
 			scene_entry->object.light_ambient);
 	else if (scene_entry->identifier == ENTRY_LIGHT_POINT)
 		object.light_point = mrt_light_point(scene_entry->object.light_point);
-	if (scene_entry->identifier == ENTRY_CAMERA)
+	else if (scene_entry->identifier == ENTRY_CAMERA)
 		object.camera = mrt_camera(scene_entry->object.camera, \
 			options->camera_image, options->camera_focal_length);
 	else

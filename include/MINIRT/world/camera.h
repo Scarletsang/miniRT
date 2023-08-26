@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 16:07:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:16:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ struct s_mrt_image screen, double focal_length);
 // need to add orientation and fov later
 struct s_mrt_camera
 {
-	struct s_mrt_scene_camera	*world;
+	struct s_mrt_scene_camera	*scene;
 	struct s_mrt_image			screen;
 	struct s_mrt_viewport		viewport;
 	double						focal_length;
