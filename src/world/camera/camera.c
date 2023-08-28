@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:47:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 12:44:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/26 19:22:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/camera.h"
+#include "MINIRT/scene/s_objects.h"
 #include <stdlib.h>
 
 struct s_mrt_camera	*mrt_camera(struct s_mrt_scene_camera *scene_camera, \
@@ -22,7 +23,7 @@ struct s_mrt_image screen, double focal_length)
 	if (!camera)
 		return (NULL);
 	*camera = (struct s_mrt_camera){
-		.world = scene_camera,
+		.scene = scene_camera,
 		.screen = screen,
 		.focal_length = focal_length,
 		.viewport = mrt_viewport(scene_camera, screen, focal_length)
@@ -32,11 +33,11 @@ struct s_mrt_image screen, double focal_length)
 
 void	mrt_camera_refresh(struct s_mrt_camera *camera)
 {
-	camera->viewport = mrt_viewport(camera->world, camera->screen, \
+	camera->viewport = mrt_viewport(camera->scene, camera->screen, \
 		camera->focal_length);
 }
 
 void	mrt_camera_free(struct s_mrt_camera *camera)
 {
-	free(camera->world);
+	free(camera->scene);
 }

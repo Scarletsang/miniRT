@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 11:48:15 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:33:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ double t0, double t1)
 	y0 = ray->origin.y + t0 * ray->direction.y;
 	y1 = ray->origin.y + t1 * ray->direction.y;
 	min = cylinder->scene->center.y;
-	max = cylinder->scene->center.y + cylinder->scene->dia_height.y;
+	max = cylinder->scene->center.y + cylinder->scene->height;
 	if (min < y0 && y0 < max)
 		return (true);
 	if (min < y1 && y1 < max)
@@ -103,9 +103,9 @@ double t0, double t1)
 	p1 = ray_at(ray, t1);
 	start = cylinder->scene->center;
 	end = vec3( \
-	start.x + cylinder->scene->dia_height.y * cylinder->scene->orientation.x, \
-	start.y + cylinder->scene->dia_height.y * cylinder->scene->orientation.y, \
-	start.z + cylinder->scene->dia_height.y * cylinder->scene->orientation.z);
+	start.x + cylinder->scene->height * cylinder->scene->orientation.x, \
+	start.y + cylinder->scene->height * cylinder->scene->orientation.y, \
+	start.z + cylinder->scene->height * cylinder->scene->orientation.z);
 	if ((p0.x > start.x && p0.x < end.x) || (p0.y > start.y && p0.y < end.y) \
 	|| (p0.z > start.z && p0.z < end.z))
 		return (true);
@@ -129,7 +129,7 @@ struct s_mrt_cylinder *cylinder)
 	double		t1;
 
 	x = vec3_subtract(ray->origin, cylinder->scene->center);
-	r = cylinder->scene->dia_height.x / 2;
+	r = cylinder->scene->diameter / 2;
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
 	tmp = tmp * tmp;
 	a = vec3_dot(ray->direction, ray->direction) - tmp;
@@ -172,7 +172,7 @@ struct s_mrt_cylinder *cylinder)
 	b = b + 2 * ray->origin.z * ray->direction.z;
 	c = ray->origin.x * ray->origin.x;
 	c = c + ray->origin.z * ray->origin.z - \
-	(cylinder->scene->dia_height.x / 2) * (cylinder->scene->dia_height.x / 2);
+	(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
 	disc = b * b - 4 * a * c;
 	if (disc < 0)
 		return (false);
@@ -208,7 +208,7 @@ bool	mrt_cylinder_is_hit_internet(struct s_mrt_ray *ray \
 	double		tmp;
 
 	x = vec3_subtract(ray->origin, cylinder->scene->center);
-	r = cylinder->scene->dia_height.x / 2;
+	r = cylinder->scene->diameter / 2;
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
 	tmp = tmp * tmp;
 	a = vec3_dot(ray->direction, ray->direction) - tmp;

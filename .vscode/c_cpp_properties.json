@@ -7,6 +7,7 @@
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/lib/libft/include",
                 "${workspaceFolder}/lib/MLX42/include"
+                "/opt/homebrew/opt/googletest/include"
             ],
             "defines": [],
             "cStandard": "c89",

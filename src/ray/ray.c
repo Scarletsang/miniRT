@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/23 10:32:34 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:25:10 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "MINIRT/unit.h"
 #include "MINIRT/world.h"
 #include "LIBFT/vector.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 t_mrt_ray	mrt_ray_omit_unit(t_mrt_point3d origin, \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/17 14:04:03 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:20:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ struct s_mrt_world_entry *entry);
 
 typedef t_ft_vector	t_mrt_world_entries;
 
-void	mrt_world_entries_free(t_mrt_world_entries *entry);
-
-union u_world_entry_object	*mrt_world_entry_get_object_at(\
-t_mrt_world_entries *entries, int index);
+void						mrt_world_entries_free(t_mrt_world_entries *entry);
 
 ///////////////////////////////////
 ////////////   world   ////////////

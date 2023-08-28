@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_light.h                                          :+:      :+:    :+:   */
+/*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:06:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 16:31:32 by htsang           ###   ########.fr       */
+/*   Created: 2023/08/26 21:11:50 by htsang            #+#    #+#             */
+/*   Updated: 2023/08/26 21:35:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_LIGHT_H
-# define S_LIGHT_H
+#include "MINIRT/miniRT.h"
+#include "MINIRT/renderer.h"
+#include <MLX42/MLX42.h>
 
-# include "MINIRT/unit.h"
-
-struct s_mrt_scene_light_ambient
+unsigned int	mrt_mlx42_control_as_int(struct s_mrt_mlx42_control control)
 {
-	t_mrt_ratio	ratio;
-	t_mrt_color	color;
-};
-
-struct s_mrt_scene_light_point
-{
-	t_mrt_point3d	origin;
-	t_mrt_ratio		ratio;
-	t_mrt_color		color;
-};
-
-#endif
+	return (*(unsigned int *) &control);
+}

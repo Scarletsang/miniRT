@@ -5,11 +5,13 @@
 NAME:=miniRT
 
 CC:=cc
-CFLAGS= -Wall -Wextra -Werror -flto -O3
-LDFLAGS= -flto -O3
-ifdef FSANITIZE
+CFLAGS= -Wall -Wextra -Werror
+ifdef DEBUG
 	CFLAGS+= -g3 -fsanitize=address
 	LDFLAGS+= -g3 -fsanitize=address
+else
+	CFLAGS+= -flto -O3
+	LDFLAGS+= -flto -O3
 endif
 INCLUDE_DIR= \
 	include
@@ -30,22 +32,32 @@ UNIT_SRC:= \
 	unit/vec3/vec3_utils.c \
 	unit/vec2.c
 PARSER_SRC:= \
+	parser/number.c \
+	parser/vec3.c \
+	parser/scene/parser.c \
 	parser/scene/unit.c \
-	parser/number.c
+	parser/scene/common.c \
+	parser/scene/objects/camera.c \
+	parser/scene/objects/cylinder.c \
+	parser/scene/objects/plane.c \
+	parser/scene/objects/sphere.c \
+	parser/scene/objects/light.c
 RAY_SRC:= \
 	ray/ray.c \
 	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
+	renderer/mlx42/hooks.c \
+	renderer/mlx42/control.c \
 	renderer/ppm.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
-	scene/camera.c \
-	scene/s_game_object/s_sphere.c \
-	scene/s_game_object/s_plane.c \
-	scene/s_game_object/s_cylinder.c
+	scene/unique_identifier.c \
+	scene/printer/scene.c \
+	scene/printer/camera_and_light.c \
+	scene/printer/objects.c
 WORLD_SRC:= \
 	world/world.c \
 	world/world_entry.c \
@@ -133,11 +145,11 @@ bonus: re
 # 	@$(MAKE) $(if $(FSANITIZE),FSANITIZE=yes,) -C lib/LIBRARY_NAME
 
 $(LIBFT):
-	@$(MAKE) $(if $(DEBUG),FSANITIZE=yes,) USE="stringbuilder iostream ft_printf" -C lib/libft
+	@$(MAKE) $(if $(DEBUG),FSANITIZE=yes,) USE="stringbuilder iostream parser ft_printf" -C lib/libft
 
 $(MLX42):
 	@cmake $(if $(DEBUG),-DDEBUG=1, ) -B lib/MLX42/build -S lib/MLX42
-	@cmake --build lib/MLX42/build -j4
+	@cmake --build lib/MLX42/build -j4 $(if $(DEBUG),--config Debug,)
 
 #########################################
 ######     Object compilation     #######

@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/22 13:44:29 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:25:01 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
 , struct s_mrt_world *world)
 {
 	struct s_mrt_world_entry	*entry;
-	size_t							i;
+	size_t						i;
 
 	i = 0;
 	while (i < world->objects.size)
 	{
-		entry = (struct s_mrt_world_entry*) ft_vector_get(&world->objects, i);
+		entry = (struct s_mrt_world_entry *)ft_vector_get(&world->objects, i);
 		if (entry->identifier == ENTRY_SPHERE)
 			if (mrt_sphere_is_hit(ray, entry->object.sphere))
 				return (entry);

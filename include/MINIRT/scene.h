@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 13:29:39 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:28:19 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define SCENE_H
 
 # include "LIBFT/vector.h"
-#include "scene/s_camera.h"
-#include "scene/s_game_object.h"
-#include "scene/s_light.h"
+# include "MINIRT/scene/s_objects.h"
 
 /////////////////////////////////////////
 ////////////   scene entry   ////////////
@@ -44,9 +42,9 @@ union u_scene_entry_object
 	struct s_mrt_scene_camera			*camera;
 };
 
-union u_scene_entry_object	mrt_scene_entry_object_empty(void);
+union u_scene_entry_object			mrt_scene_entry_object_empty(void);
 
-bool						mrt_scene_entry_object_is_empty(\
+bool								mrt_scene_entry_object_is_empty(\
 union u_scene_entry_object entry);
 
 struct s_mrt_scene_entry
@@ -55,11 +53,15 @@ struct s_mrt_scene_entry
 	union u_scene_entry_object			object;
 };
 
+struct s_mrt_scene_entry			mrt_scene_entry(void *scene_object, \
+enum e_mrt_scene_entry_identifier identifier);
+
 ///////////////////////////////////////////
 ////////////   scene entries   ////////////
 ///////////////////////////////////////////
 
 typedef t_ft_vector	t_mrt_scene_entries;
+typedef t_ft_vector	t_mrt_scene_unique_identifiers;
 
 ///////////////////////////////////
 ////////////   scene   ////////////
@@ -67,16 +69,23 @@ typedef t_ft_vector	t_mrt_scene_entries;
 
 struct s_mrt_scene
 {
-	t_mrt_scene_entries	entries;
-	unsigned int		camera_count;
-	unsigned int		light_count;
+	t_mrt_scene_entries				entries;
+	t_mrt_scene_unique_identifiers	unique_identifiers;
 };
 
-int							mrt_scene_init(struct s_mrt_scene *scene);
+int									mrt_scene_init(struct s_mrt_scene *scene);
 
-void						mrt_scene_free(struct s_mrt_scene *scene);
+void								mrt_scene_free(struct s_mrt_scene *scene);
 
-int							mrt_scene_add_entry(struct s_mrt_scene *scene, \
-	struct s_mrt_scene_entry entry);
+int									mrt_scene_add_entry(\
+struct s_mrt_scene *scene, struct s_mrt_scene_entry entry, bool is_unique);
+
+bool								mrt_scene_has_unique_identifier(\
+struct s_mrt_scene *scene, enum e_mrt_scene_entry_identifier identifier);
+
+enum e_mrt_scene_entry_identifier	*mrt_scene_add_unique_identifier(\
+struct s_mrt_scene *scene, enum e_mrt_scene_entry_identifier identifier);
+
+void								mrt_scene_print(struct s_mrt_scene *scene);
 
 #endif

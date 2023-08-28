@@ -6,12 +6,13 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/23 10:19:27 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:25:20 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 {
@@ -46,12 +47,13 @@ void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 	else if (entry->identifier == ENTRY_CYLINDER)
 		mrt_cylinder_free(entry->object.cylinder);
 	else if (entry->identifier == ENTRY_LIGHT_AMBIENT)
-		free(entry->object.light_ambient);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_LIGHT_POINT)
-		free(entry->object.light_point);
+		free(entry->object.address);
 	else if (entry->identifier == ENTRY_CAMERA)
 		mrt_camera_free(entry->object.camera);
-	free(entry->object.address);
+	else
+		free(entry->object.address);
 }
 
 void	mrt_world_entries_free(t_mrt_world_entries *entries)

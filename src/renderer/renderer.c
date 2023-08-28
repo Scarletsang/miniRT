@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/16 08:50:38 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/26 20:07:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ struct s_mrt_camera *camera, uint32_t x, uint32_t y)
 		vec3_multiply(camera->viewport.pixel_vertical, (double) y));
 	world_coordinate = vec3_subtract(\
 		world_coordinate, \
-		camera->world->origin);
+		camera->scene->origin);
 	return (world_coordinate);
 }

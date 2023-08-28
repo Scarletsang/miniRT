@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 11:08:48 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/22 13:49:22 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:15:10 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "MINIRT/world.h"
 # include "MINIRT/image.h"
 
-struct s_mrt_world;
+struct	s_mrt_world;
 
 typedef struct s_mrt_ray
 {
