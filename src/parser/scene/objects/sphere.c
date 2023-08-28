@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:30:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 15:36:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "MINIRT/parser/general_parser.h"
 #include "MINIRT/scene/s_objects.h"
 
-static t_mrt_scene_parser_atom	mrt_scene_parser_light_point_run(\
+static t_mrt_scene_parser_atom	mrt_scene_parser_sphere_run(\
 t_mrt_scene_parser_atom input)
 {
 	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[3]){\
@@ -39,7 +39,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
 		(void *[3]){&sphere.center, &sphere.diameter, &sphere.color}, 3);
-	result = mrt_scene_parser_light_point_run(ft_parser_atom(\
+	result = mrt_scene_parser_sphere_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)
 	{

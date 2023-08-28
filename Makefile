@@ -103,7 +103,7 @@ ifeq ($(shell uname), Darwin)
 # For MLX42
 	LDFLAGS+= -framework Cocoa -framework OpenGL -framework IOKit
 # For GLFW
-	LDFLAGS+= -lglfw -L$(shell brew --prefix glfw)/lib
+	LDFLAGS+= -lglfw $(if $(shell brew 2>/dev/null),-L$(shell brew --prefix glfw)/lib,)
 else
 # For GLFW
 	LDFLAGS+= -ldl -lglfw -pthread -lm
@@ -117,7 +117,7 @@ endif
 
 SRC_DIR:=src
 OBJ_DIR:=obj
-OBJ:=$(addprefix $(OBJ_DIR)/,$(subst /,@,$(SRC:.c=.o)))
+OBJ=$(addprefix $(OBJ_DIR)/,$(subst /,@,$(SRC:.c=.o)))
 
 #################################
 ######     Main rules     #######
