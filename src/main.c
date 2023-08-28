@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:20:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:07:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ struct s_mrt_world_options world_option)
 
 	if (mrt_scene_init(&scene))
 		return (EXIT_FAILURE);
-	else if (mrt_scene_from_file(&scene, \
+	else if (mrt_scene_parse_from_file(&scene, \
 		program->renderer_config.scene_file_name) || \
 		mrt_world_from_scene(&scene, &program->world, world_option))
 	{

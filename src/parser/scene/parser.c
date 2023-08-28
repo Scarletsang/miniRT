@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:07:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/27 15:42:44 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	}, 7, input, ft_tobject_empty()));
 }
 
-static int	mrt_scene_from_file_cleanup(struct s_ft_iostream *iostream, \
+static int	mrt_scene_parser_cleanup(struct s_ft_iostream *iostream, \
 int fd, int return_value)
 {
 	int	exit_code;
@@ -47,7 +47,7 @@ int fd, int return_value)
 	return (return_value);
 }
 
-int	mrt_scene_from_file(struct s_mrt_scene *scene, const char *file_path)
+int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
 {
 	struct s_ft_iostream	iostream;
 	t_mrt_scene_parser_atom	atom;
@@ -67,9 +67,9 @@ int	mrt_scene_from_file(struct s_mrt_scene *scene, const char *file_path)
 				ft_parser_atom(ft_tobject_ptr(scene), \
 				ft_iostream_to_slice(&iostream)), ft_tobject_empty());
 			if (!atom.is_valid || !ft_parser_atom_is_end(atom))
-				return (mrt_scene_from_file_cleanup(&iostream, fd, EXIT_FAILURE));
+				return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
 		}
 		ft_iostream_reset(&iostream);
 	}
-	return (mrt_scene_from_file_cleanup(&iostream, fd, EXIT_SUCCESS));
+	return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_SUCCESS));
 }
