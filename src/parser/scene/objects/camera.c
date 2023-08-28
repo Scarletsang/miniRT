@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:30:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 15:37:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "MINIRT/parser/general_parser.h"
 #include "MINIRT/scene/s_objects.h"
 
-static t_mrt_scene_parser_atom	mrt_scene_parser_light_point_run(\
+static t_mrt_scene_parser_atom	mrt_scene_parser_camera_run(\
 t_mrt_scene_parser_atom input)
 {
 	t_mrt_range	ranges[2];
@@ -44,7 +44,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
 		(void *[3]){&camera.origin, &camera.orientation, &camera.fov}, 3);
-	result = mrt_scene_parser_light_point_run(ft_parser_atom(\
+	result = mrt_scene_parser_camera_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)
 	{
