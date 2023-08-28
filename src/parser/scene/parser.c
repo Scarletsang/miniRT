@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:07:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:08:49 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/27 15:42:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
 static inline t_mrt_scene_parser_atom	mrt_scene_parser_entry(\
 t_mrt_scene_parser_atom input, union u_ft_tobject option)
 {
-	return (ft_combinator_or((struct s_ft_parser_entity[6]){\
+	return (ft_combinator_or((struct s_ft_parser_entity[7]){\
 		ft_parser_entity(&mrt_scene_parser_sphere, option), \
 		ft_parser_entity(&mrt_scene_parser_plane, option), \
 		ft_parser_entity(&mrt_scene_parser_cylinder, option), \
 		ft_parser_entity(&mrt_scene_parser_light_ambient, option), \
 		ft_parser_entity(&mrt_scene_parser_light_point, option), \
-		ft_parser_entity(&mrt_scene_parser_camera, option) \
-	}, 6, input, ft_tobject_empty()));
+		ft_parser_entity(&mrt_scene_parser_camera, option), \
+		ft_parser_entity(&ft_parser_ignore_multiple, ft_tobject_str(" \t\n")) \
+	}, 7, input, ft_tobject_empty()));
 }
 
 static int	mrt_scene_from_file_cleanup(struct s_ft_iostream *iostream, \
@@ -56,18 +57,18 @@ int	mrt_scene_from_file(struct s_mrt_scene *scene, const char *file_path)
 	if (fd == -1)
 		return (EXIT_FAILURE);
 	if (ft_iostream_init(&iostream))
-	{
-		close(fd);
-		return (EXIT_FAILURE);
-	}
+		return (close(fd), EXIT_FAILURE);
 	while (!ft_iostream_read_until_delimiter(&iostream, fd, \
 		ft_str_from_cstring("\n")))
 	{
-		atom = mrt_scene_parser_entry(\
-			ft_parser_atom(ft_tobject_ptr(scene), \
-			ft_iostream_to_slice(&iostream)), ft_tobject_empty());
-		if (!atom.is_valid || !ft_parser_atom_is_end(atom))
-			return (mrt_scene_from_file_cleanup(&iostream, fd, EXIT_FAILURE));
+		if (!ft_slice_is_empty(ft_iostream_to_slice(&iostream)))
+		{
+			atom = mrt_scene_parser_entry(\
+				ft_parser_atom(ft_tobject_ptr(scene), \
+				ft_iostream_to_slice(&iostream)), ft_tobject_empty());
+			if (!atom.is_valid || !ft_parser_atom_is_end(atom))
+				return (mrt_scene_from_file_cleanup(&iostream, fd, EXIT_FAILURE));
+		}
 		ft_iostream_reset(&iostream);
 	}
 	return (mrt_scene_from_file_cleanup(&iostream, fd, EXIT_SUCCESS));
