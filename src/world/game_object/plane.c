@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:26:49 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:26:25 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct s_mrt_plane	*mrt_plane(struct s_mrt_scene_plane *scene_plane)
 	pln = malloc(sizeof(struct s_mrt_plane));
 	if (!pln)
 		return (NULL);
+	scene_plane->normal = vec3_normalize(scene_plane->normal);
 	*pln = (struct s_mrt_plane){.scene = scene_plane};
 	return (pln);
 }
