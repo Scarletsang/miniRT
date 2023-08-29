@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:23:36 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 21:58:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/29 21:56:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef t_ft_vector	t_mrt_allocator_blocks;
 struct s_mrt_allocator
 {
 	t_mrt_allocator_blocks			blocks;
-	struct s_mrt_allocator_chunk	*allocation_pointer;
+	struct s_mrt_allocator_chunk	*avaliable;
 	size_t							size_per_chunk;
 	size_t							chunk_per_block;
 };

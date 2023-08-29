@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:23:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 21:58:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/29 21:56:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ size_t size_per_chunk, size_t chunk_per_block)
 	if (ft_vector_init(&allocator->blocks, sizeof(void *), 8, \
 		&ft_vector_copy_ptr))
 		return (EXIT_FAILURE);
-	allocator->allocation_pointer = NULL;
+	allocator->avaliable = NULL;
 	allocator->size_per_chunk = size_per_chunk;
 	allocator->chunk_per_block = chunk_per_block;
+	return (EXIT_SUCCESS);
 }
 
 void	mrt_allocator_free(struct s_mrt_allocator *allocator)
@@ -61,16 +62,16 @@ struct s_mrt_allocator *allocator)
 	chunk = (struct s_mrt_allocator_chunk *)block;
 	while (i++ < (allocator->chunk_per_block - 1))
 	{
-		next_chunk = (unsigned char *) chunk + allocator->size_per_chunk;
+		next_chunk = (struct s_mrt_allocator_chunk *)(\
+			(unsigned char *) chunk + allocator->size_per_chunk);
 		chunk->next = next_chunk;
 		chunk = next_chunk;
 	}
 	chunk->next = NULL;
-	if (!allocator->allocation_pointer)
-		allocator->allocation_pointer = (struct s_mrt_allocator_chunk *)block;
+	if (!allocator->avaliable)
+		allocator->avaliable = (struct s_mrt_allocator_chunk *)block;
 	else
-		allocator->allocation_pointer->next = \
-			(struct s_mrt_allocator_chunk *)block;
+		allocator->avaliable->next = (struct s_mrt_allocator_chunk *)block;
 	return (block);
 }
 
@@ -78,15 +79,15 @@ void	*mrt_allocate(struct s_mrt_allocator *allocator)
 {
 	void	*ptr;
 
-	if (!allocator->allocation_pointer)
+	if (!allocator->avaliable)
 	{
-		allocator->allocation_pointer = \
+		allocator->avaliable = \
 			mrt_pool_allocator_allocate_block(allocator);
-		if (!allocator->allocation_pointer)
+		if (!allocator->avaliable)
 			return (NULL);
 	}
-	ptr = allocator->allocation_pointer;
-	allocator->allocation_pointer = allocator->allocation_pointer->next;
+	ptr = allocator->avaliable;
+	allocator->avaliable = allocator->avaliable->next;
 	return (ptr);
 }
 
@@ -95,6 +96,6 @@ void	mrt_free(struct s_mrt_allocator *allocator, void *ptr)
 	struct s_mrt_allocator_chunk	*chunk;
 
 	chunk = (struct s_mrt_allocator_chunk *)ptr;
-	chunk->next = allocator->allocation_pointer;
-	allocator->allocation_pointer = chunk;
+	chunk->next = allocator->avaliable;
+	allocator->avaliable = chunk;
 }
