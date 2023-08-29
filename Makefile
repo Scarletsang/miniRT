@@ -68,6 +68,10 @@ WORLD_SRC:= \
 	world/game_object/sphere.c \
 	world/game_object/plane.c \
 	world/game_object/cylinder.c
+MATRIX_SRC:= \
+	matrix/matrix.c \
+	matrix/internal.c \
+	matrix/multiply.c
 MEMORY_SRC:= \
 	memory/memory.c \
 	memory/allocator.c \
