@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:29:52 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/30 11:24:04 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ struct s_mrt_plane		*mrt_plane(struct s_mrt_scene_plane *scene_plane);
 void					mrt_plane_free(struct s_mrt_plane *plane);
 
 bool					mrt_plane_is_hit(struct s_mrt_ray *ray, \
+struct s_mrt_plane *plane);
+
+double					mrt_plane_get_t_intersection(struct s_mrt_ray *ray, \
 struct s_mrt_plane *plane);
 
 struct s_mrt_cylinder

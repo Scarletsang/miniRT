@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/29 14:26:25 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:34:47 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ t = (plane->point - ray->origin) . plane->normal / ray->direction . plane->norma
 */
 bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
 {
-	t_mrt_vec3			tmp;
-	double				t;
+	t_mrt_vec3	tmp;
+	double		t;
+	double		distance;
 
 	tmp = vec3_subtract(plane->scene->point, ray->origin);
 	t = vec3_dot(ray->direction, plane->scene->normal);
@@ -47,7 +48,25 @@ bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
 	t = vec3_dot(tmp, vec3_divide(plane->scene->normal, t));
 	if (t < 0)
 		return (false);
+	distance = vec3_length(vec3_multiply(ray->direction, t));
+	(void) distance;
 	return (true);
+}
+
+double	mrt_plane_get_t_intersection(\
+struct s_mrt_ray *ray, struct s_mrt_plane *plane)
+{
+	t_mrt_vec3	tmp;
+	double		t;
+
+	tmp = vec3_subtract(plane->scene->point, ray->origin);
+	t = vec3_dot(ray->direction, plane->scene->normal);
+	if (t == 0)
+		return (0);
+	t = vec3_dot(tmp, vec3_divide(plane->scene->normal, t));
+	if (t < 0)
+		return (0);
+	return (t);
 }
 
 void	mrt_plane_free(struct s_mrt_plane *plane)
