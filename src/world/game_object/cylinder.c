@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 15:32:51 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:11:55 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,41 +58,28 @@ struct s_mrt_scene_cylinder *scene_cylinder)
 */
 
 double	intersect_caps(struct s_mrt_ray *ray, \
-struct s_mrt_cylinder *cylinder, t_mrt_point3d start, t_mrt_point3d end)
+struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 {
-	struct s_mrt_plane			*pln;
-	struct s_mrt_scene_plane	scene_pln;
-	t_mrt_point3d				intersection;
-	double						distance;
-	// static int					a = 0; //
+	t_mrt_point3d	intersection;
+	double			distance;
+	double			t;
+	t_mrt_vec3		tmp;
 
-	scene_pln.point = end;
-	scene_pln.normal = cylinder->scene->orientation;
-	scene_pln.color = (vec3(0.0, 0.0, 0.0));
-	pln = mrt_plane(&scene_pln);
-	intersection = ray_at(ray, mrt_plane_get_t_intersection(ray, pln));
-	distance = vec3_length(vec3_subtract(end, intersection));
-	// if (a % 4624903 == 0)
-	// {
-	// 	printf("ray->origin: %f, %f, %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
-	// 	printf("ray->direction: %f, %f, %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
-	// 	printf("end: %f, %f, %f\n", end.x, end.y, end.z);
-	// 	// if (intersection.x > 0 || intersection.y > 0 || intersection.z > 0)
-	// 		printf("intersection: %f, %f, %f\n", intersection.x, intersection.y, intersection.z);
-	// 	printf("distance: %f\n", distance);
-	// }
-	// a++;//
-	free(pln);
+	tmp = vec3_subtract(plane_point, ray->origin);
+	t = vec3_dot(ray->direction, cylinder->scene->orientation);
+	if (t == 0)
+		return (0);
+	t = vec3_dot(tmp, vec3_divide(cylinder->scene->orientation, t));
+	if (t < 0)
+		return (0);
+	intersection = ray_at(ray, t);
+	distance = vec3_length(vec3_subtract(plane_point, intersection));
 	if (distance <= (cylinder->scene->diameter / 2))
 		return (vec3_length(vec3_subtract(intersection, ray->origin)));
-	scene_pln.point = start;
-	pln = mrt_plane(&scene_pln);
-	intersection = ray_at(ray, mrt_plane_get_t_intersection(ray, pln));
-	distance = vec3_length(vec3_subtract(start, intersection));
-	free(pln);
-	if (distance <= (cylinder->scene->diameter / 2))
-		return(vec3_length(vec3_subtract(intersection, ray->origin)));
-	return (0);
+	if (!vec3_is_equal(plane_point, cylinder->scene->center))
+		return (intersect_caps(ray, cylinder, cylinder->scene->center));
+	else
+		return (0);
 }
 
 bool	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
@@ -119,7 +106,7 @@ double t0, double t1)
 	pc_e = vec3_subtract(end, p1);
 	if (vec3_dot(pc_s, o) <= 0 && vec3_dot(pc_e, o) >= 0)
 		return (true);
-	distance = intersect_caps(ray, cylinder, start, end);
+	distance = intersect_caps(ray, cylinder, end);
 	if (distance > 0)
 		return (true);
 	pc_s = vec3_subtract(start, p0);
@@ -195,6 +182,61 @@ If it's rather in the direction of orientation, dismiss
 
 /* Paper bin:
 
+double	intersect_caps_working_longer_version(struct s_mrt_ray *ray, \
+struct s_mrt_cylinder *cylinder, t_mrt_point3d start, t_mrt_point3d end)
+{
+	struct s_mrt_plane			*pln;
+	struct s_mrt_scene_plane	scene_pln;
+	t_mrt_point3d				intersection;
+	double						distance;
+
+	scene_pln.point = end;
+	scene_pln.normal = cylinder->scene->orientation;
+	scene_pln.color = (vec3(0.0, 0.0, 0.0));
+	pln = mrt_plane(&scene_pln);
+	intersection = ray_at(ray, mrt_plane_get_t_intersection(ray, pln));
+	distance = vec3_length(vec3_subtract(end, intersection));
+	free(pln);
+	if (distance <= (cylinder->scene->diameter / 2))
+		return (vec3_length(vec3_subtract(intersection, ray->origin)));
+	scene_pln.point = start;
+	pln = mrt_plane(&scene_pln);
+	intersection = ray_at(ray, mrt_plane_get_t_intersection(ray, pln));
+	distance = vec3_length(vec3_subtract(start, intersection));
+	free(pln);
+	if (distance <= (cylinder->scene->diameter / 2))
+		return(vec3_length(vec3_subtract(intersection, ray->origin)));
+	return (0);
+}
+
+dependency for above:
+double	mrt_plane_get_t_intersection(\
+struct s_mrt_ray *ray, struct s_mrt_plane *plane)
+{
+	t_mrt_vec3	tmp;
+	double		t;
+
+	tmp = vec3_subtract(plane->scene->point, ray->origin);
+	t = vec3_dot(ray->direction, plane->scene->normal);
+	if (t == 0)
+		return (0);
+	t = vec3_dot(tmp, vec3_divide(plane->scene->normal, t));
+	if (t < 0)
+		return (0);
+	return (t);
+}
+
+intersect Caps tests:
+if (a % 4624903 == 0)
+{
+	printf("ray->origin: %f, %f, %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
+	printf("ray->direction: %f, %f, %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
+	printf("end: %f, %f, %f\n", end.x, end.y, end.z);
+	// if (intersection.x > 0 || intersection.y > 0 || intersection.z > 0)
+		printf("intersection: %f, %f, %f\n", intersection.x, intersection.y, intersection.z);
+	printf("distance: %f\n", distance);
+}
+a++;
 
 bool	is_in_range2(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
 double t0, double t1)
