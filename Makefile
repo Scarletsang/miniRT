@@ -71,7 +71,11 @@ WORLD_SRC:= \
 MATRIX_SRC:= \
 	matrix/matrix.c \
 	matrix/internal.c \
-	matrix/multiply.c
+	matrix/multiply.c \
+	matrix/transpose.c \
+	matrix/submatrix.c \
+	matrix/determinant.c \
+	matrix/inverse.c
 MEMORY_SRC:= \
 	memory/memory.c \
 	memory/allocator.c \
@@ -112,7 +116,7 @@ ifeq ($(shell uname), Darwin)
 # For MLX42
 	LDFLAGS+= -framework Cocoa -framework OpenGL -framework IOKit
 # For GLFW
-	LDFLAGS+= -lglfw $(if $(shell brew 2>/dev/null),-L$(shell brew --prefix glfw)/lib,)
+	LDFLAGS+= -lglfw $(if $(shell brew --help 2>/dev/null),-L$(shell brew --prefix glfw)/lib,)
 else
 # For GLFW
 	LDFLAGS+= -ldl -lglfw -pthread -lm

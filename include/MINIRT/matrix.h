@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:07:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/29 22:49:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:41:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,22 @@ t_mrt_vec4 vec4);
 t_mrt_matrix		mrt_matrix_identity(struct s_mrt_allocator *allocator);
 
 t_mrt_matrix		mrt_matrix_transpose(t_mrt_matrix matrix);
+
+t_mrt_matrix		mrt_matrix_inverse(t_mrt_matrix matrix);
+
+////////////////////////////////////////////////////////////
+////////////   matrix determinant caluclation   ////////////
+////////////////////////////////////////////////////////////
+
+t_mrt_matrix		mrt_submatrix(t_mrt_matrix matrix, unsigned int trim_row, \
+unsigned int trim_column);
+
+double				mrt_minor(t_mrt_matrix matrix, unsigned int trim_row, \
+unsigned int trim_column);
+
+double				mrt_cofactor(t_mrt_matrix matrix, unsigned int trim_row, \
+unsigned int trim_column);
+
+double				mrt_determinant(t_mrt_matrix matrix);
 
 #endif
