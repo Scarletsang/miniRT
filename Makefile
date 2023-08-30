@@ -71,11 +71,12 @@ WORLD_SRC:= \
 MATRIX_SRC:= \
 	matrix/matrix.c \
 	matrix/internal.c \
-	matrix/multiply.c \
-	matrix/transpose.c \
-	matrix/submatrix.c \
-	matrix/determinant.c \
-	matrix/inverse.c
+	matrix/operation/multiply.c \
+	matrix/operation/transpose.c \
+	matrix/operation/submatrix.c \
+	matrix/operation/determinant.c \
+	matrix/operation/inverse.c \
+	matrix/transform/identity.c
 MEMORY_SRC:= \
 	memory/memory.c \
 	memory/allocator.c \
