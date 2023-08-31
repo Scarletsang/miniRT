@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:41:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 18:48:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:31:42 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	mrt_scene_sphere_print(struct s_mrt_scene_sphere *sphere)
 void	mrt_scene_plane_print(struct s_mrt_scene_plane *plane)
 {
 	printf("plane:\n");
-	printf("    origin      : ");
-	vec3_print(plane->origin);
-	printf("    orientation : ");
-	vec3_print(plane->orientation);
+	printf("    point      : ");
+	vec3_print(plane->point);
+	printf("    normal     : ");
+	vec3_print(plane->normal);
 	printf("    color       : ");
 	vec3_print(plane->color);
 }

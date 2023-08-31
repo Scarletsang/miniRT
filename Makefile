@@ -29,7 +29,8 @@ UNIT_SRC:= \
 	unit/range/interpolation.c \
 	unit/vec3/vec3_formulas.c \
 	unit/vec3/vec3_operations.c \
-	unit/vec3/vec3_utils.c
+	unit/vec3/vec3_utils.c \
+	unit/vec2.c
 PARSER_SRC:= \
 	parser/number.c \
 	parser/vec3.c \

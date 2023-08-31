@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:30:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:31:02 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
-		(void *[3]){&plane.origin, &plane.orientation, &plane.color}, 3);
+		(void *[3]){&plane.point, &plane.normal, &plane.color}, 3);
 	result = mrt_scene_parser_plane_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)

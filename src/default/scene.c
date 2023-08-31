@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:32:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:15:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:24:00 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,22 @@ struct s_mrt_scene_entry	mrt_default_scene_sphere(void)
 	}, ENTRY_SPHERE));
 }
 
+struct s_mrt_scene_entry	mrt_default_scene_cylinder(void)
+{
+	return (mrt_scene_entry((struct s_mrt_scene_cylinder[1]){\
+		(struct s_mrt_scene_cylinder){\
+			.center = vec3(5.0, 0, 5.0), \
+			.orientation = vec3_normalize(vec3(1.0, 1.0, 0.0)), \
+			.diameter = 4.0, \
+			.height = 10.0, \
+			.color = vec3(30.0, 255.0, 30.0)
+		} \
+	}, ENTRY_CYLINDER));
+}
+
 int	mrt_default_scene(struct s_mrt_scene *scene)
 {
-	if (mrt_scene_add_entry(scene, mrt_default_scene_sphere(), false))
+	if (mrt_scene_add_entry(scene, mrt_default_scene_cylinder(), false))
 		return (EXIT_FAILURE);
 	return (mrt_scene_add_entry(scene, mrt_default_scene_camera(), true));
 }

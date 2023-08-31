@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 21:36:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:25:20 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	mrt_world_entry_free(struct s_mrt_world_entry *entry)
 	if (entry->identifier == ENTRY_SPHERE)
 		mrt_sphere_free(entry->object.sphere);
 	else if (entry->identifier == ENTRY_PLANE)
-		free(entry->object.address);
+		mrt_plane_free(entry->object.plane);
 	else if (entry->identifier == ENTRY_CYLINDER)
-		free(entry->object.address);
+		mrt_cylinder_free(entry->object.cylinder);
 	else if (entry->identifier == ENTRY_LIGHT_AMBIENT)
 		free(entry->object.address);
 	else if (entry->identifier == ENTRY_LIGHT_POINT)

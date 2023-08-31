@@ -6,12 +6,14 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/27 12:54:19 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/31 06:56:12 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC3_H
 # define VEC3_H
+
+# include <stdbool.h>
 
 typedef struct s_mrt_vec3
 {
@@ -35,5 +37,7 @@ double			vec3_length(const t_mrt_vec3 v);
 double			vec3_dot(const t_mrt_vec3 v1, const t_mrt_vec3 v2);
 t_mrt_vec3		vec3_cross(const t_mrt_vec3 v1, const t_mrt_vec3 v2);
 t_mrt_vec3_unit	vec3_normalize(const t_mrt_vec3 v);
+
+bool			vec3_is_equal(t_mrt_vec3 v1, t_mrt_vec3 v2);
 
 #endif

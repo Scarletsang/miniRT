@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   s_objects.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 18:42:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:30:44 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_OBJECTS_H
 # define S_OBJECTS_H
 
-# include "MINIRT/scene.h" 
+# include "MINIRT/scene.h"
 # include "MINIRT/unit.h"
 
 ////////////////////////////////////
@@ -68,8 +68,8 @@ void	mrt_scene_sphere_print(struct s_mrt_scene_sphere *sphere);
 
 struct s_mrt_scene_plane
 {
-	t_mrt_point3d	origin;
-	t_mrt_vec3_unit	orientation;
+	t_mrt_point3d	point;
+	t_mrt_vec3_unit	normal;
 	t_mrt_color		color;
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:24:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:25:10 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,18 @@ t_mrt_ray	mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction)
 t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 {
 	double						t;
-	int							ray_hit;
+	struct s_mrt_world_entry	*entry_hit;
 
-	ray_hit = mrt_ray_is_hit(ray, world);
-	if (ray_hit == ENTRY_SPHERE)
-		return (vec3(255.0, 30.0, 30.0));
+	entry_hit = mrt_ray_is_hit(ray, world);
+	if (entry_hit != NULL)
+	{
+		if (entry_hit->identifier == ENTRY_SPHERE)
+			return (entry_hit->object.sphere->scene->color);
+		if (entry_hit->identifier == ENTRY_PLANE)
+			return (entry_hit->object.plane->scene->color);
+		if (entry_hit->identifier == ENTRY_CYLINDER)
+			return (entry_hit->object.cylinder->scene->color);
+	}
 	t = 0.5 * (ray->direction_unit.y + 1.0);
 	return (vec3(\
 		mrt_lerp(mrt_range(225.0, 145.0), t), \

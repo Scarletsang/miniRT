@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:24:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:26:56 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/game_object.h"
-#include "MINIRT/scene/s_objects.h"
+#include "MINIRT/scene.h"
 #include "MINIRT/unit.h"
 #include "MINIRT/ray.h"
 #include <stdbool.h>
