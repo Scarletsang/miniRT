@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:13:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 17:43:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:55:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <assert.h>
 
 static void	mrt_submatrix_make(t_mrt_matrix matrix, t_mrt_matrix submatrix, \
-unsigned int trim_row, unsigned int trim_column)
+unsigned int trim_column, unsigned int trim_row)
 {
 	double			*buffer;
 	double			*submatrix_buffer;
@@ -42,8 +42,8 @@ unsigned int trim_row, unsigned int trim_column)
 	}
 }
 
-t_mrt_matrix	mrt_submatrix(t_mrt_matrix matrix, unsigned int trim_row, \
-unsigned int trim_column)
+t_mrt_matrix	mrt_submatrix(t_mrt_matrix matrix, unsigned int trim_column, \
+unsigned int trim_row)
 {
 	t_mrt_matrix			submatrix;
 
@@ -58,7 +58,7 @@ unsigned int trim_column)
 		trim_column < mrt_unique_ptr_get_matrix(&matrix)->size);
 	mrt_unique_ptr_get_matrix(&submatrix)->size = \
 		mrt_unique_ptr_get_matrix(&matrix)->size - 1;
-	mrt_submatrix_make(matrix, submatrix, trim_row, trim_column);
+	mrt_submatrix_make(matrix, submatrix, trim_column, trim_row);
 	mrt_unique_ptr_free(&matrix);
 	return (submatrix);
 }

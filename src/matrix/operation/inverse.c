@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:28:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 17:47:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:18:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_mrt_matrix *inversed_matrix, double determinant)
 		while (column < size)
 		{
 			mrt_internal_matrix_set(mrt_unique_ptr_get_matrix(inversed_matrix), \
-				column, row, mrt_cofactor(mrt_borrow(*matrix), row, column) / \
+				row, column, mrt_cofactor(mrt_borrow(*matrix), column, row) / \
 				determinant);
 			column++;
 		}
@@ -47,6 +47,7 @@ t_mrt_matrix	mrt_matrix_inverse(t_mrt_matrix matrix)
 		mrt_unique_ptr_free(&matrix);
 		return (mrt_unique_ptr_empty());
 	}
+	mrt_unique_ptr_get_matrix(&inversed_matrix)->size = 4;
 	mrt_matrix_inverse_make(&matrix, &inversed_matrix, determinant);
 	mrt_unique_ptr_free(&matrix);
 	return (inversed_matrix);

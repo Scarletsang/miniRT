@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 18:17:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/29 22:03:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:19:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_mrt_internal_matrix *internal_matrix3)
 			mrt_internal_matrix_get(internal_matrix2, column, 3));
 		}
 	}
+	internal_matrix3->size = 4;
 }
 
 /**

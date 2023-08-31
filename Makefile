@@ -76,7 +76,9 @@ MATRIX_SRC:= \
 	matrix/operation/submatrix.c \
 	matrix/operation/determinant.c \
 	matrix/operation/inverse.c \
-	matrix/transform/identity.c
+	matrix/transform/common.c \
+	matrix/transform/rotation.c \
+	matrix/transform/shearing.c
 MEMORY_SRC:= \
 	memory/memory.c \
 	memory/allocator.c \

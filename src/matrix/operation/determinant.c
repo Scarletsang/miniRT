@@ -6,25 +6,25 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:14:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 17:47:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 19:16:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/matrix.h"
 
-double	mrt_minor(t_mrt_matrix matrix, unsigned int trim_row, \
-unsigned int trim_column)
+double	mrt_minor(t_mrt_matrix matrix, unsigned int trim_column, \
+unsigned int trim_row)
 {
-	return (mrt_determinant(mrt_submatrix(matrix, trim_row, trim_column)));
+	return (mrt_determinant(mrt_submatrix(matrix, trim_column, trim_row)));
 }
 
-double	mrt_cofactor(t_mrt_matrix matrix, unsigned int trim_row, \
-unsigned int trim_column)
+double	mrt_cofactor(t_mrt_matrix matrix, unsigned int trim_column, \
+unsigned int trim_row)
 {
-	if ((trim_column + trim_row % 2) == 0)
-		return (mrt_minor(matrix, trim_row, trim_column));
+	if (((trim_column + trim_row) % 2) == 0)
+		return (mrt_minor(matrix, trim_column, trim_row));
 	else
-		return (-mrt_minor(matrix, trim_row, trim_column));
+		return (-mrt_minor(matrix, trim_column, trim_row));
 }
 
 static double	mrt_determinant_2x2(t_mrt_matrix matrix)
@@ -55,8 +55,8 @@ double	mrt_determinant(t_mrt_matrix matrix)
 		while (column < size)
 		{
 			determinant += mrt_internal_matrix_get(\
-				mrt_unique_ptr_get_matrix(&matrix), 0, column) * \
-				mrt_cofactor(mrt_borrow(matrix), 0, column);
+				mrt_unique_ptr_get_matrix(&matrix), column, 0) * \
+				mrt_cofactor(mrt_borrow(matrix), column, 0);
 			column++;
 		}
 	}
