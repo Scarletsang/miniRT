@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 16:11:55 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/31 07:41:35 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,19 @@ struct s_mrt_scene_cylinder *scene_cylinder)
  * 3. The second point is in range, and it went through the cap.
  *
  * Approach idea 1 (do the same for Start):
- * Use this formula to get t. t will help to easily find the cap intersection point.
+ * Use this formula to get t. t will help to easily find
+ * the cap intersection point.
  * P = r.origin + t * r.direction
  * t = P / r.direction - r.origin
- * to determine P, calculate on which point the ray is on the same "Y" value as End, if any;
- * Of course, the "Y" value is not always actually y. Use orientation to determine what it is.
+ * to determine P, calculate on which point the ray is
+ * on the same "Y" value as End, if any;
+ * Of course, the "Y" value is not always actually y.
+ * Use orientation to determine what it is.
  * P = {x, 5, z}
  *
  * Approach idea 2 (do the same for Start):
- * Create a plane which represent the cap: the point is End and the normal is orientation.
+ * Create a plane which represent the cap:
+ * the point is End and the normal is orientation.
  * Get the point in which the ray and plane intersects.
  * Check if it's inside of the cylinder:
  * Draw a vector from intersection point to End.
@@ -85,33 +89,27 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 bool	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
 double t0, double t1)
 {
-	t_mrt_vec3			pc_s;
-	t_mrt_vec3			pc_e;
-	t_mrt_point3d		p0;
-	t_mrt_point3d		p1;
+	t_mrt_vec3			p_s;
+	t_mrt_vec3			p_e;
 	t_mrt_point3d		start;
 	t_mrt_point3d		end;
 	t_mrt_direction3d	o;
-	double				distance;
 
 	start = cylinder->scene->center;
-	end = vec3( \
-	start.x + cylinder->scene->height * cylinder->scene->orientation.x, \
-	start.y + cylinder->scene->height * cylinder->scene->orientation.y, \
-	start.z + cylinder->scene->height * cylinder->scene->orientation.z);
-	p0 = ray_at(ray, t0);
-	p1 = ray_at(ray, t1);
 	o = cylinder->scene->orientation;
-	pc_s = vec3_subtract(start, p1);
-	pc_e = vec3_subtract(end, p1);
-	if (vec3_dot(pc_s, o) <= 0 && vec3_dot(pc_e, o) >= 0)
+	end = vec3(\
+	start.x + cylinder->scene->height * o.x, \
+	start.y + cylinder->scene->height * o.y, \
+	start.z + cylinder->scene->height * o.z);
+	p_s = vec3_subtract(start, ray_at(ray, t1));
+	p_e = vec3_subtract(end, ray_at(ray, t1));
+	if (vec3_dot(p_s, o) <= 0 && vec3_dot(p_e, o) >= 0)
 		return (true);
-	distance = intersect_caps(ray, cylinder, end);
-	if (distance > 0)
+	if (intersect_caps(ray, cylinder, end) > 0)
 		return (true);
-	pc_s = vec3_subtract(start, p0);
-	pc_e = vec3_subtract(end, p0);
-	if (vec3_dot(pc_s, o) <= 0 && vec3_dot(pc_e, o) >= 0)
+	p_s = vec3_subtract(start, ray_at(ray, t0));
+	p_e = vec3_subtract(end, ray_at(ray, t0));
+	if (vec3_dot(p_s, o) <= 0 && vec3_dot(p_e, o) >= 0)
 		return (true);
 	return (false);
 }
@@ -134,31 +132,25 @@ bool	mrt_cylinder_is_hit(struct s_mrt_ray *ray, \
 struct s_mrt_cylinder *cylinder)
 {
 	t_mrt_vec3	x;
-	double		r;
 	double		a;
 	double		b;
 	double		c;
-	double		disc;
 	double		tmp;
-	double		t0;
-	double		t1;
 
 	x = vec3_subtract(ray->origin, cylinder->scene->center);
-	r = cylinder->scene->diameter / 2;
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
-	tmp = tmp * tmp;
-	a = vec3_dot(ray->direction, ray->direction) - tmp;
+	a = vec3_dot(ray->direction, ray->direction) - (tmp * tmp);
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
 	tmp = tmp * vec3_dot(x, cylinder->scene->orientation);
 	b = (vec3_dot(ray->direction, x) - tmp) * 2;
 	tmp = vec3_dot(x, cylinder->scene->orientation);
-	c = vec3_dot(x, x) - tmp * tmp - r * r;
-	disc = b * b - 4 * a * c;
-	if (disc < 0)
+	c = vec3_dot(x, x) - tmp * tmp - \
+	(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
+	if ((b * b - 4 * a * c) < 0)
 		return (false);
-	t0 = (-b - sqrt(disc)) / (2 * a);
-	t1 = (-b + sqrt(disc)) / (2 * a);
-	return (is_in_range(ray, cylinder, t0, t1));
+	return (is_in_range(ray, cylinder, \
+	(-b - sqrt(b * b - 4 * a * c)) / (2 * a), \
+	(-b + sqrt(b * b - 4 * a * c)) / (2 * a)));
 }
 
 void	mrt_cylinder_free(struct s_mrt_cylinder *cylinder)
@@ -229,11 +221,14 @@ struct s_mrt_ray *ray, struct s_mrt_plane *plane)
 intersect Caps tests:
 if (a % 4624903 == 0)
 {
-	printf("ray->origin: %f, %f, %f\n", ray->origin.x, ray->origin.y, ray->origin.z);
-	printf("ray->direction: %f, %f, %f\n", ray->direction.x, ray->direction.y, ray->direction.z);
+	printf("ray->origin: %f, %f, %f\n", \
+	ray->origin.x, ray->origin.y, ray->origin.z);
+	printf("ray->direction: %f, %f, %f\n", \
+	ray->direction.x, ray->direction.y, ray->direction.z);
 	printf("end: %f, %f, %f\n", end.x, end.y, end.z);
 	// if (intersection.x > 0 || intersection.y > 0 || intersection.z > 0)
-		printf("intersection: %f, %f, %f\n", intersection.x, intersection.y, intersection.z);
+		printf("intersection: %f, %f, %f\n", \
+		intersection.x, intersection.y, intersection.z);
 	printf("distance: %f\n", distance);
 }
 a++;
@@ -262,8 +257,8 @@ double t0, double t1)
 	return (false);
 }
 
-bool	is_in_range_book(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
-double t0, double t1)
+bool	is_in_range_book(struct s_mrt_ray *ray, \
+struct s_mrt_cylinder *cylinder, double t0, double t1)
 {
 	double	y0;
 	double	y1;
@@ -283,8 +278,8 @@ double t0, double t1)
 
 
 
-bool	is_in_range_my_formula(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
-double t0, double t1)
+bool	is_in_range_my_formula(struct s_mrt_ray *ray, \
+struct s_mrt_cylinder *cylinder, double t0, double t1)
 {
 	t_mrt_point3d	p0;
 	t_mrt_point3d	p1;
@@ -316,19 +311,25 @@ double t0, double t1)
 	end = vec3_add(start, end);
 	p0 = ray_at(ray, t0);
 	p1 = ray_at(ray, t1);
-	if (((p0.x >= start.x && p0.x <= end.x) || (p0.x <= start.x && p0.x >= end.x) || (start.x == end.x)) && \
-	((p0.y >= start.y && p0.y <= end.y) || (p0.y <= start.y && p0.y >= end.y) || (start.y == end.y)) && \
-	((p0.z >= start.z && p0.z <= end.z) || (p0.z <= start.z && p0.z >= end.z) || (start.z == end.z)))
+	if (((p0.x >= start.x && p0.x <= end.x) || \
+	(p0.x <= start.x && p0.x >= end.x) || (start.x == end.x)) && \
+	((p0.y >= start.y && p0.y <= end.y) || \
+	(p0.y <= start.y && p0.y >= end.y) || (start.y == end.y)) && \
+	((p0.z >= start.z && p0.z <= end.z) || \
+	(p0.z <= start.z && p0.z >= end.z) || (start.z == end.z)))
 		return (true);
-	if (((p1.x >= start.x && p1.x <= end.x) || (p1.x <= start.x && p1.x >= end.x) || (start.x == end.x)) && \
-	((p1.y >= start.y && p1.y <= end.y) || (p1.y <= start.y && p1.y >= end.y) || (start.y == end.y)) && \
- 	((p1.z >= start.z && p1.z <= end.z) || (p1.z <= start.z && p1.z >= end.z) || (start.z == end.z)))
+	if (((p1.x >= start.x && p1.x <= end.x) || \
+	(p1.x <= start.x && p1.x >= end.x) || (start.x == end.x)) && \
+	((p1.y >= start.y && p1.y <= end.y) || \
+	(p1.y <= start.y && p1.y >= end.y) || (start.y == end.y)) && \
+ 	((p1.z >= start.z && p1.z <= end.z) || \
+	(p1.z <= start.z && p1.z >= end.z) || (start.z == end.z)))
 		return (true);
 	return (false);
 }
 
-bool	is_in_range_bookinternet(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
-double t0, double t1)
+bool	is_in_range_bookinternet(struct s_mrt_ray *ray, \
+struct s_mrt_cylinder *cylinder, double t0, double t1)
 {
 	t_mrt_point3d	p0;
 	t_mrt_point3d	p1;
@@ -342,13 +343,19 @@ double t0, double t1)
 	start.x + cylinder->scene->height * cylinder->scene->orientation.x, \
 	start.y + cylinder->scene->height * cylinder->scene->orientation.y, \
 	start.z + cylinder->scene->height * cylinder->scene->orientation.z);
-	if (((p0.x >= start.x && p0.x <= end.x) || (p0.x <= start.x && p0.x >= end.x) || (start.x == end.x)) && \
-	((p0.y >= start.y && p0.y <= end.y) || (p0.y <= start.y && p0.y >= end.y) || (start.y == end.y)) && \
-	((p0.z >= start.z && p0.z <= end.z) || (p0.z <= start.z && p0.z >= end.z) || (start.z == end.z)))
+	if (((p0.x >= start.x && p0.x <= end.x) || \
+	(p0.x <= start.x && p0.x >= end.x) || (start.x == end.x)) && \
+	((p0.y >= start.y && p0.y <= end.y) || \
+	(p0.y <= start.y && p0.y >= end.y) || (start.y == end.y)) && \
+	((p0.z >= start.z && p0.z <= end.z) || \
+	(p0.z <= start.z && p0.z >= end.z) || (start.z == end.z)))
 		return (true);
-	if (((p1.x >= start.x && p1.x <= end.x) || (p1.x <= start.x && p1.x >= end.x) || (start.x == end.x)) && \
-	((p1.y >= start.y && p1.y <= end.y) || (p1.y <= start.y && p1.y >= end.y) || (start.y == end.y)) && \
- 	((p1.z >= start.z && p1.z <= end.z) || (p1.z <= start.z && p1.z >= end.z) || (start.z == end.z)))
+	if (((p1.x >= start.x && p1.x <= end.x) || \
+	(p1.x <= start.x && p1.x >= end.x) || (start.x == end.x)) && \
+	((p1.y >= start.y && p1.y <= end.y) || \
+	(p1.y <= start.y && p1.y >= end.y) || (start.y == end.y)) && \
+ 	((p1.z >= start.z && p1.z <= end.z) || \
+	p1.z <= start.z && p1.z >= end.z) || (start.z == end.z)))
 		return (true);
 	return (false);
 }

@@ -6,14 +6,14 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/30 16:06:47 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/08/31 06:56:12 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC3_H
 # define VEC3_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef struct s_mrt_vec3
 {
