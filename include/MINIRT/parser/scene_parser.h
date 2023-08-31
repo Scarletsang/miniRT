@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:10:48 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_ft_parser_atom	t_mrt_scene_parser_atom;
 
-int						mrt_scene_from_file(struct s_mrt_scene *scene, \
+int						mrt_scene_parse_from_file(struct s_mrt_scene *scene, \
 const char *file_path);
 
 //////////////////////////////////////////
