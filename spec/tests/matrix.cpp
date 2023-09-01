@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 10:56:58 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/31 19:26:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:51:49 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ TEST_F(MatrixTest, identity)
 {
   t_mrt_matrix  identity_matrix = mrt_matrix_identity(&allocator.matrices);
   t_mrt_vec4    input = vec4(1, 2, 3, 1);
-  t_mrt_vec4    output = mrt_matrix_apply(mrt_use(&identity_matrix), input);
+  t_mrt_vec4    output = mrt_matrix_apply(mrt_unique_ptr_use(&identity_matrix), input);
 
   TestVec4(output, 1, 2, 3, 1);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&identity_matrix), true);
@@ -76,8 +76,8 @@ TEST_F(MatrixTest, submatrix)
     1, 2, -9, 6,
     -6, 7, 7, -9
   }, 16);
-  t_mrt_matrix  matrix3x3 = mrt_submatrix(mrt_borrow(matrix4x4), 2, 1);
-  t_mrt_matrix  matrix2x2 = mrt_submatrix(mrt_borrow(matrix3x3), 2, 1);
+  t_mrt_matrix  matrix3x3 = mrt_submatrix(mrt_unique_ptr_borrow(matrix4x4), 2, 1);
+  t_mrt_matrix  matrix2x2 = mrt_submatrix(mrt_unique_ptr_borrow(matrix3x3), 2, 1);
   CompareMatrix(matrix4x4, (double[16]){
     -2, -8, 3, 5,
     -3, 1, 7, 3,
@@ -109,7 +109,7 @@ TEST_F(MatrixTest, determinant2x2)
     1, 5,
     -3, 2
   }, 4);
-  EXPECT_EQ(mrt_determinant(mrt_use(&matrix)), 17);
+  EXPECT_EQ(mrt_determinant(mrt_unique_ptr_use(&matrix)), 17);
 }
 
 TEST_F(MatrixTest, determinant)
@@ -122,7 +122,7 @@ TEST_F(MatrixTest, determinant)
     1, 2, -9, 6,
     -6, 7, 7, -9
   }, 16);
-  EXPECT_EQ(mrt_determinant(mrt_use(&matrix)), -4071);
+  EXPECT_EQ(mrt_determinant(mrt_unique_ptr_use(&matrix)), -4071);
 }
 
 TEST_F(MatrixTest, inverse)
@@ -135,7 +135,7 @@ TEST_F(MatrixTest, inverse)
     -6, 0, 9, 6,
     -3, 0, -9, -4
   }, 16);
-  t_mrt_matrix  inverse_matrix = mrt_matrix_inverse(mrt_use(&translation_matrix));
+  t_mrt_matrix  inverse_matrix = mrt_matrix_inverse(mrt_unique_ptr_use(&translation_matrix));
   EXPECT_EQ(mrt_unique_ptr_is_empty(&translation_matrix), true);
   ASSERT_EQ(mrt_unique_ptr_is_empty(&inverse_matrix), false);
 
@@ -152,7 +152,7 @@ TEST_F(MatrixTest, translation)
   t_mrt_matrix  translation_matrix = mrt_matrix_translation(&allocator.matrices, \
     vec3(1, 2, 3));
   t_mrt_vec4    input = vec4(1, 2, 3, 1);
-  t_mrt_vec4    output = mrt_matrix_apply(mrt_use(&translation_matrix), input);
+  t_mrt_vec4    output = mrt_matrix_apply(mrt_unique_ptr_use(&translation_matrix), input);
 
   TestVec4(output, 2, 4, 6, 1);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&translation_matrix), true);
@@ -163,7 +163,7 @@ TEST_F(MatrixTest, translation_1)
   t_mrt_matrix  translation_matrix = mrt_matrix_translation(&allocator.matrices, \
     vec3(5, -3, 2));
   t_mrt_vec4    input = vec4(-3, 4, 5, 1);
-  t_mrt_vec4    output = mrt_matrix_apply(mrt_use(&translation_matrix), input);
+  t_mrt_vec4    output = mrt_matrix_apply(mrt_unique_ptr_use(&translation_matrix), input);
 
   TestVec4(output, 2, 1, 7, 1);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&translation_matrix), true);
@@ -175,7 +175,7 @@ TEST_F(MatrixTest, translation_then_inverse)
     vec3(5, -3, 2));
   t_mrt_vec4    input = vec4(-3, 4, 5, 1);
   t_mrt_vec4    output = mrt_matrix_apply(\
-    mrt_matrix_inverse(mrt_use(&translation_matrix)), input);
+    mrt_matrix_inverse(mrt_unique_ptr_use(&translation_matrix)), input);
 
   TestVec4(output, -8, 7, 3, 1);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&translation_matrix), true);
@@ -186,7 +186,7 @@ TEST_F(MatrixTest, translation_does_not_work_on_vector)
   t_mrt_matrix  translation_matrix = mrt_matrix_translation(&allocator.matrices, \
     vec3(1, 2, 3));
   t_mrt_vec4    input = vec4(1, 2, 3, 0);
-  t_mrt_vec4    output = mrt_matrix_apply(mrt_use(&translation_matrix), input);
+  t_mrt_vec4    output = mrt_matrix_apply(mrt_unique_ptr_use(&translation_matrix), input);
 
   TestVec4(output, 1, 2, 3, 0);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&translation_matrix), true);
@@ -197,7 +197,7 @@ TEST_F(MatrixTest, scale)
   t_mrt_matrix  scale_matrix = mrt_matrix_scale(&allocator.matrices, \
     vec3(2, 3, 4));
   t_mrt_vec4    input = vec4(-4, 6, 8, 1);
-  t_mrt_vec4    output = mrt_matrix_apply(mrt_use(&scale_matrix), input);
+  t_mrt_vec4    output = mrt_matrix_apply(mrt_unique_ptr_use(&scale_matrix), input);
 
   TestVec4(output, -8, 18, 32, 1);
   EXPECT_EQ(mrt_unique_ptr_is_empty(&scale_matrix), true);

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:14:55 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/31 19:16:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 20:50:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ double	mrt_determinant(t_mrt_matrix matrix)
 		while (column < size)
 		{
 			determinant += mrt_internal_matrix_get(\
-				mrt_unique_ptr_get_matrix(&matrix), column, 0) * \
-				mrt_cofactor(mrt_borrow(matrix), column, 0);
+				mrt_unique_ptr_get_matrix(&matrix), 0, column) * \
+				mrt_cofactor(mrt_unique_ptr_borrow(matrix), 0, column);
 			column++;
 		}
 	}

@@ -23,6 +23,16 @@
         "string": "c",
         "tuple": "c",
         "typeinfo": "c",
-        "vector": "c"
+        "vector": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "initializer_list": "c",
+        "list": "c",
+        "map": "c",
+        "set": "c",
+        "unordered_map": "c",
+        "unordered_set": "c",
+        "string_view": "c"
     }
 }

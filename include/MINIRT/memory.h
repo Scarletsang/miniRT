@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:23:36 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/29 22:02:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/30 17:56:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ struct s_mrt_allocator *allocator);
 
 void						mrt_unique_ptr_free(t_mrt_unique_ptr *ptr);
 
-t_mrt_unique_ptr			mrt_borrow(t_mrt_unique_ptr ptr);
+t_mrt_unique_ptr			mrt_unique_ptr_borrow(t_mrt_unique_ptr ptr);
 
-t_mrt_unique_ptr			mrt_use(t_mrt_unique_ptr *ptr);
+t_mrt_unique_ptr			mrt_unique_ptr_use(t_mrt_unique_ptr *ptr);
 
 t_mrt_unique_ptr			mrt_unique_ptr_empty(void);
 

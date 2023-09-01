@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:07:43 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/31 18:49:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/31 22:01:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ t_mrt_matrix		mrt_matrix_inverse(t_mrt_matrix matrix);
 ////////////   matrix determinant caluclation   ////////////
 ////////////////////////////////////////////////////////////
 
-t_mrt_matrix		mrt_submatrix(t_mrt_matrix matrix, unsigned int trim_column, \
-unsigned int trim_row);
+t_mrt_matrix		mrt_submatrix(t_mrt_matrix matrix, \
+unsigned int trim_column, unsigned int trim_row);
 
 double				mrt_minor(t_mrt_matrix matrix, unsigned int trim_column, \
 unsigned int trim_row);
