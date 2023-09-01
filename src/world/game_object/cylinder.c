@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/31 07:41:35 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/01 10:01:43 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 	distance = vec3_length(vec3_subtract(plane_point, intersection));
 	if (distance <= (cylinder->scene->diameter / 2))
 		return (vec3_length(vec3_subtract(intersection, ray->origin)));
-	if (!vec3_is_equal(plane_point, cylinder->scene->center))
+	else if (!vec3_is_equal(plane_point, cylinder->scene->center))
 		return (intersect_caps(ray, cylinder, cylinder->scene->center));
 	else
 		return (0);
