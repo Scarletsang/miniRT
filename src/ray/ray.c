@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:24:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 14:57:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 
 t_mrt_point3d	ray_at(t_mrt_ray *ray, double t)
 {
-	return (vec3_add(ray->origin, vec3_multiply(ray->direction, t)));
+	return (vec3_add(ray->origin, vec3_smultiply(ray->direction, t)));
 }

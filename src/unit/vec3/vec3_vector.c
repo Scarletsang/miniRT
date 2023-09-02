@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_operations.c                                  :+:      :+:    :+:   */
+/*   vec3_vector.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:45:39 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/08 10:54:28 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 15:02:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,45 @@
 
 t_mrt_vec3	vec3_negate(t_mrt_vec3 v)
 {
-	t_mrt_vec3	temp;
-
-	temp.x = -v.x;
-	temp.y = -v.y;
-	temp.z = -v.z;
-	return (temp);
+	return ((t_mrt_vec3){\
+		.x = -v.x, \
+		.y = -v.y, \
+		.z = -v.z \
+	});
 }
 
 t_mrt_vec3	vec3_add(t_mrt_vec3 v1, t_mrt_vec3 v2)
 {
-	t_mrt_vec3	temp;
-
-	temp.x = v1.x + v2.x;
-	temp.y = v1.y + v2.y;
-	temp.z = v1.z + v2.z;
-	return (temp);
+	return ((t_mrt_vec3){\
+		.x = v1.x + v2.x, \
+		.y = v1.y + v2.y, \
+		.z = v1.z + v2.z \
+	});
 }
 
 t_mrt_vec3	vec3_subtract(t_mrt_vec3 v1, t_mrt_vec3 v2)
 {
-	t_mrt_vec3	temp;
-
-	temp.x = v1.x - v2.x;
-	temp.y = v1.y - v2.y;
-	temp.z = v1.z - v2.z;
-	return (temp);
+	return ((t_mrt_vec3){\
+		.x = v1.x - v2.x, \
+		.y = v1.y - v2.y, \
+		.z = v1.z - v2.z \
+	});
 }
 
-t_mrt_vec3	vec3_multiply(t_mrt_vec3 v, double t)
+t_mrt_vec3	vec3_multiply(t_mrt_vec3 v1, t_mrt_vec3 v2)
 {
-	t_mrt_vec3	temp;
-
-	temp.x = v.x * t;
-	temp.y = v.y * t;
-	temp.z = v.z * t;
-	return (temp);
+	return ((t_mrt_vec3){\
+		.x = v1.x * v2.x, \
+		.y = v1.y * v2.y, \
+		.z = v1.z * v2.z \
+	});
 }
 
-t_mrt_vec3	vec3_divide(t_mrt_vec3 v, double t)
+t_mrt_vec3	vec3_divide(t_mrt_vec3 v1, t_mrt_vec3 v2)
 {
-	t_mrt_vec3	temp;
-
-	temp.x = v.x / t;
-	temp.y = v.y / t;
-	temp.z = v.z / t;
-	return (temp);
+	return ((t_mrt_vec3){\
+		.x = v1.x / v2.x, \
+		.y = v1.y / v2.y, \
+		.z = v1.z / v2.z \
+	});
 }

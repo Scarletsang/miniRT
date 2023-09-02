@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/27 12:54:19 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:02:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ t_mrt_vec3		vec3(double x, double y, double z);
 t_mrt_vec3		vec3_negate(t_mrt_vec3 v);
 t_mrt_vec3		vec3_add(t_mrt_vec3 v1, t_mrt_vec3 v2);
 t_mrt_vec3		vec3_subtract(t_mrt_vec3 v1, t_mrt_vec3 v2);
-t_mrt_vec3		vec3_multiply(t_mrt_vec3 v, double t);
-t_mrt_vec3		vec3_divide(t_mrt_vec3 v, double t);
+t_mrt_vec3		vec3_multiply(t_mrt_vec3 v1, t_mrt_vec3 v2);
+t_mrt_vec3		vec3_divide(t_mrt_vec3 v1, t_mrt_vec3 v2);
+
+t_mrt_vec3		vec3_sadd(t_mrt_vec3 v, double t);
+t_mrt_vec3		vec3_ssubtract(t_mrt_vec3 v, double t);
+t_mrt_vec3		vec3_smultiply(t_mrt_vec3 v, double t);
+t_mrt_vec3		vec3_sdivide(t_mrt_vec3 v, double t);
 
 double			vec3_length(const t_mrt_vec3 v);
 double			vec3_dot(const t_mrt_vec3 v1, const t_mrt_vec3 v2);

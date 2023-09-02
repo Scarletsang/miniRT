@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:05:38 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/16 11:09:23 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:57:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ double focal_length)
 		vec3(0.0, 0.0, focal_length));
 	top_left_corner = vec3_subtract(\
 		top_left_corner, \
-		vec3_divide(horizontal, 2.0));
+		vec3_sdivide(horizontal, 2.0));
 	top_left_corner = vec3_subtract(\
 		top_left_corner, \
-		vec3_divide(vertical, 2.0));
+		vec3_sdivide(vertical, 2.0));
 	return (top_left_corner);
 }
 
@@ -54,7 +54,7 @@ struct s_mrt_image screen, double focal_length)
 			, horizontal
 			, vertical
 			, focal_length),
-		.pixel_horizontal = vec3_divide(horizontal, screen.width),
-		.pixel_vertical = vec3_divide(vertical, screen.height)
+		.pixel_horizontal = vec3_sdivide(horizontal, screen.width),
+		.pixel_vertical = vec3_sdivide(vertical, screen.height)
 	});
 }

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:24:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 14:57:13 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere)
 	radius = sphere->scene->diameter / 2;
 	quadratic = (t_mrt_vec3){
 		.x = vec3_dot(ray->direction, ray->direction), \
-		.y = vec3_dot(vec3_multiply(ray->direction, 2.0), sph_to_ray), \
+		.y = vec3_dot(vec3_smultiply(ray->direction, 2.0), sph_to_ray), \
 		.z = vec3_dot(sph_to_ray, sph_to_ray) - radius * radius
 	};
 	return ((quadratic.y * quadratic.y - 4 * quadratic.x * quadratic.z) >= 0);
