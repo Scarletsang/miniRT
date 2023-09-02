@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 15:36:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 13:38:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_mrt_scene_parser_atom input)
 	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[3]){\
 		ft_parser_entity(&mrt_scene_parser_point3d, ft_tobject_ptr(NULL)), \
 		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(NULL)), \
-		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
+		ft_parser_entity(&mrt_scene_parser_material, ft_tobject_ptr(NULL)) \
 	}, 3, input, ft_tobject_str(" \t")));
 }
 
@@ -38,7 +38,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
-		(void *[3]){&sphere.center, &sphere.diameter, &sphere.color}, 3);
+		(void *[3]){&sphere.center, &sphere.diameter, &sphere.material}, 3);
 	result = mrt_scene_parser_sphere_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)

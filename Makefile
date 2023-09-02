@@ -10,8 +10,8 @@ ifdef DEBUG
 	CFLAGS+= -g3 -fsanitize=address
 	LDFLAGS+= -g3 -fsanitize=address
 else
-	CFLAGS+= -flto -O3
-	LDFLAGS+= -flto -O3
+	CFLAGS+= -flto -O3 -DNDEBUG
+	LDFLAGS+= -flto -O3 -DNDEBUG
 endif
 INCLUDE_DIR= \
 	include
@@ -36,6 +36,7 @@ PARSER_SRC:= \
 	parser/scene/parser.c \
 	parser/scene/unit.c \
 	parser/scene/common.c \
+	parser/scene/material.c \
 	parser/scene/objects/camera.c \
 	parser/scene/objects/cylinder.c \
 	parser/scene/objects/plane.c \
@@ -54,6 +55,7 @@ SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
 	scene/unique_identifier.c \
+	scene/material.c \
 	scene/printer/scene.c \
 	scene/printer/camera_and_light.c \
 	scene/printer/objects.c

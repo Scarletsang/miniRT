@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 13:37:42 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option);
 
 t_mrt_scene_parser_atom	mrt_scene_parser_identifier(\
 t_mrt_scene_parser_atom input, union u_ft_tobject valid_identifiers);
+
+t_mrt_scene_parser_atom	mrt_scene_parser_material(\
+t_mrt_scene_parser_atom input, union u_ft_tobject option);
 
 /////////////////////////////////////////
 ////////////   unit parser   ////////////

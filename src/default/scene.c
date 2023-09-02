@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:32:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:15:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 01:54:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ struct s_mrt_scene_entry	mrt_default_scene_sphere(void)
 		(struct s_mrt_scene_sphere){\
 			.center = vec3(5.0, 0, 10.0), \
 			.diameter = 5.0, \
-			.color = vec3(255.0, 30.0, 30.0)
+			.material = (struct s_mrt_material){\
+				.color = vec3(255.0, 30.0, 30.0), \
+				.diffuse = 0.9, \
+				.specular = 0.9, \
+				.shininess = 200.0 \
+			} \
 		} \
 	}, ENTRY_SPHERE));
 }

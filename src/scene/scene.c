@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 02:00:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 16:25:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ struct s_mrt_scene_entry entry, bool is_unique)
 {
 	if (entry.object.camera == NULL)
 		return (EXIT_FAILURE);
-	if (is_unique || (entry.identifier == ENTRY_CAMERA))
+	if (is_unique || (entry.identifier == ENTRY_CAMERA) || \
+		(entry.identifier == ENTRY_LIGHT_AMBIENT))
 	{
 		if (mrt_scene_has_unique_identifier(scene, entry.identifier))
 			return (EXIT_FAILURE);

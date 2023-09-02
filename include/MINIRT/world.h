@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:20:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 01:48:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,16 @@ void						mrt_world_entries_free(t_mrt_world_entries *entry);
 
 struct s_mrt_world
 {
-	t_mrt_world_entries			lights;
 	t_mrt_world_entries			objects;
+	t_mrt_world_entries			point_lights;
+	struct s_mrt_world_entry	ambient_light;
 	struct s_mrt_world_entry	camera;
 };
 
 struct s_mrt_camera			*mrt_world_get_camera(struct s_mrt_world *world);
+
+t_mrt_vec3					mrt_world_normal_at(\
+struct s_mrt_world_entry object, t_mrt_vec3 world_point);
 
 ///////////////////////////////////////////
 ////////////   world options   ////////////

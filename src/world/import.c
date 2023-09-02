@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:16:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:08:34 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 01:50:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,20 @@ static int	mrt_world_entry_add(struct s_mrt_world *world, \
 struct s_mrt_world_entry world_entry)
 {
 	if (mrt_world_entry_is_empty(&world_entry))
+		return (mrt_world_free(world), EXIT_FAILURE);
+	else if (world_entry.identifier == ENTRY_LIGHT_POINT)
 	{
-		mrt_world_free(world);
-		return (EXIT_FAILURE);
+		if (ft_vector_append(&world->point_lights, &world_entry) == NULL)
+			return (mrt_world_free(world), EXIT_FAILURE);
 	}
-	else if (world_entry.identifier == ENTRY_LIGHT_AMBIENT || \
-		world_entry.identifier == ENTRY_LIGHT_POINT)
-	{
-		if (ft_vector_append(&world->lights, &world_entry) == NULL)
-		{
-			mrt_world_free(world);
-			return (EXIT_FAILURE);
-		}
-	}
+	else if (world_entry.identifier == ENTRY_LIGHT_AMBIENT)
+		world->ambient_light = world_entry;
 	else if (world_entry.identifier == ENTRY_CAMERA)
 		world->camera = world_entry;
 	else
 	{
 		if (ft_vector_append(&world->objects, &world_entry) == NULL)
-		{
-			mrt_world_free(world);
-			return (EXIT_FAILURE);
-		}
+			return (mrt_world_free(world), EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

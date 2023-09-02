@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 03:45:26 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:13:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 14:29:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ struct s_ft_parser_atom input, union u_ft_tobject prefix)
 	while ((i < amount) && !ft_parser_atom_is_end(result))
 	{
 		result = ft_parser_ignore_multiple(result, prefix);
-		if (!result.is_valid)
+		if ((i != 0) && !result.is_valid)
 			return (ft_parser_atom_validity_set(input, false));
 		entity = ft_decorator_entity(\
 			&ft_decorator_struct_field, entities + i, ft_tobject_empty());
