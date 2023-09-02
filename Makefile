@@ -87,13 +87,17 @@ MEMORY_SRC:= \
 	memory/allocator.c \
 	memory/unique_pointer/unique_pointer.c \
 	memory/unique_pointer/helper.c
+LIGHTING_SRC:= \
+	lighting/lighting.c \
+	lighting/lights.c \
+	lighting/calculation.c
 DEFAULT_SRC:= \
 	default/settings.c \
 	default/scene.c
 MAIN_SRC:= \
 	main.c \
 	image.c
-SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
+SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(LIGHTING_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######

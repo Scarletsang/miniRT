@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:33:03 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 22:33:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 21:08:59 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 struct s_mrt_intersection
 {
-	double						intersection_distance;
+	double						time;
 	struct s_mrt_world_entry	object;
 };
 
