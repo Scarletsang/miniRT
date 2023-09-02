@@ -6,14 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:07:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 16:42:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 15:24:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_OBJECTS_H
 # define S_OBJECTS_H
 
-# include "MINIRT/scene.h" 
+# include "MINIRT/scene.h"
 # include "MINIRT/unit.h"
 
 ////////////////////////////////////
@@ -84,8 +84,8 @@ void	mrt_scene_sphere_print(struct s_mrt_scene_sphere *sphere);
 
 struct s_mrt_scene_plane
 {
-	t_mrt_point3d			origin;
-	t_mrt_vec3_unit			orientation;
+	t_mrt_point3d			point;
+	t_mrt_vec3_unit			normal;
 	struct s_mrt_material	material;
 };
 

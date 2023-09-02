@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:05:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/08/28 12:28:19 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCENE_H
 
 # include "LIBFT/vector.h"
+# include "MINIRT/scene/s_objects.h"
 
 /////////////////////////////////////////
 ////////////   scene entry   ////////////

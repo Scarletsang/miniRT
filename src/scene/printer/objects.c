@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:41:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 16:50:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 15:25:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	mrt_scene_sphere_print(struct s_mrt_scene_sphere *sphere)
 void	mrt_scene_plane_print(struct s_mrt_scene_plane *plane)
 {
 	printf("plane:\n");
-	printf("    origin      : ");
-	vec3_print(plane->origin);
-	printf("    orientation : ");
-	vec3_print(plane->orientation);
+	printf("    point       : ");
+	vec3_print(plane->point);
+	printf("    normal      : ");
+	vec3_print(plane->normal);
 	mrt_material_print(&plane->material);
 }
 

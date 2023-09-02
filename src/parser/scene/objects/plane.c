@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 01:55:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/02 15:25:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
-		(void *[3]){&plane.origin, &plane.orientation, &plane.material}, 3);
+		(void *[3]){&plane.point, &plane.normal, &plane.material}, 3);
 	result = mrt_scene_parser_plane_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)
