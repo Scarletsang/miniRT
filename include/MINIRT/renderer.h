@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 21:41:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 00:24:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "MINIRT/unit.h"
 # include "MINIRT/world.h"
 # include "MINIRT/world/camera.h"
+# include "MINIRT/memory.h"
 # include <stdbool.h>
 # include <stdint.h>
 # include <MLX42/MLX42.h>
@@ -39,6 +40,12 @@ struct				s_mrt_world;
 typedef int			(*t_mrt_renderer)(struct s_mrt_world *world, \
 struct s_mrt_renderer_config *config);
 
+struct s_mrt_renderer_cache
+{
+	t_ft_vector						intersections;
+	struct s_mrt_uniform_allocator	allocators;
+};
+
 t_mrt_direction3d	mrt_pixel_to_direction_from_camera(\
 struct s_mrt_camera *camera, uint32_t x, uint32_t y);
 
@@ -61,11 +68,16 @@ struct s_mrt_renderer_config *config);
 
 struct s_mrt_mlx42_control
 {
-	unsigned int	up_key : 1;
-	unsigned int	down_key : 1;
-	unsigned int	left_key : 1;
-	unsigned int	right_key : 1;
+	unsigned int	forward : 1;
+	unsigned int	backward : 1;
+	unsigned int	left : 1;
+	unsigned int	right : 1;
+	unsigned int	upward : 1;
+	unsigned int	downward : 1;
 };
+
+bool				mrt_mlx42_control_switch(mlx_key_data_t keydata, \
+keys_t key1, keys_t key2);
 
 unsigned int		mrt_mlx42_control_as_int(\
 struct s_mrt_mlx42_control control);

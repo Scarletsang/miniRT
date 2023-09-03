@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:06:51 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:08:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:28:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/lighting.h"
+#include "MINIRT/renderer/lighting.h"
 
 /**
  * @details reflectv = in - normal * 2 * dot(in, normal)

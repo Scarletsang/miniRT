@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   ray_is_hit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:26:17 by htsang           ###   ########.fr       */
+/*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
+/*   Updated: 2023/09/03 03:32:39 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/ray.h"
-#include "MINIRT/unit.h"
+#include "MINIRT/renderer/ray.h"
 #include "MINIRT/world.h"
-#include "LIBFT/vector.h"
-#include <stdlib.h>
 
-t_mrt_ray	mrt_ray_omit_unit(t_mrt_point3d origin, \
-t_mrt_direction3d direction)
+/**
+ * TODO: Change this function to make it detect it the
+ * nearest one.
+*/
+struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
+, struct s_mrt_world *world)
 {
-	return ((t_mrt_ray){
-		.origin = origin,
-		.direction = direction,
-		.direction_unit = mrt_direction3d_unit_empty()
-	});
-}
+	struct s_mrt_world_entry	*entry;
+	size_t						i;
 
-t_mrt_ray	mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction)
-{
-	return ((t_mrt_ray){
-		.origin = origin,
-		.direction = direction,
-		.direction_unit = vec3_normalize(direction)
-	});
+	i = 0;
+	while (i < world->objects.size)
+	{
+		entry = (struct s_mrt_world_entry *)ft_vector_get(&world->objects, i);
+		if (entry->identifier == ENTRY_SPHERE)
+			if (mrt_sphere_is_hit(ray, entry->object.sphere))
+				return (entry);
+		if (entry->identifier == ENTRY_CYLINDER)
+			if (mrt_cylinder_is_hit(ray, entry->object.cylinder))
+				return (entry);
+		if (entry->identifier == ENTRY_PLANE)
+			if (mrt_plane_is_hit(ray, entry->object.plane))
+				return (entry);
+		i++;
+	}
+	return (NULL);
 }
 
 t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
@@ -56,9 +62,4 @@ t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 		mrt_lerp(mrt_range(225.0, 165.0), t), \
 		mrt_lerp(mrt_range(255.0, 255.0), t) \
 	));
-}
-
-t_mrt_point3d	ray_at(t_mrt_ray *ray, double t)
-{
-	return (vec3_add(ray->origin, vec3_smultiply(ray->direction, t)));
 }

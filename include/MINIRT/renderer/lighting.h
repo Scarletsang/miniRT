@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 21:32:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:28:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MINIRT/scene/s_objects.h"
 # include "MINIRT/world/game_object.h"
 # include "MINIRT/world.h"
-# include "MINIRT/intersection.h"
-# include "MINIRT/ray.h"
+# include "MINIRT/renderer/intersection.h"
+# include "MINIRT/renderer/ray.h"
 
 //////////////////////////////////////
 ////////////   lighting   ////////////

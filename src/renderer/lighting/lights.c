@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:07:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:14:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:28:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/lighting.h"
+#include "MINIRT/renderer/lighting.h"
 #include <math.h>
 
 void	mrt_lights_set_ambient(struct s_mrt_lights *lights, \

@@ -6,12 +6,20 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 14:57:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 00:24:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
 #include <stdint.h>
+
+t_mrt_color	mrt_render(struct s_mrt_world *world, \
+struct s_mrt_renderer_cache *cache, unsigned int x, unsigned int y)
+{
+	// generate ray
+	// shoot ray to each object -> intersections
+	// get the nearest intersection, and color it with the lighting struct
+}
 
 /**
  * @brief Converts pixel coordinates to world space coordinates

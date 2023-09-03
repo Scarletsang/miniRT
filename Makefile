@@ -43,15 +43,17 @@ PARSER_SRC:= \
 	parser/scene/objects/plane.c \
 	parser/scene/objects/sphere.c \
 	parser/scene/objects/light.c
-RAY_SRC:= \
-	ray/ray.c \
-	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/mlx42.c \
 	renderer/mlx42/hooks.c \
 	renderer/mlx42/control.c \
-	renderer/ppm.c
+	renderer/ppm.c \
+	renderer/ray/ray.c \
+	renderer/ray/ray_is_hit.c \
+	renderer/lighting/lighting.c \
+	renderer/lighting/lights.c \
+	renderer/lighting/calculation.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
@@ -71,6 +73,11 @@ WORLD_SRC:= \
 	world/game_object/sphere.c \
 	world/game_object/plane.c \
 	world/game_object/cylinder.c
+MEMORY_SRC:= \
+	memory/memory.c \
+	memory/allocator.c \
+	memory/unique_pointer/unique_pointer.c \
+	memory/unique_pointer/helper.c
 MATRIX_SRC:= \
 	matrix/matrix.c \
 	matrix/internal.c \
@@ -82,22 +89,13 @@ MATRIX_SRC:= \
 	matrix/transform/common.c \
 	matrix/transform/rotation.c \
 	matrix/transform/shearing.c
-MEMORY_SRC:= \
-	memory/memory.c \
-	memory/allocator.c \
-	memory/unique_pointer/unique_pointer.c \
-	memory/unique_pointer/helper.c
-LIGHTING_SRC:= \
-	lighting/lighting.c \
-	lighting/lights.c \
-	lighting/calculation.c
 DEFAULT_SRC:= \
 	default/settings.c \
 	default/scene.c
 MAIN_SRC:= \
 	main.c \
 	image.c
-SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(LIGHTING_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
+SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######

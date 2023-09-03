@@ -6,13 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:26:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:30:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/game_object.h"
 #include "MINIRT/scene.h"
-#include "MINIRT/ray.h"
+#include "MINIRT/renderer/ray.h"
 #include "MINIRT/unit.h"
 #include <stdlib.h>
 #include <stdbool.h>

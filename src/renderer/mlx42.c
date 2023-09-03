@@ -6,13 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:29:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 21:47:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:27:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/renderer.h"
 #include "MINIRT/world.h"
-#include "MINIRT/ray.h"
+#include "MINIRT/renderer.h"
+#include "MINIRT/renderer/ray.h"
 #include <MLX42/MLX42.h>
 #include <stdlib.h>
 

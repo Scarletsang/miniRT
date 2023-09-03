@@ -6,11 +6,11 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:44:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:15:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:28:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/lighting.h"
+#include "MINIRT/renderer/lighting.h"
 
 /**
  * Assumes that the ray's direction is the vector between the intersection
