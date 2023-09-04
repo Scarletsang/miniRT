@@ -6,13 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:20:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 03:02:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/miniRT.h"
 #include "MINIRT/renderer.h"
-#include "MINIRT/ray.h"
 #include "MINIRT/parser/scene_parser.h"
 
 static int	mrt_world_create(struct s_mrt *program, \
