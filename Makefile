@@ -25,6 +25,7 @@ INCLUDE_DIR= \
 
 UNIT_SRC:= \
 	unit/direction3d_unit.c \
+	unit/vec2.c \
 	unit/color.c \
 	unit/range/range.c \
 	unit/range/interpolation.c \
@@ -56,6 +57,7 @@ RENDERER_SRC:= \
 	renderer/ppm/setup.c \
 	renderer/ray/ray.c \
 	renderer/intersection/intersection.c \
+	renderer/intersection/quadratic.c \
 	renderer/intersection/sphere.c \
 	renderer/intersection/plane.c \
 	renderer/intersection/cylinder.c \
@@ -64,7 +66,8 @@ RENDERER_SRC:= \
 	renderer/lighting/lighting.c \
 	renderer/lighting/lights.c \
 	renderer/lighting/calculation.c \
-	renderer/lighting/normal/normal.c
+	renderer/lighting/normal/normal.c \
+	renderer/lighting/normal/cylinder.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \

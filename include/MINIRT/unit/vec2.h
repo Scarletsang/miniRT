@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/23 11:58:18 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 09:44:51 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ typedef struct s_mrt_vec2
 }				t_mrt_vec2;
 
 t_mrt_vec2		vec2(double x, double y);
+
+typedef t_mrt_vec2	t_mrt_t1t2;
 
 #endif

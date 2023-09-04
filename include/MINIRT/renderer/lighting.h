@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 16:22:05 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 23:11:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@
 ////////////////////////////////////////////////////////////////////
 
 t_mrt_vec3	mrt_lighting_normal_at(struct s_mrt_world_entry object, \
+t_mrt_vec3 world_point);
+
+t_mrt_vec3	mrt_lighting_normal_at_cylinder(struct s_mrt_cylinder *cylinder, \
+t_mrt_vec3 world_point);
+
+t_mrt_vec3	mrt_lighting_normal_at_sphere(struct s_mrt_sphere *sphere, \
+t_mrt_vec3 world_point);
+
+t_mrt_vec3	mrt_lighting_normal_at_plane(struct s_mrt_plane *plane, \
 t_mrt_vec3 world_point);
 
 //////////////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:16:54 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:30:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 
 # include "MINIRT/unit.h"
 # include "MINIRT/scene/s_objects.h"
+# include <stdbool.h>
 
+struct	s_mrt_world_entry;
 struct	s_mrt_ray;
+
+t_mrt_direction3d_unit	mrt_normal_at(struct s_mrt_world_entry *entry, \
+	t_mrt_point3d point);
 
 struct s_mrt_sphere
 {
@@ -42,7 +47,7 @@ struct s_mrt_cylinder
 };
 
 struct s_mrt_cylinder	*mrt_cylinder(\
-struct s_mrt_scene_cylinder *scene_cylinder);
+	struct s_mrt_scene_cylinder *scene_cylinder);
 
 void					mrt_cylinder_free(struct s_mrt_cylinder *cylinder);
 

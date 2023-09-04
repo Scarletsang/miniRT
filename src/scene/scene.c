@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 16:25:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:32:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,24 @@ void	mrt_scene_free(struct s_mrt_scene *scene)
 	ft_vector_free(&scene->unique_identifiers);
 }
 
-int	mrt_scene_add_entry(struct s_mrt_scene *scene, \
-struct s_mrt_scene_entry entry, bool is_unique)
+bool	mrt_scene_is_valid(struct s_mrt_scene *scene)
 {
-	if (entry.object.camera == NULL)
-		return (EXIT_FAILURE);
-	if (is_unique || (entry.identifier == ENTRY_CAMERA) || \
-		(entry.identifier == ENTRY_LIGHT_AMBIENT))
+	bool					has_camera;
+	bool					has_ambient;
+	t_ft_vector_iterator	it;
+
+	has_camera = false;
+	has_ambient = false;
+	ft_vector_iterator_begin(&it, &scene->unique_identifiers);
+	while (!it.is_end)
 	{
-		if (mrt_scene_has_unique_identifier(scene, entry.identifier))
-			return (EXIT_FAILURE);
+		if (*((enum e_mrt_scene_entry_identifier *) \
+			ft_vector_iterator_current(&it)) == ENTRY_CAMERA)
+			has_camera = true;
+		else if (*((enum e_mrt_scene_entry_identifier *) \
+			ft_vector_iterator_current(&it)) == ENTRY_LIGHT_AMBIENT)
+			has_ambient = true;
+		ft_vector_iterator_next(&it);
 	}
-	mrt_scene_add_unique_identifier(scene, entry.identifier);
-	if (!ft_vector_append(&scene->entries, &entry))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	return (has_camera && has_ambient);
 }

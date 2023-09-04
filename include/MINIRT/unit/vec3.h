@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:01:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:24:37 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:18:25 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ double			vec3_dot(const t_mrt_vec3 v1, const t_mrt_vec3 v2);
 t_mrt_vec3		vec3_cross(const t_mrt_vec3 v1, const t_mrt_vec3 v2);
 t_mrt_vec3_unit	vec3_normalize(const t_mrt_vec3 v);
 
+t_mrt_vec3		vec3_return_zero(void);
+bool			vec3_is_zero(t_mrt_vec3 v);
 bool			vec3_is_equal(t_mrt_vec3 v1, t_mrt_vec3 v2);
 
 #endif

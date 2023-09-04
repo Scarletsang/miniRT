@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:02:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:13:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 23:48:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 		return (0);
 	t = vec3_dot(tmp, vec3_sdivide(cylinder->scene->orientation, t));
 	if (t < 0)
-		return (0);
+		return (-1);
 	intersection = ray_at(ray, t);
 	distance = vec3_length(vec3_subtract(plane_point, intersection));
 	if (distance <= (cylinder->scene->diameter / 2))
@@ -67,35 +67,34 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 	if (!vec3_is_equal(plane_point, cylinder->scene->center))
 		return (intersect_caps(ray, cylinder, cylinder->scene->center));
 	else
-		return (0);
+		return (t);
 }
 
-static bool	is_in_range(struct s_mrt_ray *ray, \
-struct s_mrt_cylinder *cylinder, double t0, double t1)
+static bool	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
+t_mrt_vec2 roots)
 {
-	t_mrt_vec3			p_s;
-	t_mrt_vec3			p_e;
+	t_mrt_direction3d	orientation;
 	t_mrt_point3d		start;
 	t_mrt_point3d		end;
-	t_mrt_direction3d	o;
+	t_mrt_vec3			pos_start;
+	t_mrt_vec3			pos_end;
 
+	orientation = cylinder->scene->orientation;
 	start = cylinder->scene->center;
-	o = cylinder->scene->orientation;
-	end = vec3(\
-	start.x + cylinder->scene->height * o.x, \
-	start.y + cylinder->scene->height * o.y, \
-	start.z + cylinder->scene->height * o.z);
-	p_s = vec3_subtract(start, ray_at(ray, t1));
-	p_e = vec3_subtract(end, ray_at(ray, t1));
-	if (vec3_dot(p_s, o) <= 0 && vec3_dot(p_e, o) >= 0)
+	end = vec3_add(start, vec3_smultiply(orientation, cylinder->scene->height));
+	pos_start = vec3_subtract(start, ray_at(ray, roots.y));
+	pos_end = vec3_subtract(end, ray_at(ray, roots.y));
+	if (vec3_dot(pos_start, orientation) <= 0 && \
+		vec3_dot(pos_end, orientation) >= 0)
 		return (true);
 	if (intersect_caps(ray, cylinder, end) > 0)
 		return (true);
-	p_s = vec3_subtract(start, ray_at(ray, t0));
-	p_e = vec3_subtract(end, ray_at(ray, t0));
-	if (vec3_dot(p_s, o) <= 0 && vec3_dot(p_e, o) >= 0)
+	pos_start = vec3_subtract(start, ray_at(ray, roots.x));
+	pos_end = vec3_subtract(end, ray_at(ray, roots.x));
+	if (vec3_dot(pos_start, orientation) <= 0 && \
+		vec3_dot(pos_end, orientation) >= 0)
 		return (true);
-	return (false);
+	return (-1);
 }
 
 /**
@@ -112,29 +111,28 @@ struct s_mrt_cylinder *cylinder, double t0, double t1)
  * discriminant = b*b - 4ac
 */
 
-bool	mrt_intersect_cylinder(struct s_mrt_cylinder *cylinder, \
+double	mrt_intersect_cylinder(struct s_mrt_cylinder *cylinder, \
 struct s_mrt_ray *ray)
 {
 	t_mrt_vec3	x;
-	double		a;
-	double		b;
-	double		c;
+	t_mrt_vec3	quadratic;
 	double		tmp;
+	t_mrt_vec2	roots;
 
 	x = vec3_subtract(ray->origin, cylinder->scene->center);
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
-	a = vec3_dot(ray->direction, ray->direction) - (tmp * tmp);
+	quadratic.x = vec3_dot(ray->direction, ray->direction) - (tmp * tmp);
 	tmp = vec3_dot(ray->direction, cylinder->scene->orientation);
 	tmp = tmp * vec3_dot(x, cylinder->scene->orientation);
-	b = (vec3_dot(ray->direction, x) - tmp) * 2;
+	quadratic.y = (vec3_dot(ray->direction, x) - tmp) * 2;
 	tmp = vec3_dot(x, cylinder->scene->orientation);
-	c = vec3_dot(x, x) - tmp * tmp - \
-	(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
-	if ((b * b - 4 * a * c) < 0)
-		return (false);
-	return (is_in_range(ray, cylinder, \
-	(-b - sqrt(b * b - 4 * a * c)) / (2 * a), \
-	(-b + sqrt(b * b - 4 * a * c)) / (2 * a)));
+	quadratic.z = vec3_dot(x, x) - tmp * tmp - \
+		(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
+	tmp = mrt_quadratic_discriminant(quadratic);
+	roots = mrt_quadratic_roots(quadratic, tmp);
+	if (tmp < 0)
+		return (-1);
+	return (is_in_range(ray, cylinder, roots));
 }
 
 /*

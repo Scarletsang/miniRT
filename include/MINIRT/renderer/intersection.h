@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:33:03 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:17:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 23:42:23 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ struct s_mrt_intersection *intersection);
 
 struct s_mrt_intersection	mrt_intersection_empty(void);
 
+////////////////////////////////////////////////
+////////////   quadratic formulas   ////////////
+////////////////////////////////////////////////
+
+double						mrt_quadratic_closest_root(\
+t_mrt_vec3 quadratic);
+
+double						mrt_quadratic_discriminant(t_mrt_vec3 quadratic);
+
+t_mrt_vec2					mrt_quadratic_roots(t_mrt_vec3 quadratic, \
+double discriminant);
+
 /////////////////////////////////////////////////////
 ////////////   intersect ray on object   ////////////
 /////////////////////////////////////////////////////
@@ -48,7 +60,7 @@ struct s_mrt_ray *ray);
 double						mrt_intersect_plane(struct s_mrt_plane *plane, \
 struct s_mrt_ray *ray);
 
-bool						mrt_intersect_cylinder(\
+double						mrt_intersect_cylinder(\
 struct s_mrt_cylinder *cylinder, struct s_mrt_ray *ray);
 
 ////////////////////////////////////////////////////

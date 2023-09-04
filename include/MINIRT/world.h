@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 04:42:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:18:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ struct s_mrt_world_entry
 {
 	enum e_mrt_scene_entry_identifier	identifier;
 	union u_world_entry_object			object;
+};
+
+/** TODO: do we really need the object too?
+ * IF yes, is object enough or also entry?*/
+struct	s_mrt_world_insec
+{
+	struct s_mrt_world_entry	*entry;
+	double						t;
 };
 
 bool						mrt_world_entry_is_empty(\

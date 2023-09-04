@@ -6,13 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/03 10:59:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:33:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world/game_object.h"
 #include "MINIRT/scene.h"
 #include <stdlib.h>
+#include <math.h>
 
 struct s_mrt_sphere	*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere)
 {

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 20:52:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 23:55:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ const char *scene_file_name)
 struct s_mrt	mrt_default(const char *scene_file_name)
 {
 	return ((struct s_mrt){
-		.renderer = mrt_renderer_ppm,
+		.renderer = mrt_renderer_mlx42,
 		.renderer_config = mrt_default_renderer_config(scene_file_name),
 		.world = (struct s_mrt_world){}
 	});

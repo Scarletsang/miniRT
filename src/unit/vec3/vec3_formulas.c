@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_formulas.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:43:52 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/08/08 10:56:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 14:32:41 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,18 @@ t_mrt_vec3_unit	vec3_normalize(const t_mrt_vec3 v)
 	double	length;
 
 	length = vec3_length(v);
-	return ((t_mrt_vec3_unit){
-		.x = v.x / length,
-		.y = v.y / length,
-		.z = v.z / length});
+	if (length <= 0)
+	{
+		return ((t_mrt_vec3_unit){
+			.x = 0,
+			.y = 0,
+			.z = 0});
+	}
+	else
+	{
+		return ((t_mrt_vec3_unit){
+			.x = v.x / length,
+			.y = v.y / length,
+			.z = v.z / length});
+	}
 }

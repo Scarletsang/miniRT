@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 15:59:27 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:28:19 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 22:11:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ struct s_mrt_scene
 int									mrt_scene_init(struct s_mrt_scene *scene);
 
 void								mrt_scene_free(struct s_mrt_scene *scene);
+
+bool								mrt_scene_is_valid(\
+struct s_mrt_scene *scene);
 
 int									mrt_scene_add_entry(\
 struct s_mrt_scene *scene, struct s_mrt_scene_entry entry, bool is_unique);
