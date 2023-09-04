@@ -60,4 +60,26 @@ struct				s_mrt_renderer_data;
 struct s_mrt_intersection	mrt_intersect_world(\
 struct s_mrt_renderer_data *renderer, t_mrt_ray ray);
 
+///////////////////////////////////////////
+////////////   intersections   ////////////
+///////////////////////////////////////////
+
+typedef t_ft_vector	t_mrt_intersections;
+
+int							mrt_intersections_init(\
+t_mrt_intersections *intersections, size_t amount_of_objects);
+
+void						mrt_intersections_reset(\
+t_mrt_intersections *intersections, \
+struct s_mrt_uniform_allocator *uniform_allocator);
+
+int							mrt_intersections_add(\
+t_mrt_intersections *intersections, struct s_mrt_intersection *intersection);
+
+void						mrt_intersections_sort(\
+t_mrt_intersections *intersections);
+
+struct s_mrt_intersection	mrt_intersections_nearest(\
+t_mrt_intersections *intersections);
+
 #endif
