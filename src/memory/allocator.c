@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:23:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/29 21:56:23 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 04:42:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	mrt_allocator_free(struct s_mrt_allocator *allocator)
 	ft_vector_free(&allocator->blocks);
 }
 
-static void	*mrt_pool_allocator_allocate_block(\
-struct s_mrt_allocator *allocator)
+static void	*mrt_allocate_block(struct s_mrt_allocator *allocator)
 {
 	unsigned char					*block;
 	struct s_mrt_allocator_chunk	*chunk;
@@ -81,8 +80,7 @@ void	*mrt_allocate(struct s_mrt_allocator *allocator)
 
 	if (!allocator->avaliable)
 	{
-		allocator->avaliable = \
-			mrt_pool_allocator_allocate_block(allocator);
+		allocator->avaliable = mrt_allocate_block(allocator);
 		if (!allocator->avaliable)
 			return (NULL);
 	}
