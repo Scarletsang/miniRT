@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 14:00:47 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/09/03 03:32:39 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 12:31:55 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "MINIRT/world.h"
 
 /**
- * TODO: Change this function to make it detect it the
- * nearest one.
+ * TODO: remove this function after the program is working
 */
 struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
 , struct s_mrt_world *world)
@@ -28,19 +27,22 @@ struct s_mrt_world_entry	*mrt_ray_is_hit(t_mrt_ray *ray \
 	{
 		entry = (struct s_mrt_world_entry *)ft_vector_get(&world->objects, i);
 		if (entry->identifier == ENTRY_SPHERE)
-			if (mrt_sphere_is_hit(ray, entry->object.sphere))
+			if (mrt_intersect_sphere(entry->object.sphere, ray))
 				return (entry);
-		if (entry->identifier == ENTRY_CYLINDER)
-			if (mrt_cylinder_is_hit(ray, entry->object.cylinder))
+		else if (entry->identifier == ENTRY_CYLINDER)
+			if (mrt_intersect_cylinder(entry->object.cylinder, ray))
 				return (entry);
-		if (entry->identifier == ENTRY_PLANE)
-			if (mrt_plane_is_hit(ray, entry->object.plane))
+		else if (entry->identifier == ENTRY_PLANE)
+			if (mrt_intersect_plane(entry->object.plane, ray))
 				return (entry);
 		i++;
 	}
 	return (NULL);
 }
 
+/**
+ * TODO: remove this function after the program is working
+*/
 t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 {
 	double						t;
