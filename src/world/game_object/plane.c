@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:57 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/31 08:26:40 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:33:28 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ Formula to determine t (the t in the ray formula):
 t = (plane->point - ray->origin) . plane->normal / ray->direction . plane->normal
 */
 
-bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
+bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane, \
+t_mrt_t1t2 *t1t2)
 {
 	t_mrt_vec3	tmp;
 	double		t;
@@ -47,11 +48,13 @@ bool	mrt_plane_is_hit(struct s_mrt_ray *ray, struct s_mrt_plane *plane)
 	if (t == 0)
 		return (false);
 	t = vec3_dot(tmp, vec3_divide(plane->scene->normal, t));
-	distance = vec3_length(vec3_multiply(ray->direction, t));
+	distance = ray_distance(ray, t);
 	if (distance == 0)
 		return (false);
 	if (t < 0)
 		return (false);
+	t1t2->x = t;
+	t1t2->y = t;
 	return (true);
 }
 

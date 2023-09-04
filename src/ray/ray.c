@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 19:37:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:25:10 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:44:55 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,21 @@ t_mrt_ray	mrt_ray(t_mrt_point3d origin, t_mrt_direction3d direction)
 t_mrt_color	mrt_ray_color(t_mrt_ray	*ray, struct s_mrt_world *world)
 {
 	double						t;
-	struct s_mrt_world_entry	*entry_hit;
+	struct s_mrt_world_insec	insec;
 
-	entry_hit = mrt_ray_is_hit(ray, world);
-	if (entry_hit != NULL)
+	insec = mrt_ray_is_hit(ray, world);
+	if (insec.entry != NULL)
 	{
-		if (entry_hit->identifier == ENTRY_SPHERE)
-			return (entry_hit->object.sphere->scene->color);
-		if (entry_hit->identifier == ENTRY_PLANE)
-			return (entry_hit->object.plane->scene->color);
-		if (entry_hit->identifier == ENTRY_CYLINDER)
-			return (entry_hit->object.cylinder->scene->color);
+		if (insec.entry->identifier == ENTRY_SPHERE)
+			return (insec.entry->object.sphere->scene->color);
+		if (insec.entry->identifier == ENTRY_PLANE)
+			return (insec.entry->object.plane->scene->color);
+		if (insec.entry->identifier == ENTRY_CYLINDER)
+			return (insec.entry->object.cylinder->scene->color);
 	}
 	t = 0.5 * (ray->direction_unit.y + 1.0);
 	return (vec3(\
 		mrt_lerp(mrt_range(225.0, 145.0), t), \
 		mrt_lerp(mrt_range(225.0, 165.0), t), \
-		mrt_lerp(mrt_range(255.0, 255.0), t) \
-	));
-}
-
-t_mrt_point3d	ray_at(t_mrt_ray *ray, double t)
-{
-	return (vec3_add(ray->origin, vec3_multiply(ray->direction, t)));
+		mrt_lerp(mrt_range(255.0, 255.0), t)));
 }
