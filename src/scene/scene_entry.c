@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 23:53:44 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 16:09:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 21:50:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,20 @@ union u_scene_entry_object	mrt_scene_entry_object_empty(void)
 bool	mrt_scene_entry_object_is_empty(union u_scene_entry_object entry_object)
 {
 	return (entry_object.camera == NULL);
+}
+
+int	mrt_scene_add_entry(struct s_mrt_scene *scene, \
+struct s_mrt_scene_entry entry, bool is_unique)
+{
+	if (entry.object.camera == NULL)
+		return (EXIT_FAILURE);
+	if (is_unique || (entry.identifier == ENTRY_CAMERA))
+	{
+		if (mrt_scene_has_unique_identifier(scene, entry.identifier))
+			return (EXIT_FAILURE);
+	}
+	mrt_scene_add_unique_identifier(scene, entry.identifier);
+	if (!ft_vector_append(&scene->entries, &entry))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

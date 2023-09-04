@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:07:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 16:43:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 22:11:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,25 @@ int fd, int return_value)
 	return (return_value);
 }
 
+static int	mrt_scene_parser_from_iostream(struct s_mrt_scene *scene, \
+struct s_ft_iostream *iostream)
+{
+	t_mrt_scene_parser_atom	atom;
+
+	if (!ft_slice_is_empty(ft_iostream_to_slice(iostream)))
+	{
+		atom = mrt_scene_parser_entry(\
+			ft_parser_atom(ft_tobject_ptr(scene), \
+			ft_iostream_to_slice(iostream)), ft_tobject_empty());
+		if (!atom.is_valid || !ft_parser_atom_is_end(atom))
+			return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
 {
 	struct s_ft_iostream	iostream;
-	t_mrt_scene_parser_atom	atom;
 	int						fd;
 
 	fd = open(file_path, O_RDONLY, 0644);
@@ -61,15 +76,12 @@ int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
 	while (!ft_iostream_read_until_delimiter(&iostream, fd, \
 		ft_str_from_cstring("\n")))
 	{
-		if (!ft_slice_is_empty(ft_iostream_to_slice(&iostream)))
-		{
-			atom = mrt_scene_parser_entry(\
-				ft_parser_atom(ft_tobject_ptr(scene), \
-				ft_iostream_to_slice(&iostream)), ft_tobject_empty());
-			if (!atom.is_valid || !ft_parser_atom_is_end(atom))
-				return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
-		}
+		if (mrt_scene_parser_from_iostream(scene, &iostream))
+			return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
 		ft_iostream_reset(&iostream);
 	}
+	if (mrt_scene_parser_from_iostream(scene, &iostream) || \
+		!mrt_scene_is_valid(scene))
+		return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
 	return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_SUCCESS));
 }
