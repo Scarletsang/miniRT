@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 01:48:10 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 04:42:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define WORLD_H
 
 # include "MINIRT/scene.h"
+# include "MINIRT/scene/s_objects.h"
 # include "MINIRT/image.h"
-# include "MINIRT/renderer.h"
 # include "MINIRT/world/camera.h"
 # include "MINIRT/world/light.h"
 # include "MINIRT/world/game_object.h"
@@ -47,6 +47,9 @@ struct s_mrt_world_entry *entry);
 void						mrt_world_entry_free(\
 struct s_mrt_world_entry *entry);
 
+struct s_mrt_material		*mrt_world_entry_get_material(\
+struct s_mrt_world_entry entry);
+
 ///////////////////////////////////////////
 ////////////   world entries   ////////////
 ///////////////////////////////////////////
@@ -69,8 +72,8 @@ struct s_mrt_world
 
 struct s_mrt_camera			*mrt_world_get_camera(struct s_mrt_world *world);
 
-t_mrt_vec3					mrt_world_normal_at(\
-struct s_mrt_world_entry object, t_mrt_vec3 world_point);
+struct s_mrt_light_ambient	*mrt_world_get_ambient_light(\
+struct s_mrt_world *world);
 
 ///////////////////////////////////////////
 ////////////   world options   ////////////

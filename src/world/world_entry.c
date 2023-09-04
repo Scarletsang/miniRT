@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   world_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 11:27:46 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:25:20 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:21:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/world.h"
+#include "MINIRT/scene/s_objects.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 {
@@ -30,6 +30,19 @@ bool	mrt_world_entry_is_empty(struct s_mrt_world_entry *entry)
 		return (entry->object.camera == NULL);
 	else
 		return (true);
+}
+
+struct s_mrt_material	*mrt_world_entry_get_material(\
+struct s_mrt_world_entry entry)
+{
+	if (entry.identifier == ENTRY_SPHERE)
+		return (&entry.object.sphere->scene->material);
+	else if (entry.identifier == ENTRY_PLANE)
+		return (&entry.object.plane->scene->material);
+	else if (entry.identifier == ENTRY_CYLINDER)
+		return (&entry.object.cylinder->scene->material);
+	else
+		return (NULL);
 }
 
 /**

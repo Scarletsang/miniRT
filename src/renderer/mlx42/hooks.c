@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:53:04 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 04:38:27 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,23 @@ struct s_mrt_renderer_mlx42 *renderer)
 
 void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 {
+	t_mrt_point3d	*origin;
+
 	if (mrt_mlx42_control_as_int(renderer->control) == 0)
 		return ;
+	origin = &mrt_world_get_camera(\
+		renderer->renderer_data.world)->scene->origin;
 	if (renderer->control.forward)
-		mrt_world_get_camera(renderer->world)->scene->origin.z -= 0.05;
+		origin->z -= 0.05;
 	if (renderer->control.backward)
-		mrt_world_get_camera(renderer->world)->scene->origin.z += 0.05;
+		origin->z += 0.05;
 	if (renderer->control.left)
-		mrt_world_get_camera(renderer->world)->scene->origin.x += 0.05;
+		origin->x += 0.05;
 	if (renderer->control.right)
-		mrt_world_get_camera(renderer->world)->scene->origin.x -= 0.05;
+		origin->x -= 0.05;
 	if (renderer->control.upward)
-		mrt_world_get_camera(renderer->world)->scene->origin.y += 0.05;
+		origin->y += 0.05;
 	if (renderer->control.downward)
-		mrt_world_get_camera(renderer->world)->scene->origin.y -= 0.05;
-	mrt_renderer_mlx42_render(renderer->world, renderer->config, \
-		renderer->image);
+		origin->y -= 0.05;
+	mrt_renderer_mlx42_render(renderer);
 }

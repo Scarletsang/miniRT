@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:16:13 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 16:24:43 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 02:53:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ void	mrt_world_free(struct s_mrt_world *world)
 struct s_mrt_camera	*mrt_world_get_camera(struct s_mrt_world *world)
 {
 	return (world->camera.object.camera);
+}
+
+struct s_mrt_light_ambient	*mrt_world_get_ambient_light(\
+struct s_mrt_world *world)
+{
+	return (world->ambient_light.object.light_ambient);
 }

@@ -45,15 +45,25 @@ PARSER_SRC:= \
 	parser/scene/objects/light.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
+	renderer/cache.c \
+	renderer/control.c \
 	renderer/mlx42.c \
+	renderer/ppm.c \
+	renderer/mlx42/setup.c \
 	renderer/mlx42/hooks.c \
 	renderer/mlx42/control.c \
-	renderer/ppm.c \
+	renderer/ppm/setup.c \
 	renderer/ray/ray.c \
-	renderer/ray/ray_is_hit.c \
+	renderer/intersection/intersection.c \
+	renderer/intersection/sphere.c \
+	renderer/intersection/plane.c \
+	renderer/intersection/cylinder.c \
+	renderer/intersections/intersections.c \
+	renderer/intersections/sort.c \
 	renderer/lighting/lighting.c \
 	renderer/lighting/lights.c \
-	renderer/lighting/calculation.c
+	renderer/lighting/calculation.c \
+	renderer/lighting/normal/normal.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
