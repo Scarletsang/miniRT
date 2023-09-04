@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/03 03:28:19 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 05:37:57 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include "MINIRT/world.h"
 # include "MINIRT/renderer/intersection.h"
 # include "MINIRT/renderer/ray.h"
+
+////////////////////////////////////////////////////////////////////
+////////////   finding normal of a point on an object   ////////////
+////////////////////////////////////////////////////////////////////
+
+t_mrt_vec3	mrt_lighting_normal_at(struct s_mrt_world_entry object, \
+t_mrt_vec3 world_point);
 
 //////////////////////////////////////
 ////////////   lighting   ////////////
@@ -55,6 +62,8 @@ struct s_mrt_light_point light_source);
 
 t_mrt_color	mrt_lighting_calculate(struct s_mrt_lighting *lighting_data);
 
+void		mrt_lighting_print(struct s_mrt_lighting *lighting_data);
+
 ///////////////////////////////////////////////////////////////
 ////////////   internal calculation for lighting   ////////////
 ///////////////////////////////////////////////////////////////
@@ -75,6 +84,10 @@ struct s_mrt_lighting *lighting_data);
 void		mrt_lights_calculation_reflection(\
 struct s_mrt_lights_calculation *result, \
 struct s_mrt_lighting *lighting_data);
+
+////////////////////////////////////
+////////////   lights   ////////////
+////////////////////////////////////
 
 struct s_mrt_lights
 {
