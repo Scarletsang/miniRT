@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:29:32 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:34:22 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_mrt_t1t2 *t1t2)
 		return (false);
 	else
 	{
-		t1t2->x = ((- quadratic.y) - sqrt(discriminant)) / (2 * quadratic.x);
-		t1t2->y = ((- quadratic.y) + sqrt(discriminant)) / (2 * quadratic.x);
+		t1t2->x = ((-quadratic.y) - sqrt(discriminant)) / (2 * quadratic.x);
+		t1t2->y = ((-quadratic.y) + sqrt(discriminant)) / (2 * quadratic.x);
 		return (true);
 	}
 }

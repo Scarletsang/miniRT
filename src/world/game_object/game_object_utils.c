@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 09:00:46 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/09/04 07:06:58 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:33:39 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_mrt_point3d intersection)
 
 	orientation = vec3_negate(scene->orientation);
 	tmp = vec3_dot(orientation, intersection);
-	t = vec3_dot(intersection, intersection) + tmp;\
+	t = vec3_dot(intersection, intersection) + tmp;
 	t = t - vec3_dot(scene->center, intersection);
 	tmp = tmp + vec3_dot(orientation, orientation);
 	tmp = tmp - vec3_dot(scene->center, orientation);

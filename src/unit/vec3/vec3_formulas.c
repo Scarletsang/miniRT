@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:43:52 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/09/01 10:33:30 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:32:41 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ t_mrt_vec3_unit	vec3_normalize(const t_mrt_vec3 v)
 	if (length <= 0)
 	{
 		return ((t_mrt_vec3_unit){
-		.x = 0,
-		.y = 0,
-		.z = 0});
+			.x = 0,
+			.y = 0,
+			.z = 0});
 	}
 	else
 	{
 		return ((t_mrt_vec3_unit){
-		.x = v.x / length,
-		.y = v.y / length,
-		.z = v.z / length});
+			.x = v.x / length,
+			.y = v.y / length,
+			.z = v.z / length});
 	}
 }
