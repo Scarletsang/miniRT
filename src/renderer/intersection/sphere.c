@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 10:59:10 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 03:25:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 20:54:07 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include "MINIRT/renderer/intersection.h"
 #include "MINIRT/renderer/ray.h"
 #include "MINIRT/unit.h"
+#include <math.h>
 
 double	mrt_intersect_sphere(struct s_mrt_sphere *sphere, struct s_mrt_ray *ray)
 {
 	t_mrt_direction3d	sph_to_ray;
-	double				radius;
 	t_mrt_vec3			quadratic;
+	double				radius;
+	double				discriminant;
 
 	sph_to_ray = vec3_subtract(ray->origin, sphere->scene->center);
 	radius = sphere->scene->diameter / 2;
@@ -28,5 +30,8 @@ double	mrt_intersect_sphere(struct s_mrt_sphere *sphere, struct s_mrt_ray *ray)
 		.y = vec3_dot(vec3_smultiply(ray->direction, 2.0), sph_to_ray), \
 		.z = vec3_dot(sph_to_ray, sph_to_ray) - radius * radius
 	};
-	return (quadratic.y * quadratic.y - 4 * quadratic.x * quadratic.z);
+	discriminant = quadratic.y * quadratic.y - 4 * quadratic.x * quadratic.z;
+	if (discriminant < 0)
+		return (-1);
+	return ((-quadratic.y - sqrt(discriminant)) / (2.0 * quadratic.x));
 }

@@ -25,6 +25,7 @@ INCLUDE_DIR= \
 
 UNIT_SRC:= \
 	unit/direction3d_unit.c \
+	unit/color.c \
 	unit/range/range.c \
 	unit/range/interpolation.c \
 	unit/vec3/vec3_formulas.c \

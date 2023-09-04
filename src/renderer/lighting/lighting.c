@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:44:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 05:42:20 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:22:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_mrt_ray *ray, struct s_mrt_intersection intersection)
 void	mrt_lighting_set_material(struct s_mrt_lighting *lighting_data, \
 struct s_mrt_material *material, struct s_mrt_light_ambient ambient_light)
 {
-	lighting_data->diffuse_effectiveness = ambient_light.scene->ratio;
+	lighting_data->ambient_effectiveness = ambient_light.scene->ratio;
 	lighting_data->material = *material;
 	lighting_data->material.color = vec3_multiply(\
 		lighting_data->material.color, \
@@ -52,7 +52,7 @@ void	mrt_lighting_print(struct s_mrt_lighting *lighting_data)
 	vec3_print(lighting_data->normal);
 	printf("material             :\n");
 	mrt_material_print(&lighting_data->material);
-	printf("diffuse_effectiveness: %f\n", lighting_data->diffuse_effectiveness);
+	printf("ambient_effectiveness: %f\n", lighting_data->ambient_effectiveness);
 	printf("light_source         : ");
 	if (lighting_data->light_source.scene)
 		mrt_scene_light_point_print(lighting_data->light_source.scene);

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 05:37:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 16:22:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ struct s_mrt_lighting
 	t_mrt_vec3					hit_position;
 	t_mrt_vec3					normal;
 	struct s_mrt_material		material;
-	double						diffuse_effectiveness;
+	double						ambient_effectiveness;
 	struct s_mrt_light_point	light_source;
 };
 

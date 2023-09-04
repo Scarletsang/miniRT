@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 19:18:17 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 06:05:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 15:53:38 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_mrt_intersections *intersections)
 	ft_vector_iterator_begin(&iterator, intersections);
 	while (!iterator.is_end)
 	{
-		if (((struct s_mrt_intersection *) \
+		if ((*(struct s_mrt_intersection **) \
 			ft_vector_iterator_current(&iterator))->time >= 0)
 			return (**(struct s_mrt_intersection **) \
 				ft_vector_iterator_current(&iterator));
