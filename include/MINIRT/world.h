@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 09:08:09 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 10:32:02 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ struct s_mrt_world_entry
 
 /** TODO: do we really need the object too?
  * IF yes, is object enough or also entry?*/
-struct	s_mrt_object_intersection
+struct	s_mrt_world_insec
 {
-	s_mrt_world_entry	*entry;
-	double				t;
+	struct s_mrt_world_entry	*entry;
+	double						t;
 };
 
 bool						mrt_world_entry_is_empty(\

@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:06:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 10:47:09 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:10:30 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "MINIRT/unit.h"
 # include "MINIRT/scene/s_objects.h"
+# include <stdbool.h>
 
 struct	s_mrt_world_entry;
 struct	s_mrt_ray;
@@ -32,7 +33,7 @@ struct s_mrt_sphere		*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere);
 void					mrt_sphere_free(struct s_mrt_sphere *sphere);
 
 bool					mrt_sphere_is_hit(struct s_mrt_ray *ray, \
-	struct s_mrt_sphere *sphere);
+	struct s_mrt_sphere *sphere, t_mrt_t1t2 *t1t2);
 
 struct s_mrt_plane
 {
@@ -44,7 +45,7 @@ struct s_mrt_plane		*mrt_plane(struct s_mrt_scene_plane *scene_plane);
 void					mrt_plane_free(struct s_mrt_plane *plane);
 
 bool					mrt_plane_is_hit(struct s_mrt_ray *ray, \
-	struct s_mrt_plane *plane);
+	struct s_mrt_plane *plane, t_mrt_t1t2 *t1t2);
 
 struct s_mrt_cylinder
 {
@@ -57,6 +58,6 @@ struct s_mrt_cylinder	*mrt_cylinder(\
 void					mrt_cylinder_free(struct s_mrt_cylinder *cylinder);
 
 bool					mrt_cylinder_is_hit(struct s_mrt_ray *ray, \
-	struct s_mrt_cylinder *cylinder);
+	struct s_mrt_cylinder *cylinder, t_mrt_t1t2 *t1t2);
 
 #endif

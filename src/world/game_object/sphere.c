@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:26:56 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:29:32 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "MINIRT/ray.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include <math.h>
 
 struct s_mrt_sphere	*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere)
 {
@@ -28,10 +29,12 @@ struct s_mrt_sphere	*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere)
 	return (sph);
 }
 
-bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere)
+bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere, \
+t_mrt_t1t2 *t1t2)
 {
 	t_mrt_direction3d	sph_to_ray;
 	double				radius;
+	double				discriminant;
 	t_mrt_vec3			quadratic;
 
 	sph_to_ray = vec3_subtract(ray->origin, sphere->scene->center);
@@ -41,7 +44,15 @@ bool	mrt_sphere_is_hit(struct s_mrt_ray *ray, struct s_mrt_sphere *sphere)
 		.y = vec3_dot(vec3_multiply(ray->direction, 2.0), sph_to_ray), \
 		.z = vec3_dot(sph_to_ray, sph_to_ray) - radius * radius
 	};
-	return ((quadratic.y * quadratic.y - 4 * quadratic.x * quadratic.z) >= 0);
+	discriminant = quadratic.y * quadratic.y - 4 * quadratic.x * quadratic.z;
+	if (discriminant < 0)
+		return (false);
+	else
+	{
+		t1t2->x = ((- quadratic.y) - sqrt(discriminant)) / (2 * quadratic.x);
+		t1t2->y = ((- quadratic.y) + sqrt(discriminant)) / (2 * quadratic.x);
+		return (true);
+	}
 }
 
 void	mrt_sphere_free(struct s_mrt_sphere *sphere)

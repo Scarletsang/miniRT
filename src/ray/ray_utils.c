@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2.h                                             :+:      :+:    :+:   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:01:01 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 09:44:51 by kisikogl         ###   ########.fr       */
+/*   Created: 2023/09/04 10:35:31 by kisikogl          #+#    #+#             */
+/*   Updated: 2023/09/04 10:39:41 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC2_H
-# define VEC2_H
+#include "MINIRT/ray.h"
+#include "MINIRT/unit.h"
 
-typedef struct s_mrt_vec2
+double			ray_distance(t_mrt_ray *ray, double t)
 {
-	double	x;
-	double	y;
-}				t_mrt_vec2;
+	return (vec3_length(vec3_multiply(ray->direction, t)));
+}
 
-t_mrt_vec2		vec2(double x, double y);
-
-typedef t_mrt_vec2	t_mrt_t1t2;
-
-#endif
+t_mrt_point3d	ray_at(t_mrt_ray *ray, double t)
+{
+	return (vec3_add(ray->origin, vec3_multiply(ray->direction, t)));
+}

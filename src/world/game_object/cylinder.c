@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:41 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 10:01:43 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:45:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ double t0, double t1)
 */
 
 bool	mrt_cylinder_is_hit(struct s_mrt_ray *ray, \
-struct s_mrt_cylinder *cylinder)
+struct s_mrt_cylinder *cylinder, t_mrt_t1t2 *t1t2)
 {
 	t_mrt_vec3	x;
 	double		a;
@@ -148,9 +148,9 @@ struct s_mrt_cylinder *cylinder)
 	(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
 	if ((b * b - 4 * a * c) < 0)
 		return (false);
-	return (is_in_range(ray, cylinder, \
-	(-b - sqrt(b * b - 4 * a * c)) / (2 * a), \
-	(-b + sqrt(b * b - 4 * a * c)) / (2 * a)));
+	t1t2->x = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
+	t1t2->y = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+	return (is_in_range(ray, cylinder, t1t2->x, t1t2->y));
 }
 
 void	mrt_cylinder_free(struct s_mrt_cylinder *cylinder)

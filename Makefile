@@ -44,6 +44,7 @@ PARSER_SRC:= \
 	parser/scene/objects/light.c
 RAY_SRC:= \
 	ray/ray.c \
+	ray/ray_utils.c \
 	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
@@ -68,7 +69,8 @@ WORLD_SRC:= \
 	world/light/light_point.c \
 	world/game_object/sphere.c \
 	world/game_object/plane.c \
-	world/game_object/cylinder.c
+	world/game_object/cylinder.c \
+	world/game_object/game_object_utils.c
 DEFAULT_SRC:= \
 	default/settings.c \
 	default/scene.c

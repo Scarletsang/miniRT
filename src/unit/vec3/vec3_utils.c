@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:47:09 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/09/01 10:58:55 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 07:04:33 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ t_mrt_vec3	vec3(double x, double y, double z)
 	v.y = y;
 	v.z = z;
 	return (v);
+}
+
+t_mrt_vec3	vec3_return_zero(void)
+{
+	return ((t_mrt_vec3){.x = 0, .y = 0, .z = 0});
 }
 
 bool	vec3_is_zero(t_mrt_vec3 v)
