@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:18:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:08:03 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ struct s_mrt_renderer_config
 	unsigned int	thread_count;
 	const char		*scene_file_name;
 	const char		*ppm_output_file_name;
+	bool			render_normal;
 };
 
 typedef int	(*t_mrt_renderer)(struct s_mrt_world *world, \
