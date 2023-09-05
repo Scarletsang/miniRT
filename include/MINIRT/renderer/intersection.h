@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:33:03 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:42:23 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 11:38:01 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ double						mrt_quadratic_discriminant(t_mrt_vec3 quadratic);
 
 t_mrt_vec2					mrt_quadratic_roots(t_mrt_vec3 quadratic, \
 double discriminant);
+
+double						mrt_quadratic_smallest_root(t_mrt_vec2 roots);
 
 /////////////////////////////////////////////////////
 ////////////   intersect ray on object   ////////////
