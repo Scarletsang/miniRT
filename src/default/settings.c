@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 20:07:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:44:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ const char *scene_file_name)
 		.maximum_world_distance = 1000000.0,
 		.thread_count = 1,
 		.scene_file_name = scene_file_name,
-		.ppm_output_file_name = "output.ppm"
+		.ppm_output_file_name = "output.ppm",
+		.render_normal = false
 	});
 }
 
@@ -38,6 +39,6 @@ struct s_mrt_world_options	mrt_default_world_options(void)
 {
 	return ((struct s_mrt_world_options){
 		.camera_focal_length = 1.0,
-		.camera_image = mrt_image_fixed_width(16.0 / 9.0, 400)
+		.camera_image = mrt_image_fixed_width(30.0 / 9.0, 1600)
 	});
 }

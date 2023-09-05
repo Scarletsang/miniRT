@@ -10,8 +10,8 @@ ifdef DEBUG
 	CFLAGS+= -g3 -fsanitize=address
 	LDFLAGS+= -g3 -fsanitize=address
 else
-	CFLAGS+= -flto -O3
-	LDFLAGS+= -flto -O3
+	CFLAGS+= -flto -O3 -DNDEBUG
+	LDFLAGS+= -flto -O3 -DNDEBUG
 endif
 INCLUDE_DIR= \
 	include
@@ -25,37 +25,54 @@ INCLUDE_DIR= \
 
 UNIT_SRC:= \
 	unit/direction3d_unit.c \
+	unit/vec2.c \
+	unit/color.c \
 	unit/range/range.c \
 	unit/range/interpolation.c \
 	unit/vec3/vec3_formulas.c \
-	unit/vec3/vec3_operations.c \
-	unit/vec3/vec3_utils.c \
-	unit/vec2.c
+	unit/vec3/vec3_scalar.c \
+	unit/vec3/vec3_vector.c \
+	unit/vec3/vec3_utils.c
 PARSER_SRC:= \
 	parser/number.c \
 	parser/vec3.c \
 	parser/scene/parser.c \
 	parser/scene/unit.c \
 	parser/scene/common.c \
+	parser/scene/material.c \
 	parser/scene/objects/camera.c \
 	parser/scene/objects/cylinder.c \
 	parser/scene/objects/plane.c \
 	parser/scene/objects/sphere.c \
 	parser/scene/objects/light.c
-RAY_SRC:= \
-	ray/ray.c \
-	ray/ray_utils.c \
-	ray/ray_is_hit.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
+	renderer/cache.c \
+	renderer/control.c \
 	renderer/mlx42.c \
+	renderer/ppm.c \
+	renderer/mlx42/setup.c \
 	renderer/mlx42/hooks.c \
 	renderer/mlx42/control.c \
-	renderer/ppm.c
+	renderer/ppm/setup.c \
+	renderer/ray/ray.c \
+	renderer/intersection/intersection.c \
+	renderer/intersection/quadratic.c \
+	renderer/intersection/sphere.c \
+	renderer/intersection/plane.c \
+	renderer/intersection/cylinder.c \
+	renderer/intersections/intersections.c \
+	renderer/intersections/sort.c \
+	renderer/lighting/lighting.c \
+	renderer/lighting/lights.c \
+	renderer/lighting/calculation.c \
+	renderer/lighting/normal/normal.c \
+	renderer/lighting/normal/cylinder.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \
 	scene/unique_identifier.c \
+	scene/material.c \
 	scene/printer/scene.c \
 	scene/printer/camera_and_light.c \
 	scene/printer/objects.c
@@ -69,15 +86,30 @@ WORLD_SRC:= \
 	world/light/light_point.c \
 	world/game_object/sphere.c \
 	world/game_object/plane.c \
-	world/game_object/cylinder.c \
-	world/game_object/game_object_utils.c
+	world/game_object/cylinder.c
+MEMORY_SRC:= \
+	memory/memory.c \
+	memory/allocator.c \
+	memory/unique_pointer/unique_pointer.c \
+	memory/unique_pointer/helper.c
+MATRIX_SRC:= \
+	matrix/matrix.c \
+	matrix/internal.c \
+	matrix/operation/multiply.c \
+	matrix/operation/transpose.c \
+	matrix/operation/submatrix.c \
+	matrix/operation/determinant.c \
+	matrix/operation/inverse.c \
+	matrix/transform/common.c \
+	matrix/transform/rotation.c \
+	matrix/transform/shearing.c
 DEFAULT_SRC:= \
 	default/settings.c \
 	default/scene.c
 MAIN_SRC:= \
 	main.c \
 	image.c
-SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RAY_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
+SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
 
 ####################################
 ######     Library files     #######
@@ -106,7 +138,7 @@ ifeq ($(shell uname), Darwin)
 # For MLX42
 	LDFLAGS+= -framework Cocoa -framework OpenGL -framework IOKit
 # For GLFW
-	LDFLAGS+= -lglfw $(if $(shell brew 2>/dev/null),-L$(shell brew --prefix glfw)/lib,)
+	LDFLAGS+= -lglfw $(if $(shell brew --help 2>/dev/null),-L$(shell brew --prefix glfw)/lib,)
 else
 # For GLFW
 	LDFLAGS+= -ldl -lglfw -pthread -lm

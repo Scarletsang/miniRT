@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 22:24:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:07:59 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/03 03:30:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ struct s_mrt
 	struct s_mrt_renderer_config	renderer_config;
 };
 
-int								mrt_init(struct s_mrt *world, \
+int								mrt_program_init(struct s_mrt *world, \
 struct s_mrt_scene scene);
 
-void							mrt_free(struct s_mrt *world);
+void							mrt_program_free(struct s_mrt *world);
 
 /////////////////////////////////////
 ////////////   default   ////////////

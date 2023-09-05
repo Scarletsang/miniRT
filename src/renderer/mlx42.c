@@ -6,13 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:29:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 21:47:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/04 04:22:08 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/renderer.h"
 #include "MINIRT/world.h"
-#include "MINIRT/ray.h"
+#include "MINIRT/renderer.h"
 #include <MLX42/MLX42.h>
 #include <stdlib.h>
 
@@ -23,55 +22,24 @@ static int32_t	mrt_renderer_mlx42_pixel(t_mrt_color color)
 			((int32_t) color.z) << 8 | 0xFF);
 }
 
-int	mrt_renderer_mlx42_render(struct s_mrt_world *world, \
-struct s_mrt_renderer_config *config, mlx_image_t *image)
+int	mrt_renderer_mlx42_render(struct s_mrt_renderer_mlx42 *renderer)
 {
-	int			x;
-	int			y;
-	t_mrt_ray	ray;
+	struct s_mrt_camera	*camera;
+	int					x;
+	int					y;
 
-	(void) config;
+	camera = mrt_world_get_camera(renderer->renderer_data.world);
 	y = 0;
-	while (y < mrt_world_get_camera(world)->screen.height)
+	while (y < camera->screen.height)
 	{
 		x = 0;
-		while (x < mrt_world_get_camera(world)->screen.width)
+		while (x < camera->screen.width)
 		{
-			ray = mrt_ray(\
-				mrt_world_get_camera(world)->scene->origin, \
-				mrt_pixel_to_direction_from_camera(\
-					mrt_world_get_camera(world), x, y));
-			mlx_put_pixel(image, x, y, \
-				mrt_renderer_mlx42_pixel(mrt_ray_color(&ray, world)));
+			mlx_put_pixel(renderer->image, x, y, mrt_renderer_mlx42_pixel(\
+				mrt_render_color_at(&renderer->renderer_data, x, y)));
 			x++;
 		}
 		y++;
-	}
-	return (EXIT_SUCCESS);
-}
-
-static int	mrt_renderer_mlx42_init(struct s_mrt_renderer_mlx42 *renderer, \
-struct s_mrt_world *world, struct s_mrt_renderer_config *config)
-{
-	*renderer = (struct s_mrt_renderer_mlx42){\
-		.world = world, \
-		.config = config, \
-		.mlx = mlx_init(\
-			mrt_world_get_camera(world)->screen.width, \
-			mrt_world_get_camera(world)->screen.height, \
-			"miniRT", false), \
-		.image = NULL, \
-		.control = (struct s_mrt_mlx42_control){0} \
-	};
-	if (renderer->mlx == NULL)
-		return (EXIT_FAILURE);
-	renderer->image = mlx_new_image(renderer->mlx, \
-		mrt_world_get_camera(world)->screen.width, \
-		mrt_world_get_camera(world)->screen.height);
-	if (renderer->image == NULL)
-	{
-		mlx_terminate(renderer->mlx);
-		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -84,12 +52,13 @@ struct s_mrt_renderer_config *config)
 	if (mrt_renderer_mlx42_init(&renderer, world, config) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	mlx_image_to_window(renderer.mlx, renderer.image, 0, 0);
-	mrt_renderer_mlx42_render(world, config, renderer.image);
+	mrt_renderer_mlx42_render(&renderer);
 	mlx_key_hook(renderer.mlx, \
 		(mlx_keyfunc) mrt_mlx42_key_hook, &renderer);
 	mlx_loop_hook(renderer.mlx, \
 		(void (*)(void *)) mrt_mlx42_loop_hook, &renderer);
 	mlx_loop(renderer.mlx);
+	mrt_renderer_data_free(&renderer.renderer_data);
 	mlx_terminate(renderer.mlx);
 	return (EXIT_SUCCESS);
 }

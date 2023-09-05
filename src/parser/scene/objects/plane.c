@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/28 12:31:02 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:25:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_mrt_scene_parser_atom input)
 	return (mrt_combinator_struct_fields((struct s_ft_parser_entity[3]){\
 		ft_parser_entity(&mrt_scene_parser_point3d, ft_tobject_ptr(NULL)), \
 		ft_parser_entity(&mrt_scene_parser_direction3d, ft_tobject_ptr(range)), \
-		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
+		ft_parser_entity(&mrt_scene_parser_material, ft_tobject_ptr(NULL)) \
 	}, 3, input, ft_tobject_str(" \t")));
 }
 
@@ -41,7 +41,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
-		(void *[3]){&plane.point, &plane.normal, &plane.color}, 3);
+		(void *[3]){&plane.point, &plane.normal, &plane.material}, 3);
 	result = mrt_scene_parser_plane_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)

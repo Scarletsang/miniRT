@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   world.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 10:32:02 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/04 22:18:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define WORLD_H
 
 # include "MINIRT/scene.h"
+# include "MINIRT/scene/s_objects.h"
 # include "MINIRT/image.h"
-# include "MINIRT/renderer.h"
 # include "MINIRT/world/camera.h"
 # include "MINIRT/world/light.h"
 # include "MINIRT/world/game_object.h"
@@ -55,6 +55,9 @@ struct s_mrt_world_entry *entry);
 void						mrt_world_entry_free(\
 struct s_mrt_world_entry *entry);
 
+struct s_mrt_material		*mrt_world_entry_get_material(\
+struct s_mrt_world_entry entry);
+
 ///////////////////////////////////////////
 ////////////   world entries   ////////////
 ///////////////////////////////////////////
@@ -69,12 +72,16 @@ void						mrt_world_entries_free(t_mrt_world_entries *entry);
 
 struct s_mrt_world
 {
-	t_mrt_world_entries			lights;
 	t_mrt_world_entries			objects;
+	t_mrt_world_entries			point_lights;
+	struct s_mrt_world_entry	ambient_light;
 	struct s_mrt_world_entry	camera;
 };
 
 struct s_mrt_camera			*mrt_world_get_camera(struct s_mrt_world *world);
+
+struct s_mrt_light_ambient	*mrt_world_get_ambient_light(\
+struct s_mrt_world *world);
 
 ///////////////////////////////////////////
 ////////////   world options   ////////////

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:30:08 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/01 16:31:19 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_mrt_scene_parser_atom input)
 		ft_parser_entity(&mrt_scene_parser_point3d, ft_tobject_ptr(range)), \
 		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(NULL)), \
 		ft_parser_entity(&mrt_scene_parser_float, ft_tobject_ptr(NULL)), \
-		ft_parser_entity(&mrt_scene_parser_color, ft_tobject_ptr(NULL)) \
+		ft_parser_entity(&mrt_scene_parser_material, ft_tobject_ptr(NULL)) \
 	}, 5, input, ft_tobject_str(" \t")));
 }
 
@@ -44,7 +44,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init(\
 		(void *[5]){&cylinder.center, &cylinder.orientation, \
-		&cylinder.diameter, &cylinder.height, &cylinder.color}, 5);
+		&cylinder.diameter, &cylinder.height, &cylinder.material}, 5);
 	result = mrt_scene_parser_cylinder_run(ft_parser_atom(\
 		ft_tobject_ptr(&parser), result.string));
 	if (result.is_valid)
