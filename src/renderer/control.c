@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:01:13 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:47:11 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ t_mrt_color	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
 t_mrt_color	mrt_render(struct s_mrt_renderer_data *renderer, \
 t_mrt_ray ray, struct s_mrt_intersection intersection)
 {
-	struct s_mrt_lighting		lighting_data;
+	struct s_mrt_lighting	lighting_data;
 
 	mrt_lighting_set_position(&lighting_data, &ray, intersection);
 	mrt_lighting_set_material(&lighting_data, \
 		mrt_world_entry_get_material(intersection.object), \
 		*mrt_world_get_ambient_light(renderer->world));
 	lighting_data.light_source.scene = NULL;
-	// return (mrt_render_lighting(renderer, &lighting_data));
-	return (mrt_vec3_unit_color(lighting_data.normal));
+	if (renderer->config.render_normal)
+		return (mrt_vec3_unit_color(lighting_data.normal));
+	return (mrt_render_lighting(renderer, &lighting_data));
 }
 
 /**
@@ -81,7 +82,7 @@ uint32_t x, uint32_t y)
 	ray = mrt_render_ray_generate(mrt_world_get_camera(renderer->world), x, y);
 	intersection = mrt_intersect_world(renderer, ray);
 	if (mrt_intersection_is_empty(&intersection))
-		color = vec3(2, 0, 0);
+		color = vec3(0, 0, 0);
 	else
 		color = mrt_render(renderer, ray, intersection);
 	mrt_intersections_reset(&renderer->cache.intersections, \

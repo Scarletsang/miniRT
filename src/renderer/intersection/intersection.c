@@ -6,14 +6,13 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 10:50:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 20:57:24 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:51:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
 #include "MINIRT/renderer/ray.h"
 #include "MINIRT/renderer/intersection.h"
-#include <stdio.h>
 
 inline struct s_mrt_intersection	mrt_intersection(double time, \
 struct s_mrt_world_entry object)

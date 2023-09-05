@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:02:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:48:09 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 12:20:53 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 		return (0);
 	t = vec3_dot(tmp, vec3_sdivide(cylinder->scene->orientation, t));
 	if (t < 0)
-		return (-1);
+		return (0);
 	intersection = ray_at(ray, t);
 	distance = vec3_length(vec3_subtract(plane_point, intersection));
 	if (distance <= (cylinder->scene->diameter / 2))
@@ -67,7 +67,7 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 	if (!vec3_is_equal(plane_point, cylinder->scene->center))
 		return (intersect_caps(ray, cylinder, cylinder->scene->center));
 	else
-		return (t);
+		return (0);
 }
 
 static bool	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
@@ -94,7 +94,7 @@ t_mrt_vec2 roots)
 	if (vec3_dot(pos_start, orientation) <= 0 && \
 		vec3_dot(pos_end, orientation) >= 0)
 		return (true);
-	return (-1);
+	return (false);
 }
 
 /**
@@ -132,7 +132,9 @@ struct s_mrt_ray *ray)
 	roots = mrt_quadratic_roots(quadratic, tmp);
 	if (tmp < 0)
 		return (-1);
-	return (is_in_range(ray, cylinder, roots));
+	if (is_in_range(ray, cylinder, roots))
+		return (mrt_quadratic_smallest_root(roots));
+	return (-1);
 }
 
 /*

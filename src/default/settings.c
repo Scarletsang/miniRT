@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:55:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/05 13:44:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ const char *scene_file_name)
 		.maximum_world_distance = 1000000.0,
 		.thread_count = 1,
 		.scene_file_name = scene_file_name,
-		.ppm_output_file_name = "output.ppm"
+		.ppm_output_file_name = "output.ppm",
+		.render_normal = false
 	});
 }
 
