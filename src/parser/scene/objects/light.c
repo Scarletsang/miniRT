@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 01:50:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 22:29:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 16:09:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 
 	(void) option;
 	result = mrt_scene_parser_identifier(ft_parser_atom(\
-		ft_tobject_ptr(&is_unique), input.string), ft_tobject_str("L"));
+		ft_tobject_ptr(&is_unique), input.string), ft_tobject_str("l"));
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = ft_parser_struct_init((void *[3]){&light_point.origin, \
