@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 16:44:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 06:50:47 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 07:12:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	mrt_lighting_prepare(struct s_mrt_lighting *lighting_data, \
 t_mrt_ray *ray, struct s_mrt_intersection intersection, \
 struct s_mrt_light_ambient *ambient_light)
 {
-	lighting_data->eye_vector = vec3_negate(ray->direction);
+	lighting_data->eye_vector = vec3_negate(ray->direction_unit);
 	lighting_data->hit_position = ray_at(ray, intersection.time);
 	lighting_data->ambient_effectiveness = ambient_light->scene->ratio;
 	if (intersection.object.identifier == ENTRY_SPHERE)
