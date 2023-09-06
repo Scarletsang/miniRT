@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:17:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 05:35:33 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 12:53:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ struct s_mrt_sphere	*mrt_sphere(struct s_mrt_scene_sphere *scene_sphere)
 
 void	mrt_sphere_refresh(struct s_mrt_sphere *sphere)
 {
-	sphere->color = mrt_color_to_color_unit(sphere->scene->material.color);
+	sphere->color = mrt_color_to_percentage(sphere->scene->material.color);
 }
 
 void	mrt_sphere_free(struct s_mrt_sphere *sphere)
