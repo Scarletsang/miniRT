@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:06:51 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 17:02:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:27:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer/lighting.h"
+#include "MINIRT/renderer.h"
 
 /**
  * @details reflectv = in - normal * 2 * dot(in, normal)
@@ -26,7 +27,7 @@ void	mrt_lights_calculation_basic(struct s_mrt_lights_calculation *result, \
 struct s_mrt_lighting *lighting_data)
 {
 	result->effective_color = vec3_multiply(lighting_data->material.color, \
-		lighting_data->light_source.intensity);
+		lighting_data->light_source.color);
 	result->lightv = vec3_normalize(\
 		vec3_subtract(lighting_data->light_source.scene->origin, \
 			lighting_data->hit_position));
@@ -43,7 +44,8 @@ struct s_mrt_lights_calculation *result, struct s_mrt_lighting *lighting_data)
 		lighting_data->eye_vector);
 }
 
-t_mrt_color	mrt_lighting_calculate(struct s_mrt_lighting *lighting_data)
+t_mrt_percentage	mrt_lighting_calculate(\
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config)
 {
 	struct s_mrt_lights_calculation	calculation;
 	struct s_mrt_lights				lights;
@@ -51,12 +53,14 @@ t_mrt_color	mrt_lighting_calculate(struct s_mrt_lighting *lighting_data)
 	mrt_lights_calculation_basic(&calculation, lighting_data);
 	mrt_lights_set_ambient(&lights, calculation.effective_color, \
 		lighting_data->ambient_effectiveness);
-	if (calculation.light_normal_angle < 0)
+	if ((config->lighting_level < RENDER_DIFFUSE) || \
+		(calculation.light_normal_angle < 0))
 		return (lights.ambient);
 	mrt_lights_set_diffuse(&lights, &calculation, \
 		lighting_data->material.diffuse);
 	mrt_lights_calculation_reflection(&calculation, lighting_data);
-	if (calculation.reflect_eye_angle <= 0)
+	if ((config->lighting_level < RENDER_SPECULAR) || \
+		(calculation.reflect_eye_angle <= 0))
 		return (mrt_lights_combine_diffuse_level(&lights));
 	mrt_lights_set_specular(&lights, &calculation, lighting_data);
 	return (mrt_lights_combine_specular_level(&lights));

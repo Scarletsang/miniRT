@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 16:10:11 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 22:18:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 06:11:48 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ struct s_mrt_world_entry *entry);
 
 void						mrt_world_entry_free(\
 struct s_mrt_world_entry *entry);
-
-struct s_mrt_material		*mrt_world_entry_get_material(\
-struct s_mrt_world_entry entry);
 
 ///////////////////////////////////////////
 ////////////   world entries   ////////////

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:12:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 01:54:52 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 16:40:26 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_mrt_scene_parser_atom input)
 	struct s_ft_parser_entity	entities[2];
 
 	range[0] = mrt_range(0.0, 1.0);
-	range[1] = mrt_range(10.0, 200.0);
+	range[1] = mrt_range(0.0, 200.0);
 	entities[0] = ft_parser_entity(&mrt_scene_parser_float, \
 		ft_tobject_ptr(&range[0]));
 	entities[1] = ft_parser_entity(&mrt_scene_parser_float, \
