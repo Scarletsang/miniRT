@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 04:38:27 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:18:55 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 	origin = &mrt_world_get_camera(\
 		renderer->renderer_data.world)->scene->origin;
 	if (renderer->control.forward)
-		origin->z -= 0.05;
+		origin->z -= 0.75;
 	if (renderer->control.backward)
-		origin->z += 0.05;
+		origin->z += 0.75;
 	if (renderer->control.left)
-		origin->x += 0.05;
+		origin->x += 0.75;
 	if (renderer->control.right)
-		origin->x -= 0.05;
+		origin->x -= 0.75;
 	if (renderer->control.upward)
-		origin->y += 0.05;
+		origin->y += 0.75;
 	if (renderer->control.downward)
-		origin->y -= 0.05;
+		origin->y -= 0.75;
+	mrt_camera_refresh(mrt_world_get_camera(\
+		renderer->renderer_data.world));
 	mrt_renderer_mlx42_render(renderer);
 }
