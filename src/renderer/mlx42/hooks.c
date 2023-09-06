@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 11:47:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:14:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ modifier_key_t mods, struct s_mrt_renderer_mlx42 *renderer)
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
 		mlx_get_mouse_pos(renderer->mlx, &x, &y);
+		renderer->renderer_data.config.debug_level = DEBUG_LEVEL_PRINT;
 		mrt_render_color_at(&renderer->renderer_data, x, y);
+		renderer->renderer_data.config.debug_level = DEBUG_LEVEL_NONE;
 	}
 }
 

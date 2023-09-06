@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 06:09:01 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:32:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ struct s_mrt_light_ambient *ambient_light);
 void				mrt_lighting_set_light_source(\
 struct s_mrt_lighting *lighting_data, struct s_mrt_light_point light_source);
 
-t_mrt_color_unit	mrt_lighting_calculate(\
-struct s_mrt_lighting *lighting_data);
+struct				s_mrt_renderer_config;
+
+t_mrt_percentage	mrt_lighting_calculate(\
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config);
 
 void				mrt_lighting_print(struct s_mrt_lighting *lighting_data);
 

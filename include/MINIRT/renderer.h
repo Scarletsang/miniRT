@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 11:42:36 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:27:41 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,30 @@
 ////////////   renderer config   ////////////
 /////////////////////////////////////////////
 
+enum e_mrt_renderer_debug_level
+{
+	DEBUG_LEVEL_NONE,
+	DEBUG_LEVEL_NORMAL,
+	DEBUG_LEVEL_PRINT
+};
+
+enum e_mrt_renderer_lighting_level
+{
+	RENDER_AMBIENT,
+	RENDER_DIFFUSE,
+	RENDER_SPECULAR
+};
+
 struct s_mrt_renderer_config
 {
-	unsigned int	anti_aliasing_sample_count;
-	unsigned int	maximum_recursion_depth;
-	double			maximum_world_distance;
-	unsigned int	thread_count;
-	const char		*scene_file_name;
-	const char		*ppm_output_file_name;
-	bool			render_normal;
+	unsigned int						anti_aliasing_sample_count;
+	unsigned int						maximum_recursion_depth;
+	double								maximum_world_distance;
+	unsigned int						thread_count;
+	const char							*scene_file_name;
+	const char							*ppm_output_file_name;
+	enum e_mrt_renderer_debug_level		debug_level;
+	enum e_mrt_renderer_lighting_level	lighting_level;
 };
 
 typedef int	(*t_mrt_renderer)(struct s_mrt_world *world, \
@@ -92,10 +107,10 @@ struct s_mrt_renderer_data *data);
 
 struct		s_mrt_lighting;
 
-t_mrt_color_unit			mrt_render_lighting(\
+t_mrt_percentage			mrt_render_lighting(\
 struct s_mrt_renderer_data *renderer, struct s_mrt_lighting *lighting_data);
 
-t_mrt_color_unit			mrt_render(struct s_mrt_renderer_data *renderer, \
+t_mrt_color					mrt_render(struct s_mrt_renderer_data *renderer, \
 t_mrt_ray ray, struct s_mrt_intersection intersection);
 
 t_mrt_ray					mrt_render_ray_generate(\
