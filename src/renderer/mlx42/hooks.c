@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:14:45 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 14:47:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 	if (renderer->control.backward)
 		origin->z += 0.75;
 	if (renderer->control.left)
-		origin->x += 0.75;
-	if (renderer->control.right)
 		origin->x -= 0.75;
+	if (renderer->control.right)
+		origin->x += 0.75;
 	if (renderer->control.upward)
 		origin->y += 0.75;
 	if (renderer->control.downward)
