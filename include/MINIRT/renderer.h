@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 06:06:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 11:42:36 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,8 @@ mlx_key_data_t keydata, struct s_mrt_renderer_mlx42 *renderer);
 
 void						mrt_mlx42_loop_hook(\
 struct s_mrt_renderer_mlx42 *renderer);
+
+void						mrt_mlx42_mouse_hook(mouse_key_t button, \
+action_t action, modifier_key_t mods, struct s_mrt_renderer_mlx42 *renderer);
 
 #endif

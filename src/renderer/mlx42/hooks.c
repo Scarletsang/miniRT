@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 04:38:27 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 11:47:15 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ struct s_mrt_renderer_mlx42 *renderer)
 	}
 }
 
+void	mrt_mlx42_mouse_hook(mouse_key_t button, action_t action, \
+modifier_key_t mods, struct s_mrt_renderer_mlx42 *renderer)
+{
+	int32_t	x;
+	int32_t	y;
+
+	(void)mods;
+	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+	{
+		mlx_get_mouse_pos(renderer->mlx, &x, &y);
+		mrt_render_color_at(&renderer->renderer_data, x, y);
+	}
+}
+
 void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 {
 	t_mrt_point3d	*origin;
@@ -49,16 +63,18 @@ void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 	origin = &mrt_world_get_camera(\
 		renderer->renderer_data.world)->scene->origin;
 	if (renderer->control.forward)
-		origin->z -= 0.05;
+		origin->z -= 0.75;
 	if (renderer->control.backward)
-		origin->z += 0.05;
+		origin->z += 0.75;
 	if (renderer->control.left)
-		origin->x += 0.05;
+		origin->x += 0.75;
 	if (renderer->control.right)
-		origin->x -= 0.05;
+		origin->x -= 0.75;
 	if (renderer->control.upward)
-		origin->y += 0.05;
+		origin->y += 0.75;
 	if (renderer->control.downward)
-		origin->y -= 0.05;
+		origin->y -= 0.75;
+	mrt_camera_refresh(mrt_world_get_camera(\
+		renderer->renderer_data.world));
 	mrt_renderer_mlx42_render(renderer);
 }
