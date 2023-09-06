@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 04:43:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:56:30 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 06:07:14 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,4 @@ t_mrt_vec3 world_point)
 {
 	(void) world_point;
 	return (plane->scene->normal);
-}
-
-t_mrt_vec3	mrt_lighting_normal_at(struct s_mrt_world_entry object, \
-t_mrt_vec3 world_point)
-{
-	if (object.identifier == ENTRY_SPHERE)
-		return (mrt_lighting_normal_at_sphere(\
-			object.object.sphere, world_point));
-	else if (object.identifier == ENTRY_PLANE)
-		return (mrt_lighting_normal_at_plane(\
-			object.object.plane, world_point));
-	else if (object.identifier == ENTRY_CYLINDER)
-		return (mrt_lighting_normal_at_cylinder(\
-			object.object.cylinder, world_point));
-	else
-		return (vec3(0, 0, 0));
 }

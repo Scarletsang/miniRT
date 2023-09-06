@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/05 14:08:03 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 06:06:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ struct s_mrt_renderer_data *data);
 
 struct		s_mrt_lighting;
 
-t_mrt_color					mrt_render_lighting(\
+t_mrt_color_unit			mrt_render_lighting(\
 struct s_mrt_renderer_data *renderer, struct s_mrt_lighting *lighting_data);
 
-t_mrt_color					mrt_render(struct s_mrt_renderer_data *renderer, \
+t_mrt_color_unit			mrt_render(struct s_mrt_renderer_data *renderer, \
 t_mrt_ray ray, struct s_mrt_intersection intersection);
 
 t_mrt_ray					mrt_render_ray_generate(\

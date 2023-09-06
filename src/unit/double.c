@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   double.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 00:02:14 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 05:26:25 by htsang           ###   ########.fr       */
+/*   Created: 2023/09/06 06:27:20 by htsang            #+#    #+#             */
+/*   Updated: 2023/09/06 06:31:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "MINIRT/unit.h"
+#include <math.h>
 
-# include "MINIRT/unit/vec3.h"
-
-typedef t_mrt_vec3	t_mrt_color;
-typedef t_mrt_vec3	t_mrt_color_unit;
-
-t_mrt_color_unit	mrt_color_to_color_unit(t_mrt_color color);
-
-t_mrt_color			mrt_vec3_unit_to_color(t_mrt_vec3_unit unit);
-
-t_mrt_color			mrt_color_unit_to_color(t_mrt_color_unit color_unit);
-
-#endif
+inline bool	mrt_double_is_equal(double a, double b)
+{
+	return (fabs(a - b) < EPSILON);
+}

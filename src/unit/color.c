@@ -6,37 +6,25 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:49:24 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 17:13:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 06:31:37 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/unit/color.h"
 #include "MINIRT/unit/range.h"
+#include "MINIRT/unit.h"
 
-t_mrt_vec3_unit	mrt_color_unit(t_mrt_color color)
+inline t_mrt_color_unit	mrt_color_to_color_unit(t_mrt_color color)
 {
-	t_mrt_range	color_range;
-	t_mrt_range	unit_range;
-
-	color_range = mrt_range(0, 255);
-	unit_range = mrt_range(0, 1);
-	return ((t_mrt_vec3_unit){\
-		.x = mrt_remap(color_range, unit_range, color.x), \
-		.y = mrt_remap(color_range, unit_range, color.y), \
-		.z = mrt_remap(color_range, unit_range, color.z), \
-	});
+	return (vec3_remap(mrt_range(0, 255), mrt_range(0, 1), color));
 }
 
-t_mrt_color	mrt_vec3_unit_color(t_mrt_vec3_unit unit)
+inline t_mrt_color	mrt_color_unit_to_color(t_mrt_color_unit color_unit)
 {
-	t_mrt_range	color_range;
-	t_mrt_range	unit_range;
+	return (vec3_remap(mrt_range(0, 1), mrt_range(0, 255), color_unit));
+}
 
-	color_range = mrt_range(0, 255);
-	unit_range = mrt_range(-1, 1);
-	return ((t_mrt_color){\
-		.x = mrt_remap(unit_range, color_range, unit.x), \
-		.y = mrt_remap(unit_range, color_range, unit.y), \
-		.z = mrt_remap(unit_range, color_range, unit.z), \
-	});
+inline t_mrt_color	mrt_vec3_unit_to_color(t_mrt_vec3_unit unit)
+{
+	return (vec3_remap(mrt_range(-1, 1), mrt_range(0, 255), unit));
 }

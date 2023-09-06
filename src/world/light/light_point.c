@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:15:35 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 17:02:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 05:38:58 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ struct s_mrt_scene_light_point *scene_light_point)
 	if (!light_point)
 		return (NULL);
 	*light_point = (struct s_mrt_light_point){
-		.scene = scene_light_point,
-		.intensity = mrt_color_unit(vec3_smultiply(\
-			scene_light_point->color, scene_light_point->ratio))
+		.scene = scene_light_point
 	};
+	mrt_light_point_refresh(light_point);
 	return (light_point);
+}
+
+void	mrt_light_point_refresh(struct s_mrt_light_point *light_point)
+{
+	light_point->color = vec3_smultiply(\
+		mrt_color_to_color_unit(light_point->scene->color), \
+		light_point->scene->ratio);
 }
