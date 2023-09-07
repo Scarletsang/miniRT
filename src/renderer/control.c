@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/05 13:47:11 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:15:33 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include "MINIRT/renderer/lighting.h"
 #include <stdint.h>
 
-t_mrt_color	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
+t_mrt_percentage	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
 	struct s_mrt_lighting *lighting_data)
 {
 	t_ft_vector_iterator	iterator;
-	t_mrt_color				color;
+	t_mrt_percentage		color;
 
 	ft_vector_iterator_begin(&iterator, &renderer->world->point_lights);
 	color = vec3(0, 0, 0);
@@ -29,10 +29,13 @@ t_mrt_color	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
 		mrt_lighting_set_light_source(lighting_data, \
 			*((struct s_mrt_world_entry *) \
 			ft_vector_iterator_current(&iterator))->object.light_point);
-		color = vec3_add(color, mrt_lighting_calculate(lighting_data));
+		color = vec3_add(color, mrt_lighting_calculate(lighting_data, \
+			&renderer->config));
+		if (renderer->config.debug_level == DEBUG_LEVEL_PRINT)
+			vec3_print(color);
 		ft_vector_iterator_next(&iterator);
 	}
-	return (color);
+	return (mrt_percentage_clamp(color));
 }
 
 t_mrt_color	mrt_render(struct s_mrt_renderer_data *renderer, \
@@ -40,14 +43,14 @@ t_mrt_ray ray, struct s_mrt_intersection intersection)
 {
 	struct s_mrt_lighting	lighting_data;
 
-	mrt_lighting_set_position(&lighting_data, &ray, intersection);
-	mrt_lighting_set_material(&lighting_data, \
-		mrt_world_entry_get_material(intersection.object), \
-		*mrt_world_get_ambient_light(renderer->world));
+	mrt_lighting_prepare(&lighting_data, &ray, intersection, \
+		mrt_world_get_ambient_light(renderer->world));
 	lighting_data.light_source.scene = NULL;
-	if (renderer->config.render_normal)
-		return (mrt_vec3_unit_color(lighting_data.normal));
-	return (mrt_render_lighting(renderer, &lighting_data));
+	if (renderer->config.debug_level == DEBUG_LEVEL_NORMAL)
+		return (mrt_vec3_unit_to_color(lighting_data.normal));
+	else
+		return (mrt_percentage_to_color(\
+			mrt_render_lighting(renderer, &lighting_data)));
 }
 
 /**

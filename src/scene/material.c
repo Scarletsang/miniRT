@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:31:59 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 16:26:40 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 06:13:54 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	mrt_material_default(struct s_mrt_material *material)
 		.color = vec3(0.0, 0.0, 0.0),
 		.diffuse = 0.9,
 		.specular = 0.9,
-		.shininess = 200.0
+		.shininess = 100.0
 	};
 }

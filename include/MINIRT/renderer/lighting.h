@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 23:11:48 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 13:32:46 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@
 ////////////   finding normal of a point on an object   ////////////
 ////////////////////////////////////////////////////////////////////
 
-t_mrt_vec3	mrt_lighting_normal_at(struct s_mrt_world_entry object, \
-t_mrt_vec3 world_point);
+t_mrt_vec3			mrt_lighting_normal_at_cylinder(\
+struct s_mrt_cylinder *cylinder, t_mrt_vec3 world_point);
 
-t_mrt_vec3	mrt_lighting_normal_at_cylinder(struct s_mrt_cylinder *cylinder, \
-t_mrt_vec3 world_point);
+t_mrt_vec3			mrt_lighting_normal_at_sphere(\
+struct s_mrt_sphere *sphere, t_mrt_vec3 world_point);
 
-t_mrt_vec3	mrt_lighting_normal_at_sphere(struct s_mrt_sphere *sphere, \
-t_mrt_vec3 world_point);
-
-t_mrt_vec3	mrt_lighting_normal_at_plane(struct s_mrt_plane *plane, \
+t_mrt_vec3			mrt_lighting_normal_at_plane(struct s_mrt_plane *plane, \
 t_mrt_vec3 world_point);
 
 //////////////////////////////////////
@@ -60,18 +57,19 @@ struct s_mrt_lighting
 	struct s_mrt_light_point	light_source;
 };
 
-void		mrt_lighting_set_position(struct s_mrt_lighting *lighting_data, \
-t_mrt_ray *ray, struct s_mrt_intersection intersection);
+void				mrt_lighting_prepare(struct s_mrt_lighting *lighting_data, \
+t_mrt_ray *ray, struct s_mrt_intersection intersection, \
+struct s_mrt_light_ambient *ambient_light);
 
-void		mrt_lighting_set_material(struct s_mrt_lighting *lighting_data, \
-struct s_mrt_material *material, struct s_mrt_light_ambient ambient_light);
+void				mrt_lighting_set_light_source(\
+struct s_mrt_lighting *lighting_data, struct s_mrt_light_point light_source);
 
-void		mrt_lighting_set_light_source(struct s_mrt_lighting *lighting_data, \
-struct s_mrt_light_point light_source);
+struct				s_mrt_renderer_config;
 
-t_mrt_color	mrt_lighting_calculate(struct s_mrt_lighting *lighting_data);
+t_mrt_percentage	mrt_lighting_calculate(\
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config);
 
-void		mrt_lighting_print(struct s_mrt_lighting *lighting_data);
+void				mrt_lighting_print(struct s_mrt_lighting *lighting_data);
 
 ///////////////////////////////////////////////////////////////
 ////////////   internal calculation for lighting   ////////////
@@ -86,11 +84,11 @@ struct s_mrt_lights_calculation
 	double		reflect_eye_angle;
 };
 
-void		mrt_lights_calculation_basic(\
+void				mrt_lights_calculation_basic(\
 struct s_mrt_lights_calculation *result, \
 struct s_mrt_lighting *lighting_data);
 
-void		mrt_lights_calculation_reflection(\
+void				mrt_lights_calculation_reflection(\
 struct s_mrt_lights_calculation *result, \
 struct s_mrt_lighting *lighting_data);
 
@@ -105,19 +103,21 @@ struct s_mrt_lights
 	t_mrt_vec3	specular;
 };
 
-void		mrt_lights_set_ambient(struct s_mrt_lights *lights, \
+void				mrt_lights_set_ambient(struct s_mrt_lights *lights, \
 t_mrt_color effective_color, double ambient_effectiveness);
 
-void		mrt_lights_set_diffuse(struct s_mrt_lights *lights, \
+void				mrt_lights_set_diffuse(struct s_mrt_lights *lights, \
 struct s_mrt_lights_calculation *calculation, \
 double diffuse_effectiveness);
 
-void		mrt_lights_set_specular(struct s_mrt_lights *lights, \
+void				mrt_lights_set_specular(struct s_mrt_lights *lights, \
 struct s_mrt_lights_calculation *calculation, \
 struct s_mrt_lighting *lighting_data);
 
-t_mrt_vec3	mrt_lights_combine_diffuse_level(struct s_mrt_lights *lights);
+t_mrt_vec3			mrt_lights_combine_diffuse_level(\
+struct s_mrt_lights *lights);
 
-t_mrt_vec3	mrt_lights_combine_specular_level(struct s_mrt_lights *lights);
+t_mrt_vec3			mrt_lights_combine_specular_level(\
+struct s_mrt_lights *lights);
 
 #endif

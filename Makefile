@@ -25,6 +25,7 @@ INCLUDE_DIR= \
 
 UNIT_SRC:= \
 	unit/direction3d_unit.c \
+	unit/double.c \
 	unit/vec2.c \
 	unit/color.c \
 	unit/range/range.c \
@@ -65,6 +66,7 @@ RENDERER_SRC:= \
 	renderer/intersections/sort.c \
 	renderer/lighting/lighting.c \
 	renderer/lighting/lights.c \
+	renderer/lighting/misc.c \
 	renderer/lighting/calculation.c \
 	renderer/lighting/normal/normal.c \
 	renderer/lighting/normal/cylinder.c

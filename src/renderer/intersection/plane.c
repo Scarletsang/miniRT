@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:04:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 03:25:27 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 20:00:17 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "MINIRT/renderer/ray.h"
 #include "MINIRT/unit.h"
 #include <math.h>
-#include <stdbool.h>
 
 /*
 Formula to determine t (the t in the ray formula):
@@ -29,8 +28,6 @@ double	mrt_intersect_plane(struct s_mrt_plane *plane, struct s_mrt_ray *ray)
 
 	tmp = vec3_subtract(plane->scene->point, ray->origin);
 	t = vec3_dot(ray->direction, plane->scene->normal);
-	if (t == 0)
-		return (t);
 	t = vec3_dot(tmp, vec3_sdivide(plane->scene->normal, t));
 	return (t);
 }

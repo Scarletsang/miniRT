@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:19:44 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/07 06:16:42 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ const char *scene_file_name)
 		.thread_count = 1,
 		.scene_file_name = scene_file_name,
 		.ppm_output_file_name = "output.ppm",
-		.render_normal = false
+		.debug_level = DEBUG_LEVEL_NONE,
+		.lighting_level = RENDER_SPECULAR
 	});
 }
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:05:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/08 10:35:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 12:51:47 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 # include "MINIRT/unit/color.h"
 # include "MINIRT/unit/range.h"
 # include <stdbool.h>
+
+# ifndef EPSILON
+#  define EPSILON 0.001
+# endif
+
+double					mrt_double_min(double a, double b);
+
+double					mrt_double_max(double a, double b);
+
+bool					mrt_double_is_equal(double a, double b);
 
 void					vec3_print(t_mrt_vec3 v);
 

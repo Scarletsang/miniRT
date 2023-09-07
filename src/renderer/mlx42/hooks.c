@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:18:55 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/07 06:17:05 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ struct s_mrt_renderer_mlx42 *renderer)
 	}
 }
 
+void	mrt_mlx42_mouse_hook(mouse_key_t button, action_t action, \
+modifier_key_t mods, struct s_mrt_renderer_mlx42 *renderer)
+{
+	int32_t	x;
+	int32_t	y;
+
+	(void)mods;
+	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+	{
+		mlx_get_mouse_pos(renderer->mlx, &x, &y);
+		renderer->renderer_data.config.debug_level = DEBUG_LEVEL_PRINT;
+		mrt_render_color_at(&renderer->renderer_data, x, y);
+		renderer->renderer_data.config.debug_level = DEBUG_LEVEL_NONE;
+	}
+}
+
 void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 {
 	t_mrt_point3d	*origin;
@@ -53,9 +69,9 @@ void	mrt_mlx42_loop_hook(struct s_mrt_renderer_mlx42 *renderer)
 	if (renderer->control.backward)
 		origin->z += 0.75;
 	if (renderer->control.left)
-		origin->x += 0.75;
-	if (renderer->control.right)
 		origin->x -= 0.75;
+	if (renderer->control.right)
+		origin->x += 0.75;
 	if (renderer->control.upward)
 		origin->y += 0.75;
 	if (renderer->control.downward)

@@ -6,12 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:07:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/03 03:28:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/06 12:45:27 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer/lighting.h"
+#include "MINIRT/unit.h"
 #include <math.h>
+#include <stdio.h>
 
 void	mrt_lights_set_ambient(struct s_mrt_lights *lights, \
 t_mrt_color effective_color, double ambient_effectiveness)
@@ -34,7 +36,7 @@ struct s_mrt_lighting *lighting_data)
 
 	factor = pow(calculation->reflect_eye_angle, \
 		lighting_data->material.shininess);
-	lights->specular = vec3_smultiply(lighting_data->light_source.scene->color, \
+	lights->specular = vec3_smultiply(lighting_data->light_source.color, \
 		lighting_data->material.specular * factor);
 }
 
