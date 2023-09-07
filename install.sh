@@ -80,7 +80,7 @@ install_brew()
         git clone --depth=1 https://github.com/Homebrew/brew $HOME/goinfre/.brew && \
         brew --version &>/dev/null || \
         ( \
-            echo "export PATH=$HOME/goinfre/.brew/bin:$PATH" >> $HOME/.zshrc && \
+            echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/.zshrc && \
             source $HOME/.zshrc \
         ) && \
         echo "brew installed" \
