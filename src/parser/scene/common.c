@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 03:45:26 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 16:07:56 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/07 11:09:31 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "LIBFT/ctype.h"
 
 static struct s_ft_parser_atom	mrt_scene_parser_ignore_upper_case_string(\
-struct s_ft_parser_atom input, union u_ft_tobject string)
+struct s_ft_parser_atom input, union u_ft_tobject identifier)
 {
 	struct s_ft_parser_atom	result;
 	char					*c;
@@ -22,15 +22,15 @@ struct s_ft_parser_atom input, union u_ft_tobject string)
 
 	i = 0;
 	result = input;
-	while (string.as_str[i])
+	while (identifier.as_str[i])
 	{
 		c = ft_parser_peek(result.string, 0);
-		if (*c != ft_toupper(string.as_str[i]))
+		if (*c != ft_toupper(identifier.as_str[i]))
 			return (ft_parser_atom_validity_set(input, false));
 		result.string = ft_parser_advance(result.string, 1);
 		i++;
 	}
-	return (result);
+	return (ft_parser_atom_validity_set(result, true));
 }
 
 /**
@@ -41,7 +41,9 @@ t_mrt_scene_parser_atom	mrt_scene_parser_identifier(\
 t_mrt_scene_parser_atom input, union u_ft_tobject identifier)
 {
 	t_mrt_scene_parser_atom	result;
+	char					first_character;
 
+	first_character = *ft_parser_peek(input.string, 0);
 	if (ft_isupper(identifier.as_str[0]))
 		result = ft_parser_ignore_string(input, identifier);
 	else
@@ -52,7 +54,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject identifier)
 		}, 2, input, ft_tobject_empty());
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
-	*(bool *) input.payload.as_ptr = ft_isupper(identifier.as_str[0]);
+	*(bool *) input.payload.as_ptr = ft_isupper(first_character);
 	return (ft_parser_atom(input.payload, result.string));
 }
 
