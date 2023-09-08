@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:02:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 08:29:01 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/08 07:22:11 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point, t_mrt_vec2 *roots)
 	tmp = vec3_subtract(plane_point, ray->origin);
 	t = vec3_dot(ray->direction, cylinder->scene->orientation);
 	if (t == 0)
-		return ;
+		return ;	
 	t = vec3_dot(tmp, vec3_sdivide(cylinder->scene->orientation, t));
 	if (t < 0)
 		return ;
 	if (!vec3_is_equal(plane_point, cylinder->scene->center))
 		intersect_caps(ray, cylinder, cylinder->scene->center, roots);
-	distance = ray_distance(ray, t);
-	if (distance < (cylinder->scene->diameter / 2))
+	distance = vec3_length(vec3_subtract(ray_at(ray, t), plane_point));
+	if (distance <= (cylinder->scene->diameter / 2))
 	{
-		if (roots->x < 0)
+		if (roots->x < 0 || t < roots->x)
 			roots->x = t;
-		else if (roots->y < 0)
+		else if (roots->y < 0 || t < roots->y)
 			roots->y = t;
 	}
 }
@@ -83,6 +83,11 @@ t_mrt_vec2 *roots)
 	orientation = cylinder->scene->orientation;
 	start = cylinder->scene->center;
 	end = vec3_add(start, vec3_smultiply(orientation, cylinder->scene->height));
+	if (roots->x < 0 && roots->y < 0)
+	{
+		intersect_caps(ray, cylinder, end, roots);
+		return ;
+	}
 	pos_start = vec3_subtract(start, ray_at(ray, roots->y));
 	pos_end = vec3_subtract(end, ray_at(ray, roots->y));
 	if (!(vec3_dot(pos_start, orientation) <= 0 && \
@@ -93,10 +98,7 @@ t_mrt_vec2 *roots)
 	if (!(vec3_dot(pos_start, orientation) <= 0 && \
 		vec3_dot(pos_end, orientation) >= 0))
 		roots->x = -1;
-	if (roots->x >= 0 && roots->y >= 0)
-		return ;
-	else
-		intersect_caps(ray, cylinder, end, roots);
+	intersect_caps(ray, cylinder, end, roots);
 }
 
 /**
