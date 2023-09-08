@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:32:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/08 21:52:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,28 +96,15 @@ struct s_mrt_lighting *lighting_data);
 ////////////   lights   ////////////
 ////////////////////////////////////
 
-struct s_mrt_lights
-{
-	t_mrt_vec3	ambient;
-	t_mrt_vec3	diffuse;
-	t_mrt_vec3	specular;
-};
-
-void				mrt_lights_set_ambient(struct s_mrt_lights *lights, \
+void				mrt_lights_add_ambient(t_mrt_percentage *lights, \
 t_mrt_color effective_color, double ambient_effectiveness);
 
-void				mrt_lights_set_diffuse(struct s_mrt_lights *lights, \
+void				mrt_lights_add_diffuse(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \
 double diffuse_effectiveness);
 
-void				mrt_lights_set_specular(struct s_mrt_lights *lights, \
+void				mrt_lights_add_specular(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \
 struct s_mrt_lighting *lighting_data);
-
-t_mrt_vec3			mrt_lights_combine_diffuse_level(\
-struct s_mrt_lights *lights);
-
-t_mrt_vec3			mrt_lights_combine_specular_level(\
-struct s_mrt_lights *lights);
 
 #endif
