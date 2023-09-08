@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:27:41 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/08 14:39:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERER_H
 # define RENDERER_H
 
+# include "MINIRT/renderer/intersection.h"
+# include "MINIRT/renderer/lighting.h"
+# include "MINIRT/renderer/ray.h"
 # include "MINIRT/unit.h"
 # include "MINIRT/world.h"
 # include "MINIRT/world/camera.h"
