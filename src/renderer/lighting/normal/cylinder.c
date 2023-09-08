@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 23:09:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 08:14:33 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/08 21:54:00 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_mrt_point3d center)
 			return (vec3_negate(scene->orientation));
 		else
 		{
-			if (distance < (vec3_length( \
+			if (distance < (vec3_length(\
 			vec3_subtract(scene->center, intersection))))
 				return (scene->orientation);
 			else
@@ -38,7 +38,7 @@ t_mrt_point3d center)
 		return (vec3_return_zero());
 }
 
-// static t_mrt_direction3d_unit	cylinder_normal_at2(\
+// static t_mrt_direction3d_unit	cylinder_normal_at2(
 // struct s_mrt_scene_cylinder *scene, t_mrt_point3d intersection)
 // {
 // 	t_mrt_direction3d_unit	normal;
