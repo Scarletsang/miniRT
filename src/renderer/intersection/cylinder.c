@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:02:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/05 12:20:53 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/08 07:22:11 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * Use this formula to get t. t will help to easily find
  * the cap intersection point.
  * P = r.origin + t * r.direction
- * t = P / r.direction - r.origin
+ * t = P / r.direction - r.origin`
  * to determine P, calculate on which point the ray is
  * on the same "Y" value as End, if any;
  * Of course, the "Y" value is not always actually y.
@@ -45,10 +45,9 @@
  * https://www.math3d.org/TDdXCmoIU
 */
 
-static double	intersect_caps(struct s_mrt_ray *ray, \
-struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
+static void	intersect_caps(struct s_mrt_ray *ray, \
+struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point, t_mrt_vec2 *roots)
 {
-	t_mrt_point3d	intersection;
 	double			distance;
 	double			t;
 	t_mrt_vec3		tmp;
@@ -56,22 +55,24 @@ struct s_mrt_cylinder *cylinder, t_mrt_point3d plane_point)
 	tmp = vec3_subtract(plane_point, ray->origin);
 	t = vec3_dot(ray->direction, cylinder->scene->orientation);
 	if (t == 0)
-		return (0);
+		return ;	
 	t = vec3_dot(tmp, vec3_sdivide(cylinder->scene->orientation, t));
 	if (t < 0)
-		return (0);
-	intersection = ray_at(ray, t);
-	distance = vec3_length(vec3_subtract(plane_point, intersection));
-	if (distance <= (cylinder->scene->diameter / 2))
-		return (vec3_length(vec3_subtract(intersection, ray->origin)));
+		return ;
 	if (!vec3_is_equal(plane_point, cylinder->scene->center))
-		return (intersect_caps(ray, cylinder, cylinder->scene->center));
-	else
-		return (0);
+		intersect_caps(ray, cylinder, cylinder->scene->center, roots);
+	distance = vec3_length(vec3_subtract(ray_at(ray, t), plane_point));
+	if (distance <= (cylinder->scene->diameter / 2))
+	{
+		if (roots->x < 0 || t < roots->x)
+			roots->x = t;
+		else if (roots->y < 0 || t < roots->y)
+			roots->y = t;
+	}
 }
 
-static bool	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
-t_mrt_vec2 roots)
+static void	is_in_range(struct s_mrt_ray *ray, struct s_mrt_cylinder *cylinder, \
+t_mrt_vec2 *roots)
 {
 	t_mrt_direction3d	orientation;
 	t_mrt_point3d		start;
@@ -82,19 +83,22 @@ t_mrt_vec2 roots)
 	orientation = cylinder->scene->orientation;
 	start = cylinder->scene->center;
 	end = vec3_add(start, vec3_smultiply(orientation, cylinder->scene->height));
-	pos_start = vec3_subtract(start, ray_at(ray, roots.y));
-	pos_end = vec3_subtract(end, ray_at(ray, roots.y));
-	if (vec3_dot(pos_start, orientation) <= 0 && \
-		vec3_dot(pos_end, orientation) >= 0)
-		return (true);
-	if (intersect_caps(ray, cylinder, end) > 0)
-		return (true);
-	pos_start = vec3_subtract(start, ray_at(ray, roots.x));
-	pos_end = vec3_subtract(end, ray_at(ray, roots.x));
-	if (vec3_dot(pos_start, orientation) <= 0 && \
-		vec3_dot(pos_end, orientation) >= 0)
-		return (true);
-	return (false);
+	if (roots->x < 0 && roots->y < 0)
+	{
+		intersect_caps(ray, cylinder, end, roots);
+		return ;
+	}
+	pos_start = vec3_subtract(start, ray_at(ray, roots->y));
+	pos_end = vec3_subtract(end, ray_at(ray, roots->y));
+	if (!(vec3_dot(pos_start, orientation) <= 0 && \
+		vec3_dot(pos_end, orientation) >= 0))
+		roots->y = -1;
+	pos_start = vec3_subtract(start, ray_at(ray, roots->x));
+	pos_end = vec3_subtract(end, ray_at(ray, roots->x));
+	if (!(vec3_dot(pos_start, orientation) <= 0 && \
+		vec3_dot(pos_end, orientation) >= 0))
+		roots->x = -1;
+	intersect_caps(ray, cylinder, end, roots);
 }
 
 /**
@@ -132,9 +136,8 @@ struct s_mrt_ray *ray)
 	roots = mrt_quadratic_roots(quadratic, tmp);
 	if (tmp < 0)
 		return (-1);
-	if (is_in_range(ray, cylinder, roots))
-		return (mrt_quadratic_smallest_root(roots));
-	return (-1);
+	is_in_range(ray, cylinder, &roots);
+	return (mrt_quadratic_smallest_root(roots));
 }
 
 /*
