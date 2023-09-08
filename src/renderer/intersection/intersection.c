@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 10:50:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/05 13:51:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/08 09:30:17 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ struct s_mrt_world_entry object)
 inline bool	mrt_intersection_is_empty(\
 struct s_mrt_intersection *intersection)
 {
-	return (mrt_world_entry_is_empty(&intersection->object));
+	return (mrt_world_entry_is_empty(&intersection->object) || \
+		intersection->time < 0);
 }
 
 inline struct s_mrt_intersection	mrt_intersection_empty(void)
