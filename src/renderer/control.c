@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/09 08:41:48 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:18:37 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_mrt_percentage	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
 			*((struct s_mrt_world_entry *) \
 			ft_vector_iterator_current(&iterator))->object.light_point);
 		color = vec3_add(color, mrt_lighting_calculate(lighting_data, \
-			&renderer->config));
+			renderer));
 		if (renderer->config.debug_level == DEBUG_LEVEL_PRINT)
 			vec3_print(color);
 		ft_vector_iterator_next(&iterator);

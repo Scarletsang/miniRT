@@ -69,7 +69,8 @@ RENDERER_SRC:= \
 	renderer/lighting/misc.c \
 	renderer/lighting/calculation.c \
 	renderer/lighting/normal/normal.c \
-	renderer/lighting/normal/cylinder.c
+	renderer/lighting/normal/cylinder.c \
+	renderer/lighting/shading.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \

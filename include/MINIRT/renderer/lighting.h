@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 21:52:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 12:11:05 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_mrt_vec3 world_point);
 //////////////////////////////////////
 
 /**
- * @brief 
+ * @brief
  * @details Data comes from:
  * 1. eye_vector: negate the ray direction
- * 2. hit_position: the point in world space where the ray intersected the object
+ * 2. hit_position: the point in world space where the ray intersected the objct
  * 3. normal: the normal vector of the surface at the point of intersection
  * 4. material: the material of the object at the point of intersection
  * 5. light: the light source
@@ -67,7 +67,7 @@ struct s_mrt_lighting *lighting_data, struct s_mrt_light_point light_source);
 struct				s_mrt_renderer_config;
 
 t_mrt_percentage	mrt_lighting_calculate(\
-struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config);
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_data *renderer);
 
 void				mrt_lighting_print(struct s_mrt_lighting *lighting_data);
 
@@ -106,5 +106,12 @@ double diffuse_effectiveness);
 void				mrt_lights_add_specular(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \
 struct s_mrt_lighting *lighting_data);
+
+/////////////////////////////////////
+////////////   shading   ////////////
+/////////////////////////////////////
+
+bool	mrt_is_shadow(struct s_mrt_lighting *lighting_data, \
+	struct s_mrt_renderer_data *renderer, t_mrt_vec3 lightv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:06:51 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/09 08:42:54 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/09 15:28:17 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ struct s_mrt_lights_calculation *result, struct s_mrt_lighting *lighting_data)
 }
 
 t_mrt_percentage	mrt_lighting_calculate(\
-struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config)
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_data *renderer)
 {
 	struct s_mrt_lights_calculation	calculation;
 	t_mrt_percentage				light;
@@ -53,13 +53,14 @@ struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config)
 	mrt_lights_calculation_basic(&calculation, lighting_data);
 	mrt_lights_add_ambient(&light, calculation.effective_color, \
 		lighting_data->ambient_effectiveness);
-	if ((config->lighting_level < RENDER_DIFFUSE) || \
-		(calculation.light_normal_angle < 0))
+	if ((renderer->config.lighting_level < RENDER_DIFFUSE) || \
+		(calculation.light_normal_angle < 0) || \
+		mrt_is_shadow(lighting_data, renderer, calculation.lightv))
 		return (light);
 	mrt_lights_add_diffuse(&light, &calculation, \
 		lighting_data->material.diffuse);
 	mrt_lights_calculation_reflection(&calculation, lighting_data);
-	if ((config->lighting_level < RENDER_SPECULAR) || \
+	if ((renderer->config.lighting_level < RENDER_SPECULAR) || \
 		(calculation.reflect_eye_angle <= 0))
 		return (light);
 	mrt_lights_add_specular(&light, &calculation, lighting_data);
