@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 19:18:17 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 15:53:38 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:43:04 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
 #include "MINIRT/memory.h"
-#include "MINIRT/renderer/intersection.h"
 #include "LIBFT/vector.h"
 
 int	mrt_intersections_init(t_mrt_intersections *intersections, \

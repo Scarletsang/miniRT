@@ -5,14 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 13:00:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 14:39:16 by kisikogl         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/09/09 09:10:09 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef RENDERER_H
 # define RENDERER_H
 
+# include "MINIRT/renderer/intersection.h"
+# include "MINIRT/renderer/lighting.h"
+# include "MINIRT/renderer/ray.h"
 # include "MINIRT/renderer/intersection.h"
 # include "MINIRT/renderer/lighting.h"
 # include "MINIRT/renderer/ray.h"

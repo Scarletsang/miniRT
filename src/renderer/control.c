@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:15:33 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:41:48 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/ray.h"
-#include "MINIRT/renderer/intersection.h"
-#include "MINIRT/renderer/lighting.h"
 #include <stdint.h>
 
 t_mrt_percentage	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \

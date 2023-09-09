@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   calculation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:06:51 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 21:43:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:42:54 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MINIRT/renderer/lighting.h"
 #include "MINIRT/renderer.h"
 
 /**

@@ -6,13 +6,11 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 10:50:52 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 09:30:17 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/09 08:41:58 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/ray.h"
-#include "MINIRT/renderer/intersection.h"
 
 inline struct s_mrt_intersection	mrt_intersection(double time, \
 struct s_mrt_world_entry object)

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 19:06:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:15:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:43:13 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/intersection.h"
 
 static void	mrt_intersections_sort_swap(struct s_mrt_intersection **a, \
 struct s_mrt_intersection **b)
