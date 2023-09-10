@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/09 12:11:05 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/10 12:55:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ struct s_mrt_lighting *lighting_data);
 ////////////////////////////////////
 
 void				mrt_lights_add_ambient(t_mrt_percentage *lights, \
-t_mrt_color effective_color, double ambient_effectiveness);
+t_mrt_color material_color, double ambient_effectiveness);
 
 void				mrt_lights_add_diffuse(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \

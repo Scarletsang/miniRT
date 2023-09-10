@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:07:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 19:58:18 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/10 12:51:03 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include <stdio.h>
 
 void	mrt_lights_add_ambient(t_mrt_percentage *light, \
-t_mrt_color effective_color, double ambient_effectiveness)
+t_mrt_color material_color, double ambient_effectiveness)
 {
-	*light = vec3_add(*light, vec3_smultiply(effective_color, \
-		ambient_effectiveness));
+	*light = vec3_add(*light, vec3_smultiply(material_color, \
+	ambient_effectiveness));
 }
 
 void	mrt_lights_add_diffuse(t_mrt_percentage *light, \
