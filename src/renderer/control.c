@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/09 11:18:37 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/10 08:12:22 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ uint32_t x, uint32_t y)
 
 	ray = mrt_render_ray_generate(mrt_world_get_camera(renderer->world), x, y);
 	intersection = mrt_intersect_world(renderer, ray);
+	mrt_intersections_reset(&renderer->cache.intersections, \
+		&renderer->cache.allocators);
 	if (mrt_intersection_is_empty(&intersection))
 		color = vec3(0, 0, 0);
 	else
 		color = mrt_render(renderer, ray, intersection);
-	mrt_intersections_reset(&renderer->cache.intersections, \
-		&renderer->cache.allocators);
 	return (color);
 }
