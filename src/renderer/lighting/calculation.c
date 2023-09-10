@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:06:51 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/09 15:28:17 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/10 12:50:44 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_data *renderer)
 
 	light = vec3(0, 0, 0);
 	mrt_lights_calculation_basic(&calculation, lighting_data);
-	mrt_lights_add_ambient(&light, calculation.effective_color, \
+	mrt_lights_add_ambient(&light, lighting_data->material.color, \
 		lighting_data->ambient_effectiveness);
 	if ((renderer->config.lighting_level < RENDER_DIFFUSE) || \
 		(calculation.light_normal_angle < 0) || \
