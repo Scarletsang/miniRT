@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:15:33 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/10 08:12:22 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/ray.h"
-#include "MINIRT/renderer/intersection.h"
-#include "MINIRT/renderer/lighting.h"
 #include <stdint.h>
 
 t_mrt_percentage	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
@@ -30,7 +27,7 @@ t_mrt_percentage	mrt_render_lighting(struct s_mrt_renderer_data *renderer, \
 			*((struct s_mrt_world_entry *) \
 			ft_vector_iterator_current(&iterator))->object.light_point);
 		color = vec3_add(color, mrt_lighting_calculate(lighting_data, \
-			&renderer->config));
+			renderer));
 		if (renderer->config.debug_level == DEBUG_LEVEL_PRINT)
 			vec3_print(color);
 		ft_vector_iterator_next(&iterator);
@@ -84,11 +81,11 @@ uint32_t x, uint32_t y)
 
 	ray = mrt_render_ray_generate(mrt_world_get_camera(renderer->world), x, y);
 	intersection = mrt_intersect_world(renderer, ray);
+	mrt_intersections_reset(&renderer->cache.intersections, \
+		&renderer->cache.allocators);
 	if (mrt_intersection_is_empty(&intersection))
 		color = vec3(0, 0, 0);
 	else
 		color = mrt_render(renderer, ray, intersection);
-	mrt_intersections_reset(&renderer->cache.intersections, \
-		&renderer->cache.allocators);
 	return (color);
 }

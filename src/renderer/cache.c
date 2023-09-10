@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cache.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:59:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/03 19:24:16 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:42:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/intersection.h"
 #include "MINIRT/memory.h"
 #include "LIBFT/vector.h"
 #include <stdint.h>

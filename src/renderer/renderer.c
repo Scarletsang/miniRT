@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:09:54 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 12:16:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/09 08:42:24 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/renderer.h"
-#include "MINIRT/renderer/ray.h"
-#include "MINIRT/renderer/intersection.h"
 #include <stdint.h>
 
 int	mrt_renderer_data_init(struct s_mrt_renderer_data *data, \
