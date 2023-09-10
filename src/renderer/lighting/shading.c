@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 08:48:21 by kisikogl          #+#    #+#             */
-/*   Updated: 2023/09/10 08:14:28 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/10 10:12:16 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,7 @@ static bool	is_object_in_between(struct s_mrt_intersection *intersection, \
 		is_shadow = false;
 	if (ray_distance(ray, intersection->time) < \
 	vec3_length(vec3_subtract(light_position, hit_position)))
-	{
-		// printf("id: %d\n", intersection->object.identifier);
-		// printf("t: %f\n", intersection->time);
-		// printf("hit_point to object: %f\n", ray_distance(ray, intersection->time));
-		// printf("hit_point to light: %f\n", vec3_length(vec3_subtract(light_position, hit_position)));
 		is_shadow = true;
-	}
 	else
 		is_shadow = false;
 	return (is_shadow);
