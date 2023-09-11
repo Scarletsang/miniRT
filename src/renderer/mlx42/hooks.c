@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:38:18 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 05:16:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 05:51:45 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ struct s_mrt_renderer_mlx42 *renderer)
 		mlx_is_mouse_down(renderer->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
 		camera = mrt_world_get_camera(renderer->renderer_data.world);
-		camera->scene->orientation.x += \
+		camera->scene->orientation = mrt_mlx42_rotate(\
+			camera->scene->orientation, \
 			(renderer->last_cursor_position.x - xpos) * 1.5 / \
-				camera->screen.width;
-		camera->scene->orientation.y += \
-			(ypos - renderer->last_cursor_position.y) * 1.5 / \
-				camera->screen.height;
+				camera->screen.width, \
+			(renderer->last_cursor_position.y - ypos) * 1.5 / \
+				camera->screen.height);
 		camera->scene->orientation = vec3_normalize(camera->scene->orientation);
 		renderer->control.rotation = 1;
 	}

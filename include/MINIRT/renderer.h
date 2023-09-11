@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 05:27:29 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 05:27:32 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 05:50:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,11 @@ struct s_mrt_renderer_mlx42 *renderer);
 void						mrt_mlx42_xz_axis_movement(\
 struct s_mrt_scene_camera *scene_camera, struct s_mrt_mlx42_control control);
 
+t_mrt_vec3					mrt_mlx42_rotate_y(t_mrt_vec3 v, double xz_theta);
+
+t_mrt_vec3					mrt_mlx42_rotate_x(t_mrt_vec3 v, double yz_theta);
+
 t_mrt_vec3					mrt_mlx42_rotate(t_mrt_vec3 v, double xz_theta, \
-double y_theta);
+double yz_theta);
 
 #endif
