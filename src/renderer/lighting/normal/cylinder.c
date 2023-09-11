@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 23:09:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 10:43:26 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:28:55 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct s_mrt_scene_cylinder *scene, t_mrt_point3d intersection)
 	return (vec3_normalize(tmp));
 }
 
-bool		mrt_lighting_is_camera_inside_cylinder( \
+bool	mrt_lighting_is_camera_inside_cylinder( \
 struct s_mrt_cylinder *cylinder, struct s_mrt_ray *ray)
 {
 	t_mrt_point3d	end_center;
@@ -73,7 +73,7 @@ struct s_mrt_cylinder *cylinder, struct s_mrt_ray *ray)
 	if (vec3_dot(center_to_ray, center_to_end_center) >= 0 && \
 		vec3_dot(end_center_to_ray, center_to_end_center) <= 0)
 	{
-		cross_length = vec3_length( \
+		cross_length = vec3_length(\
 			vec3_cross(center_to_ray, center_to_end_center));
 		if ((cross_length / vec3_length(center_to_end_center)) <= \
 			(cylinder->scene->diameter / 2))

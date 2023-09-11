@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 04:43:47 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 10:43:52 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:29:02 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_mrt_vec3 world_point)
 	return (vec3_normalize(vec3_subtract(world_point, sphere->scene->center)));
 }
 
-bool		mrt_lighting_is_camera_inside_sphere( \
+bool	mrt_lighting_is_camera_inside_sphere( \
 struct s_mrt_sphere *sphere, struct s_mrt_ray *ray)
 {
 	double	distance;

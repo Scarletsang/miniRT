@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpolation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 22:59:34 by htsang            #+#    #+#             */
-/*   Updated: 2023/07/30 10:59:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 13:30:34 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ double	mrt_inverse_lerp(t_mrt_range range, float value)
 	return ((value - mrt_range_minimum(range)) / mrt_range_size(range));
 }
 
-double	mrt_remap(t_mrt_range input_range, t_mrt_range output_range, float value)
+double	mrt_remap(t_mrt_range input_range, t_mrt_range output_range, \
+	float value)
 {
-	float percentage;
+	float	percentage;
 
 	percentage = mrt_inverse_lerp(input_range, value);
 	return (mrt_lerp(output_range, percentage));

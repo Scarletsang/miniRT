@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 10:40:30 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:29:30 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ t_mrt_vec3 world_point);
 ////////////   check if camera is inside object   ////////////
 //////////////////////////////////////////////////////////////
 
-bool		mrt_lighting_is_camera_inside_sphere( \
+bool				mrt_lighting_is_camera_inside_sphere( \
 struct s_mrt_sphere *sphere, struct s_mrt_ray *ray);
 
-bool		mrt_lighting_is_camera_inside_cylinder( \
+bool				mrt_lighting_is_camera_inside_cylinder( \
 struct s_mrt_cylinder *cylinder, struct s_mrt_ray *ray);
 
 //////////////////////////////////////
