@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:29:23 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 11:41:31 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 06:02:44 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ struct s_mrt_renderer_config *config)
 		(mlx_keyfunc) mrt_mlx42_key_hook, &renderer);
 	mlx_loop_hook(renderer.mlx, \
 		(void (*)(void *)) mrt_mlx42_loop_hook, &renderer);
-	mlx_mouse_hook(renderer.mlx, \
-		(mlx_mousefunc) mrt_mlx42_mouse_hook, &renderer);
+	mlx_scroll_hook(renderer.mlx, \
+		(mlx_scrollfunc) mrt_mlx42_scroll_hook, &renderer);
+	mlx_cursor_hook(renderer.mlx, \
+		(mlx_cursorfunc) mrt_mlx42_cursor_hook, &renderer);
 	mlx_loop(renderer.mlx);
 	mrt_renderer_data_free(&renderer.renderer_data);
 	mlx_terminate(renderer.mlx);

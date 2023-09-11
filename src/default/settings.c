@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:27:39 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:25:27 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 06:03:05 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct s_mrt	mrt_default(const char *scene_file_name)
 struct s_mrt_world_options	mrt_default_world_options(void)
 {
 	return ((struct s_mrt_world_options){
-		.camera_focal_length = 1.0,
+		.camera_focal_length = 0.5,
 		.camera_image = mrt_image_fixed_width(30.0 / 9.0, 1600)
 	});
 }

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:11:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/02 15:51:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 03:24:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ keys_t key2)
 
 unsigned int	mrt_mlx42_control_as_int(struct s_mrt_mlx42_control control)
 {
-	return (*(unsigned int *) &control);
+	return (control.forward << 0 | control.backward << 1 | \
+		control.left << 2 | control.right << 3 | \
+		control.upward << 4 | control.downward << 5 | \
+		control.rotation << 6 | control.zoom << 7);
 }

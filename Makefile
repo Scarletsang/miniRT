@@ -57,6 +57,7 @@ RENDERER_SRC:= \
 	renderer/mlx42.c \
 	renderer/mlx42/setup.c \
 	renderer/mlx42/hooks.c \
+	renderer/mlx42/action.c \
 	renderer/mlx42/control.c \
 	renderer/ppm/setup.c \
 	renderer/ray/ray.c \
@@ -72,7 +73,8 @@ RENDERER_SRC:= \
 	renderer/lighting/misc.c \
 	renderer/lighting/calculation.c \
 	renderer/lighting/normal/normal.c \
-	renderer/lighting/normal/cylinder.c
+	renderer/lighting/normal/cylinder.c \
+	renderer/lighting/shading.c
 SCENE_SRC:= \
 	scene/scene.c \
 	scene/scene_entry.c \

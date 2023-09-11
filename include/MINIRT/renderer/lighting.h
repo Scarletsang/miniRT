@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 13:32:46 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/10 14:28:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ t_mrt_vec3 world_point);
 //////////////////////////////////////
 
 /**
- * @brief 
+ * @brief
  * @details Data comes from:
  * 1. eye_vector: negate the ray direction
- * 2. hit_position: the point in world space where the ray intersected the object
+ * 2. hit_position: the point in world space where the ray intersected the objct
  * 3. normal: the normal vector of the surface at the point of intersection
  * 4. material: the material of the object at the point of intersection
  * 5. light: the light source
@@ -67,7 +67,7 @@ struct s_mrt_lighting *lighting_data, struct s_mrt_light_point light_source);
 struct				s_mrt_renderer_config;
 
 t_mrt_percentage	mrt_lighting_calculate(\
-struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_config *config);
+struct s_mrt_lighting *lighting_data, struct s_mrt_renderer_data *renderer);
 
 void				mrt_lighting_print(struct s_mrt_lighting *lighting_data);
 
@@ -96,28 +96,22 @@ struct s_mrt_lighting *lighting_data);
 ////////////   lights   ////////////
 ////////////////////////////////////
 
-struct s_mrt_lights
-{
-	t_mrt_vec3	ambient;
-	t_mrt_vec3	diffuse;
-	t_mrt_vec3	specular;
-};
+void				mrt_lights_add_ambient(t_mrt_percentage *lights, \
+t_mrt_color material_color, double ambient_effectiveness);
 
-void				mrt_lights_set_ambient(struct s_mrt_lights *lights, \
-t_mrt_color effective_color, double ambient_effectiveness);
-
-void				mrt_lights_set_diffuse(struct s_mrt_lights *lights, \
+void				mrt_lights_add_diffuse(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \
 double diffuse_effectiveness);
 
-void				mrt_lights_set_specular(struct s_mrt_lights *lights, \
+void				mrt_lights_add_specular(t_mrt_percentage *lights, \
 struct s_mrt_lights_calculation *calculation, \
 struct s_mrt_lighting *lighting_data);
 
-t_mrt_vec3			mrt_lights_combine_diffuse_level(\
-struct s_mrt_lights *lights);
+/////////////////////////////////////
+////////////   shading   ////////////
+/////////////////////////////////////
 
-t_mrt_vec3			mrt_lights_combine_specular_level(\
-struct s_mrt_lights *lights);
+bool				mrt_is_shadow(struct s_mrt_lighting *lighting_data, \
+	struct s_mrt_renderer_data *renderer, t_mrt_vec3 lightv);
 
 #endif
