@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 04:14:00 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 04:21:57 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 02:59:02 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "MINIRT/renderer.h"
 #include <MLX42/MLX42.h>
 #include <stdlib.h>
+#include <float.h>
 
 int	mrt_renderer_mlx42_init(struct s_mrt_renderer_mlx42 *renderer, \
 struct s_mrt_world *world, struct s_mrt_renderer_config *config)
@@ -25,7 +26,8 @@ struct s_mrt_world *world, struct s_mrt_renderer_config *config)
 			mrt_world_get_camera(world)->screen.height, \
 			"miniRT", false), \
 		.image = NULL, \
-		.control = (struct s_mrt_mlx42_control){0} \
+		.control = (struct s_mrt_mlx42_control){0}, \
+		.last_cursor_position = vec2(DBL_MAX, DBL_MAX) \
 	};
 	if ((renderer->mlx == NULL) || \
 		(mrt_renderer_data_init(&renderer->renderer_data, world, config)))
