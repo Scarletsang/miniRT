@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:01:58 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 10:02:31 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 12:59:20 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "LIBFT/parser.h"
 #include "LIBFT/iostream.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static inline t_mrt_scene_parser_atom	mrt_scene_parser_entry(\
 t_mrt_scene_parser_atom input, union u_ft_tobject option)
@@ -68,6 +69,7 @@ int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
 	{
 		if (mrt_scene_parser_line(scene, &parser))
 		{
+			printf("Error\n");
 			ft_error_traces_print(&parser.traces);
 			return (mrt_scene_parser_free(&parser), EXIT_FAILURE);
 		}
@@ -75,6 +77,7 @@ int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
 	}
 	if (mrt_scene_parser_line(scene, &parser))
 	{
+		printf("Error\n");
 		ft_error_traces_print(&parser.traces);
 		return (mrt_scene_parser_free(&parser), EXIT_FAILURE);
 	}

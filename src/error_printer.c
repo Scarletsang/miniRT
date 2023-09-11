@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 02:53:53 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 06:56:15 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 12:58:12 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 void	mrt_error_printer(enum e_mrt_program_error_code error_code)
 {
 	if (error_code == MRT_ERROR_FILE_NON_EXISIT)
-		printf("Error: File does not exist\n");
+		printf("Error\nFile does not exist\n");
 	else if (error_code == MRT_ERROR_FILE_WRONG_EXTENSION)
-		printf("Error: File has wrong extension\n");
+		printf("Error\nFile has wrong extension\n");
 	else if (error_code == MRT_ERROR_WORLD_MISSING_AMBIENT_LIGHT)
-		printf("Error: World is missing ambient light\n");
+		printf("Error\nWorld is missing ambient light\n");
 	else if (error_code == MRT_ERROR_WORLD_MISSING_CAMERA)
-		printf("Error: World is missing camera\n");
+		printf("Error\nWorld is missing camera\n");
 	else
-		printf("Error: Received unknown error\n");
+		printf("Error\nReceived unknown error\n");
 }
