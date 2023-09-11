@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:12:50 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 16:40:26 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:12:35 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option)
 	parser = ft_parser_struct_init(\
 		(void *[4]){&material.color, &material.diffuse, \
 		&material.specular, &material.shininess}, 4);
-	result = mrt_scene_parser_material_run(ft_parser_atom(\
-		ft_tobject_ptr(&parser), input.string));
+	result = mrt_scene_parser_material_run(ft_parser_atom_payload_set(\
+		input, ft_tobject_ptr(&parser)));
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
-	*(struct s_mrt_material *) input.payload.as_ptr = material;
-	return (ft_parser_atom(input.payload, result.string));
+	*(struct s_mrt_material *) result.payload.as_ptr = material;
+	return (result);
 }

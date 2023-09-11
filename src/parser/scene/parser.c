@@ -6,82 +6,56 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:07:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 22:11:21 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:05:06 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/parser/scene_parser.h"
+#include "MINIRT/parser/general_parser.h"
+#include "MINIRT/error.h"
 #include "LIBFT/parser.h"
 #include "LIBFT/iostream.h"
+#include "LIBFT/string.h"
 #include <fcntl.h>
 #include <stdlib.h>
 
-static inline t_mrt_scene_parser_atom	mrt_scene_parser_entry(\
-t_mrt_scene_parser_atom input, union u_ft_tobject option)
+static bool	mrt_scene_parser_file_name_is_valid(const char *file_name)
 {
-	return (ft_combinator_or((struct s_ft_parser_entity[7]){\
-		ft_parser_entity(&mrt_scene_parser_sphere, option), \
-		ft_parser_entity(&mrt_scene_parser_plane, option), \
-		ft_parser_entity(&mrt_scene_parser_cylinder, option), \
-		ft_parser_entity(&mrt_scene_parser_light_ambient, option), \
-		ft_parser_entity(&mrt_scene_parser_light_point, option), \
-		ft_parser_entity(&mrt_scene_parser_camera, option), \
-		ft_parser_entity(&ft_parser_ignore_multiple, ft_tobject_str(" \t\n")) \
-	}, 7, input, ft_tobject_empty()));
+	size_t	len;
+
+	len = ft_strlen(file_name);
+	if (len < 4)
+		return (false);
+	return (ft_strcmp(file_name + len - 4, ".rt") == 0);
 }
 
-static int	mrt_scene_parser_cleanup(struct s_ft_iostream *iostream, \
-int fd, int return_value)
+int	mrt_scene_parser_init(struct s_mrt_scene_parser *parser, \
+const char *file_path)
 {
-	int	exit_code;
-
-	exit_code = EXIT_SUCCESS;
-	if (fd != -1)
+	if (!mrt_scene_parser_file_name_is_valid(file_path))
 	{
-		if (close(fd) == -1)
-			exit_code = EXIT_FAILURE;
-	}
-	ft_iostream_free(iostream);
-	if (exit_code == EXIT_FAILURE)
+		mrt_error_printer(MRT_ERROR_FILE_WRONG_EXTENSION);
 		return (EXIT_FAILURE);
-	return (return_value);
-}
-
-static int	mrt_scene_parser_from_iostream(struct s_mrt_scene *scene, \
-struct s_ft_iostream *iostream)
-{
-	t_mrt_scene_parser_atom	atom;
-
-	if (!ft_slice_is_empty(ft_iostream_to_slice(iostream)))
-	{
-		atom = mrt_scene_parser_entry(\
-			ft_parser_atom(ft_tobject_ptr(scene), \
-			ft_iostream_to_slice(iostream)), ft_tobject_empty());
-		if (!atom.is_valid || !ft_parser_atom_is_end(atom))
-			return (EXIT_FAILURE);
 	}
+	parser->fd = open(file_path, O_RDONLY, 0644);
+	if (parser->fd == -1)
+	{
+		mrt_error_printer(MRT_ERROR_FILE_NON_EXISIT);
+		return (EXIT_FAILURE);
+	}
+	else if (ft_iostream_init(&parser->iostream))
+		return (close(parser->fd), EXIT_FAILURE);
+	else if (ft_error_traces_init(&parser->traces, \
+		&mrt_syntax_expected_printer, \
+		&mrt_syntax_error_printer))
+		return (mrt_scene_parser_free(parser), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	mrt_scene_parse_from_file(struct s_mrt_scene *scene, const char *file_path)
+void	mrt_scene_parser_free(struct s_mrt_scene_parser *parser)
 {
-	struct s_ft_iostream	iostream;
-	int						fd;
-
-	fd = open(file_path, O_RDONLY, 0644);
-	if (fd == -1)
-		return (EXIT_FAILURE);
-	if (ft_iostream_init(&iostream))
-		return (close(fd), EXIT_FAILURE);
-	while (!ft_iostream_read_until_delimiter(&iostream, fd, \
-		ft_str_from_cstring("\n")))
-	{
-		if (mrt_scene_parser_from_iostream(scene, &iostream))
-			return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
-		ft_iostream_reset(&iostream);
-	}
-	if (mrt_scene_parser_from_iostream(scene, &iostream) || \
-		!mrt_scene_is_valid(scene))
-		return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_FAILURE));
-	return (mrt_scene_parser_cleanup(&iostream, fd, EXIT_SUCCESS));
+	if (parser->fd != -1)
+		close(parser->fd);
+	ft_iostream_free(&parser->iostream);
+	ft_error_traces_free(&parser->traces);
 }
