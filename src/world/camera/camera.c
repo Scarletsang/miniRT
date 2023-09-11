@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 18:47:45 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 19:22:58 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 04:42:40 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ struct s_mrt_image screen, double focal_length)
 	camera = malloc(sizeof(struct s_mrt_camera));
 	if (!camera)
 		return (NULL);
+	scene_camera->orientation = vec3_normalize(scene_camera->orientation);
 	*camera = (struct s_mrt_camera){
 		.scene = scene_camera,
 		.screen = screen,

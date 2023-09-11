@@ -54,6 +54,7 @@ RENDERER_SRC:= \
 	renderer/ppm.c \
 	renderer/mlx42/setup.c \
 	renderer/mlx42/hooks.c \
+	renderer/mlx42/action.c \
 	renderer/mlx42/control.c \
 	renderer/ppm/setup.c \
 	renderer/ray/ray.c \

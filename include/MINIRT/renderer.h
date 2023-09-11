@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/09/09 09:10:09 by kisikogl         ###   ########.fr       */
+/*   Created: 2023/09/11 05:27:29 by htsang            #+#    #+#             */
+/*   Updated: 2023/09/11 05:50:24 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef RENDERER_H
 # define RENDERER_H
 
-# include "MINIRT/renderer/intersection.h"
-# include "MINIRT/renderer/lighting.h"
-# include "MINIRT/renderer/ray.h"
 # include "MINIRT/renderer/intersection.h"
 # include "MINIRT/renderer/lighting.h"
 # include "MINIRT/renderer/ray.h"
@@ -166,6 +162,8 @@ struct s_mrt_mlx42_control
 	unsigned int	right : 1;
 	unsigned int	upward : 1;
 	unsigned int	downward : 1;
+	unsigned int	rotation : 1;
+	unsigned int	zoom : 1;
 };
 
 bool						mrt_mlx42_control_switch(\
@@ -182,6 +180,7 @@ struct s_mrt_renderer_mlx42
 	mlx_t							*mlx;
 	mlx_image_t						*image;
 	struct s_mrt_mlx42_control		control;
+	t_mrt_vec2						last_cursor_position;
 };
 
 int							mrt_renderer_mlx42_init(\
@@ -209,5 +208,21 @@ struct s_mrt_renderer_mlx42 *renderer);
 
 void						mrt_mlx42_mouse_hook(mouse_key_t button, \
 action_t action, modifier_key_t mods, struct s_mrt_renderer_mlx42 *renderer);
+
+void						mrt_mlx42_cursor_hook(double xpos, double ypos, \
+struct s_mrt_renderer_mlx42 *renderer);
+
+void						mrt_mlx42_scroll_hook(double xdelta, double ydelta, \
+struct s_mrt_renderer_mlx42 *renderer);
+
+void						mrt_mlx42_xz_axis_movement(\
+struct s_mrt_scene_camera *scene_camera, struct s_mrt_mlx42_control control);
+
+t_mrt_vec3					mrt_mlx42_rotate_y(t_mrt_vec3 v, double xz_theta);
+
+t_mrt_vec3					mrt_mlx42_rotate_x(t_mrt_vec3 v, double yz_theta);
+
+t_mrt_vec3					mrt_mlx42_rotate(t_mrt_vec3 v, double xz_theta, \
+double yz_theta);
 
 #endif
