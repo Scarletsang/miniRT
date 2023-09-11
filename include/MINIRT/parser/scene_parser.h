@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 12:43:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/01 13:37:42 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 09:59:21 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@
 # include "LIBFT/vector.h"
 # include "LIBFT/slice.h"
 # include "LIBFT/parser.h"
+# include "LIBFT/iostream.h"
+
+//////////////////////////////////////////
+////////////   scene parser   ////////////
+//////////////////////////////////////////
+
+struct s_mrt_scene_parser
+{
+	struct s_ft_iostream		iostream;
+	struct s_ft_error_traces	traces;
+	int							fd;
+};
+
+int						mrt_scene_parser_init(\
+struct s_mrt_scene_parser *parser, const char *file_path);
+
+void					mrt_scene_parser_free(\
+struct s_mrt_scene_parser *parser);
 
 typedef struct s_ft_parser_atom	t_mrt_scene_parser_atom;
 
@@ -58,10 +76,7 @@ t_mrt_scene_parser_atom input, union u_ft_tobject option);
 
 typedef struct s_ft_parser_atom	t_mrt_unit_parser_atom;
 
-t_mrt_unit_parser_atom	mrt_scene_parser_point3d(\
-t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
-
-t_mrt_unit_parser_atom	mrt_scene_parser_direction3d(\
+t_mrt_unit_parser_atom	mrt_scene_parser_vec3(\
 t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 
 t_mrt_unit_parser_atom	mrt_scene_parser_float(\
@@ -69,6 +84,13 @@ t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
 
 t_mrt_unit_parser_atom	mrt_scene_parser_color(\
 t_mrt_unit_parser_atom input, union u_ft_tobject range_object);
+
+/////////////////////////////////////////
+////////////   misc parser   ////////////
+/////////////////////////////////////////
+
+t_mrt_scene_parser_atom	mrt_scene_parser_line_ends(\
+t_mrt_scene_parser_atom input, union u_ft_tobject option);
 
 //////////////////////////////////////////////
 ////////////   custom decorator   ////////////
