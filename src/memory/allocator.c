@@ -6,13 +6,14 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 20:23:28 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 04:42:07 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 11:52:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/memory/allocator.h"
 #include "LIBFT/vector.h"
 #include <stdlib.h>
+#include <stdint.h>
 #include <assert.h>
 
 int	mrt_allocator_init(struct s_mrt_allocator *allocator, \
