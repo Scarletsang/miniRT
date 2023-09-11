@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 19:07:04 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 10:05:06 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:17:50 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	mrt_scene_parser_file_name_is_valid(const char *file_name)
 	len = ft_strlen(file_name);
 	if (len < 4)
 		return (false);
-	return (ft_strcmp(file_name + len - 4, ".rt") == 0);
+	return (ft_strcmp(file_name + len - 3, ".rt") == 0);
 }
 
 int	mrt_scene_parser_init(struct s_mrt_scene_parser *parser, \
