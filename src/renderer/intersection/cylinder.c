@@ -6,7 +6,7 @@
 /*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:02:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 07:54:04 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:22:02 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,21 @@
 static void	intersect_caps(struct s_mrt_ray *ray, \
 struct s_mrt_cylinder *cylinder, t_mrt_point3d center, t_mrt_vec2 *roots)
 {
-	double			distance;
-	double			t;
-	t_mrt_vec3		ray_to_center;
+	double					distance;
+	double					t;
+	t_mrt_direction3d_unit	orientation;
+	t_mrt_vec3				ray_to_center;
 
+	orientation = cylinder->scene->orientation;
 	ray_to_center = vec3_subtract(center, ray->origin);
-	t = vec3_dot(ray->direction, cylinder->scene->orientation);
+	t = vec3_dot(ray->direction, orientation);
 	if (t == 0)
 		return ;
-	t = vec3_dot(ray_to_center, vec3_sdivide(cylinder->scene->orientation, t));
-	if (t < 0)
-		return ;
+	t = vec3_dot(ray_to_center, vec3_sdivide(orientation, t));
 	if (!vec3_is_equal(center, cylinder->scene->center))
 		intersect_caps(ray, cylinder, cylinder->scene->center, roots);
+	if (t < 0)
+		return ;
 	distance = vec3_length(vec3_subtract(ray_at(ray, t), center));
 	if (distance <= (cylinder->scene->diameter / 2))
 	{
@@ -122,7 +124,6 @@ struct s_mrt_ray *ray)
 	t_mrt_vec3	center_to_ray;
 	t_mrt_vec3	quadratic;
 	double		tmp;
-	double		discriminant;
 	t_mrt_vec2	roots;
 
 	center_to_ray = vec3_subtract(ray->origin, cylinder->scene->center);
@@ -134,10 +135,7 @@ struct s_mrt_ray *ray)
 	tmp = vec3_dot(center_to_ray, cylinder->scene->orientation);
 	quadratic.z = vec3_dot(center_to_ray, center_to_ray) - tmp * tmp - \
 		(cylinder->scene->diameter / 2) * (cylinder->scene->diameter / 2);
-	discriminant = mrt_quadratic_discriminant(quadratic);
-	roots = mrt_quadratic_roots(quadratic, discriminant);
-	if (discriminant < 0)
-		return (-1);
+	roots = mrt_quadratic_roots(quadratic, 0);
 	is_in_range(ray, cylinder, &roots);
 	return (mrt_quadratic_smallest_root(roots));
 }
