@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 11:16:30 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 12:53:12 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 12:04:10 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ void	mrt_light_ambient_refresh(struct s_mrt_light_ambient *light_ambient)
 {
 	light_ambient->color = mrt_color_to_percentage(\
 		light_ambient->scene->color);
+}
+
+void	mrt_light_ambient_free(struct s_mrt_light_ambient *light_ambient)
+{
+	free(light_ambient->scene);
 }
