@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 12:44:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/08 09:17:25 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:57:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ union u_ft_tobject vec3_type)
 		}, 5, ft_parser_atom_payload_set(input, ft_tobject_ptr(&parser)), \
 			ft_tobject_empty());
 	if (result.is_valid)
-		*((t_mrt_vec3 *) result.payload.as_ptr) = vec3;
-	return (result);
+		*((t_mrt_vec3 *) input.payload.as_ptr) = vec3;
+	return (ft_parser_atom_chain(input, input.payload, result.string));
 }
 
 struct s_ft_parser_atom	mrt_parser_vec3_float(\
