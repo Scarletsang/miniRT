@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 03:56:20 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/11 05:50:01 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 06:08:09 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@
 void	mrt_mlx42_xz_axis_movement(struct s_mrt_scene_camera *scene_camera, \
 struct s_mrt_mlx42_control control)
 {
-	t_mrt_vec3	transform;
+	t_mrt_vec3		transform;
+	t_mrt_vec3_unit	up_vector;
 
 	transform = vec3(0, 0, 0);
+	up_vector = vec3(0, 1, 0);
 	if (control.forward)
 		transform = vec3_negate(scene_camera->orientation);
 	if (control.backward)
 		transform = vec3_add(transform, scene_camera->orientation);
 	if (control.left)
-		transform = vec3_add(transform, vec3(-scene_camera->orientation.x, \
-			0, scene_camera->orientation.z));
+		transform = vec3_add(transform, vec3_cross(scene_camera->orientation, \
+			up_vector));
 	if (control.right)
-		transform = vec3_add(transform, \
-			vec3(scene_camera->orientation.x, 0, -scene_camera->orientation.z));
+		transform = vec3_add(transform, vec3_negate(\
+			vec3_cross(scene_camera->orientation, up_vector)));
 	transform.y = 0;
 	scene_camera->origin = vec3_add(scene_camera->origin, \
 		vec3_smultiply(transform, 0.75));
