@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/10 12:55:16 by kisikogl         ###   ########.fr       */
+/*   Updated: 2023/09/10 14:28:51 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ struct s_mrt_lighting *lighting_data);
 ////////////   shading   ////////////
 /////////////////////////////////////
 
-bool	mrt_is_shadow(struct s_mrt_lighting *lighting_data, \
+bool				mrt_is_shadow(struct s_mrt_lighting *lighting_data, \
 	struct s_mrt_renderer_data *renderer, t_mrt_vec3 lightv);
 
 #endif
