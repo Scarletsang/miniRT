@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:04:19 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/06 20:00:17 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 07:53:40 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,11 @@ t = (plane->point - ray->origin) . plane->normal / ray->direction . plane->norma
 
 double	mrt_intersect_plane(struct s_mrt_plane *plane, struct s_mrt_ray *ray)
 {
-	t_mrt_vec3			tmp;
+	t_mrt_vec3			ray_to_plane;
 	double				t;
 
-	tmp = vec3_subtract(plane->scene->point, ray->origin);
+	ray_to_plane = vec3_subtract(plane->scene->point, ray->origin);
 	t = vec3_dot(ray->direction, plane->scene->normal);
-	t = vec3_dot(tmp, vec3_sdivide(plane->scene->normal, t));
+	t = vec3_dot(ray_to_plane, vec3_sdivide(plane->scene->normal, t));
 	return (t);
 }
-
-/*
-Paper bin:
-
-This was in mrt_intersect_plane.
-This was to prevent rendering when the camera is looking straight
-at the edge of the plane:
-
-static void	*inrenderable = NULL;
-
-if (plane == inrenderable)
-	return (false);
-if (fabs(t) < 0.1)
-{
-	inrenderable = plane;
-	return (false);
-}
-Calculating the distance between the ray and the plane:
-
-distance = vec3_length(vec3_smultiply(ray->direction, t));
-*/
