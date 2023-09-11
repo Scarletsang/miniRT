@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: kisikogl <kisikogl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 12:42:22 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/10 14:28:51 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 13:29:30 by kisikogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ struct s_mrt_sphere *sphere, t_mrt_vec3 world_point);
 
 t_mrt_vec3			mrt_lighting_normal_at_plane(struct s_mrt_plane *plane, \
 t_mrt_vec3 world_point);
+
+//////////////////////////////////////////////////////////////
+////////////   check if camera is inside object   ////////////
+//////////////////////////////////////////////////////////////
+
+bool				mrt_lighting_is_camera_inside_sphere( \
+struct s_mrt_sphere *sphere, struct s_mrt_ray *ray);
+
+bool				mrt_lighting_is_camera_inside_cylinder( \
+struct s_mrt_cylinder *cylinder, struct s_mrt_ray *ray);
 
 //////////////////////////////////////
 ////////////   lighting   ////////////
