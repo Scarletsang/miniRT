@@ -38,6 +38,8 @@ PARSER_SRC:= \
 	parser/number.c \
 	parser/vec3.c \
 	parser/scene/parser.c \
+	parser/scene/control.c \
+	parser/error_printer.c \
 	parser/scene/unit.c \
 	parser/scene/common.c \
 	parser/scene/material.c \
@@ -45,13 +47,14 @@ PARSER_SRC:= \
 	parser/scene/objects/cylinder.c \
 	parser/scene/objects/plane.c \
 	parser/scene/objects/sphere.c \
-	parser/scene/objects/light.c
+	parser/scene/objects/light_point.c \
+	parser/scene/objects/light_ambient.c
 RENDERER_SRC:= \
 	renderer/renderer.c \
 	renderer/cache.c \
 	renderer/control.c \
-	renderer/mlx42.c \
 	renderer/ppm.c \
+	renderer/mlx42.c \
 	renderer/mlx42/setup.c \
 	renderer/mlx42/hooks.c \
 	renderer/mlx42/action.c \
@@ -112,6 +115,7 @@ DEFAULT_SRC:= \
 	default/scene.c
 MAIN_SRC:= \
 	main.c \
+	error_printer.c \
 	image.c
 SRC:= $(UNIT_SRC) $(PARSER_SRC) $(RENDERER_SRC) $(SCENE_SRC) $(WORLD_SRC) $(MATRIX_SRC) $(MEMORY_SRC) $(DEFAULT_SRC) $(MAIN_SRC)
 

@@ -6,7 +6,7 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 12:44:32 by htsang            #+#    #+#             */
-/*   Updated: 2023/08/26 14:52:29 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/11 10:57:34 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ union u_ft_tobject vec3_type)
 	struct s_ft_parser_atom			result;
 	struct s_ft_parser_struct		*parser;
 
-	result = ft_parser_entity_evaluate(&entity, \
-		ft_parser_atom_empty(input.string, input.is_valid));
+	result = ft_parser_entity_evaluate(&entity, input);
 	if (!result.is_valid)
 		return (ft_parser_atom_validity_set(input, false));
 	parser = input.payload.as_ptr;
@@ -34,7 +33,7 @@ union u_ft_tobject vec3_type)
 		*(double *) ft_parser_struct_current(parser) = \
 			(double) result.payload.as_uint;
 	parser->current++;
-	return (ft_parser_atom(input.payload, result.string));
+	return (ft_parser_atom_chain(input, input.payload, result.string));
 }
 
 static struct s_ft_parser_atom	mrt_parser_vec3(\
@@ -55,15 +54,11 @@ union u_ft_tobject vec3_type)
 		ft_parser_entity(&ft_parser_ignore, ft_tobject_str(",")), \
 		ft_decorator_entity(&mrt_parser_vec3_field, \
 			(struct s_ft_parser_entity[1]){entity}, vec3_type),
-		}, 5, ft_parser_atom(ft_tobject_ptr(&parser), input.string), \
+		}, 5, ft_parser_atom_payload_set(input, ft_tobject_ptr(&parser)), \
 			ft_tobject_empty());
 	if (result.is_valid)
 		*((t_mrt_vec3 *) input.payload.as_ptr) = vec3;
-	return ((struct s_ft_parser_atom){
-		.payload = input.payload,
-		.is_valid = result.is_valid,
-		.string = result.string
-	});
+	return (ft_parser_atom_chain(input, input.payload, result.string));
 }
 
 struct s_ft_parser_atom	mrt_parser_vec3_float(\

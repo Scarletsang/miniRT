@@ -6,11 +6,12 @@
 /*   By: htsang <htsang@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 10:55:02 by htsang            #+#    #+#             */
-/*   Updated: 2023/09/04 22:32:35 by htsang           ###   ########.fr       */
+/*   Updated: 2023/09/08 06:56:56 by htsang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MINIRT/scene.h"
+#include "MINIRT/error.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -66,5 +67,9 @@ bool	mrt_scene_is_valid(struct s_mrt_scene *scene)
 			has_ambient = true;
 		ft_vector_iterator_next(&it);
 	}
+	if (!has_camera)
+		mrt_error_printer(MRT_ERROR_WORLD_MISSING_CAMERA);
+	if (!has_ambient)
+		mrt_error_printer(MRT_ERROR_WORLD_MISSING_AMBIENT_LIGHT);
 	return (has_camera && has_ambient);
 }
