@@ -1,6 +1,7 @@
 # miniRT
 
 A Raytracing engine written in C
+  by Scarletsang and K-isikoglu
 
 ## Default settings
 
